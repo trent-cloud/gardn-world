@@ -7,6 +7,7 @@ import photoHands from '../assets/brand/photo-hands.jpg';
 import photoBorder from '../assets/brand/photo-border.jpg';
 import photoHedgehog from '../assets/brand/photo-hedgehog.jpg';
 import gardnMark from '../assets/brand/gardn-mark.png';
+import gardnLockupHorizontal from '../assets/brand/gardn-lockup-horizontal.png';
 
 export {
   photoMeadow,
@@ -18,4 +19,5 @@ export {
   photoBorder,
   photoHedgehog,
   gardnMark,
+  gardnLockupHorizontal,
 };

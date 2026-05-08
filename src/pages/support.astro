@@ -3,38 +3,65 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const faqs = [
   {
-    q: 'Lorem ipsum dolor sit amet?',
-    a: 'Placeholder answer — Phase 2 will replace with real support content.',
+    q: 'What is Gardn?',
+    a: "Gardn is a UK garden assistant. It helps you plan, plant, and care for your garden — with frost alerts that fire before the frost arrives, veg calendars calibrated to your postcode, AI plant-health diagnoses, and a local community scoped to your district.",
   },
   {
-    q: 'Consectetur adipiscing elit?',
-    a: 'Placeholder answer — Phase 2 will replace with real support content.',
+    q: 'When does it launch?',
+    a: "On the App Store, May 2026. Google Play follows shortly after. Join the waitlist on the home page and we'll email you on the day.",
   },
   {
-    q: 'Sed do eiusmod tempor incididunt?',
-    a: 'Placeholder answer — Phase 2 will replace with real support content.',
+    q: 'How much does it cost?',
+    a: "Free, with hard caps on the AI features. Premium is £5.99 a month or £49.99 a year, with a 14-day full Premium trial. App Store in-app purchase only at v1.",
+  },
+  {
+    q: 'Is my data private?',
+    a: "Yes. We don't sell user data, we don't share it with advertisers, and your garden is yours. The full Privacy Policy will be live before launch — see /privacy.",
+  },
+  {
+    q: 'What plants does it support?',
+    a: "60 UK native and naturalised species are seeded at launch, with regional calibration built in. The library expands; we're not pretending to be a 30,000-plant reference. Gardn is the working tool that knows your specific plants.",
+  },
+  {
+    q: "I'm not in the UK — can I use it?",
+    a: "You can. Gardn is optimised for UK gardens, so the regional accuracy — postcode-derived veg calendars, frost thresholds tuned to UK conditions — degrades outside the UK. Plant identification, photo journals, and the community work everywhere; the calibration doesn't.",
+  },
+  {
+    q: 'How do I get help once I have the app?',
+    a: "There's a feedback form inside the app, or email support@gardn.world. We read everything and reply within a working day during launch month.",
   },
 ];
 ---
 
-<BaseLayout title="Support — Gardn">
-  <section class="mx-auto max-w-3xl px-6 py-20">
-    <p class="text-eyebrow text-gardn-fern mb-4">Support</p>
-    <h1 class="text-h1 text-gardn-forest-deep">How can we help?</h1>
-    <p class="text-body text-gardn-muted mt-4">
-      Email <a href="mailto:support@gardn.world" class="underline">support@gardn.world</a> and we’ll
-      get back to you.
+<BaseLayout
+  title="Support — Gardn"
+  description="Answers to the questions we get most about Gardn — pricing, launch, plant support, privacy, and getting help."
+>
+  <section class="mx-auto max-w-3xl px-6 pt-16 pb-24 md:pt-24 md:pb-32">
+    <p class="text-eyebrow text-gardn-fern">Support</p>
+    <h1 class="text-h1 text-gardn-forest-deep mt-3" style="text-wrap: balance;">
+      How can we help?
+    </h1>
+    <p class="text-body text-gardn-muted mt-6">
+      Email <a href="mailto:support@gardn.world" class="underline decoration-gardn-fern decoration-2 underline-offset-4">support@gardn.world</a> and we'll get back to you within a working day during launch month.
     </p>
 
-    <div class="mt-12 space-y-6">
+    <div class="mt-16 space-y-10">
       {
         faqs.map((f) => (
-          <div class="border-b border-gardn-line pb-6">
+          <div class="border-b border-gardn-line pb-10 last:border-0">
             <h2 class="text-h2 text-gardn-forest-deep">{f.q}</h2>
-            <p class="text-body text-gardn-muted mt-2">{f.a}</p>
+            <p class="text-body text-gardn-muted mt-3">{f.a}</p>
           </div>
         ))
       }
+    </div>
+
+    <div class="mt-16 p-8 bg-gardn-cream rounded-lg border border-gardn-line">
+      <p class="text-label text-gardn-fern">Still need help?</p>
+      <p class="text-body text-gardn-forest-deep mt-2">
+        <a href="mailto:support@gardn.world" class="underline decoration-gardn-fern decoration-2 underline-offset-4">support@gardn.world</a>
+      </p>
     </div>
   </section>
 </BaseLayout>

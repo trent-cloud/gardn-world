@@ -2,57 +2,151 @@
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import {
-  photoMeadow,
+  photoBacklit,
   photoBorder,
+  photoDahlia,
   photoHands,
-  photoCourtyard,
 } from '../constants/brandAssets';
 
-const features = [
+const pillars = [
   {
+    eyebrow: 'UK regional accuracy',
+    title: 'Calibrated for UK gardens.',
+    body: 'Tomato sowing in Cornwall happens two weeks before Yorkshire. Gardn knows that. Veg windows shift with your postcode, and the 60 UK native and naturalised species seeded at launch are calibrated for British conditions — not retrofitted from a US database.',
     photo: photoBorder,
-    eyebrow: 'Plan',
-    title: 'Lorem ipsum dolor',
-    body: 'Placeholder copy — Phase 2 will replace this with the real plan-your-garden value prop.',
+    photoAlt: 'A planted UK garden border, late spring.',
+    side: 'left' as const,
   },
   {
+    eyebrow: 'Active intelligence',
+    title: 'Notices before you do.',
+    body: "Most plant apps wait for you to ask. Gardn pushes the alert: frost coming in the next 48 hours, the watering you can skip because of yesterday's 12 mm of rain, the veg you can sow this week before the window closes. The garden tells you what it needs, in time to do something about it.",
+    photo: photoDahlia,
+    photoAlt: 'Dahlia in close-up, paying attention to detail.',
+    side: 'right' as const,
+  },
+  {
+    eyebrow: 'Neighbourhood community',
+    title: "Your district's gardeners.",
+    body: "Your community is the people gardening within three kilometres of you, not 'global UK gardeners'. Three post types — photo, question, exchange — scoped to your district, so the answers are calibrated to your soil and your microclimate. Free for everyone. Always.",
     photo: photoHands,
-    eyebrow: 'Plant',
-    title: 'Consectetur adipiscing',
-    body: 'Placeholder copy — Phase 2 will replace this with the real planting-guidance value prop.',
-  },
-  {
-    photo: photoCourtyard,
-    eyebrow: 'Tend',
-    title: 'Sed do eiusmod tempor',
-    body: 'Placeholder copy — Phase 2 will replace this with the real seasonal-care value prop.',
+    photoAlt: 'Hands in soil — community gardening.',
+    side: 'left' as const,
   },
 ];
 ---
 
-<BaseLayout>
+<BaseLayout
+  title="Gardn — UK garden assistant"
+  description="The UK garden app that pays attention so you don't have to. Frost alerts before frost. Veg calendars by region. AI health diagnoses. Local community."
+>
   <!-- Hero -->
-  <section class="relative">
-    <div class="absolute inset-0 -z-10">
-      <Image
-        src={photoMeadow}
-        alt=""
-        class="w-full h-full object-cover opacity-30"
-        loading="eager"
-      />
+  <section class="relative isolate overflow-hidden bg-gardn-forest-deep">
+    <Image
+      src={photoBacklit}
+      alt=""
+      class="absolute inset-0 -z-10 w-full h-full object-cover"
+      loading="eager"
+      widths={[640, 1024, 1600, 2400]}
+      sizes="100vw"
+    />
+    <div
+      class="absolute inset-0 -z-10"
+      style="background: linear-gradient(180deg, rgba(15,38,24,0.25) 0%, rgba(15,38,24,0.05) 35%, rgba(15,38,24,0.85) 100%);"
+    >
     </div>
-    <div class="mx-auto max-w-6xl px-6 py-24 md:py-32">
-      <p class="text-eyebrow text-gardn-fern mb-4">Placeholder eyebrow</p>
-      <h1 class="text-display text-gardn-forest-deep max-w-3xl">
-        Gardn — UK garden assistant
+
+    <div class="mx-auto max-w-6xl px-6 pt-28 pb-32 md:pt-40 md:pb-44">
+      <p class="text-eyebrow text-gardn-sage">UK garden assistant</p>
+      <h1
+        class="text-display text-gardn-paper mt-4 max-w-4xl"
+        style="text-wrap: balance;"
+      >
+        The UK garden app that pays attention so you don't have to.
       </h1>
-      <p class="text-body text-gardn-muted mt-6 max-w-xl">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phase 2 will replace this with the
-        real hero promise.
+      <p class="text-h2 font-normal text-gardn-paper/85 mt-6 max-w-2xl">
+        Frost alerts before frost. Veg calendars by region. AI health diagnoses. Local community.
       </p>
 
-      <!-- Waitlist -->
-      <form id="waitlist-form" class="mt-10 flex flex-col sm:flex-row gap-3 max-w-md">
+      <div class="mt-10 flex flex-col sm:flex-row gap-4">
+        <a
+          href="#app-store-link-tbd"
+          aria-label="Download on the App Store (link coming at launch)"
+          class="inline-block hover:opacity-90 transition-opacity"
+        >
+          <img
+            src="/badges/app-store-black.svg"
+            alt="Download on the App Store"
+            width="160"
+            height="54"
+            class="h-[54px] w-auto"
+            loading="eager"
+          />
+        </a>
+        <a
+          href="#google-play-link-tbd"
+          aria-label="Get it on Google Play (link coming at launch)"
+          class="inline-block hover:opacity-90 transition-opacity"
+        >
+          <img
+            src="/badges/google-play.png"
+            alt="Get it on Google Play"
+            width="180"
+            height="54"
+            class="h-[54px] w-auto"
+            loading="eager"
+          />
+        </a>
+      </div>
+
+      <a
+        href="#pillars"
+        class="mt-16 inline-flex items-center gap-2 text-label text-gardn-paper/75 hover:text-gardn-paper transition-colors"
+      >
+        See what it does.
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 9l6 6 6-6"></path>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="pillars" class="mx-auto max-w-6xl px-6 py-24 md:py-32 space-y-24 md:space-y-32">
+    {
+      pillars.map((p) => (
+        <article class="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+          <div class={p.side === 'right' ? 'md:order-2' : ''}>
+            <Image
+              src={p.photo}
+              alt={p.photoAlt}
+              class="w-full h-[420px] md:h-[520px] object-cover rounded-lg"
+              widths={[480, 800, 1200]}
+              sizes="(min-width: 768px) 50vw, 100vw"
+            />
+          </div>
+          <div class={p.side === 'right' ? 'md:order-1' : ''}>
+            <p class="text-eyebrow text-gardn-fern">{p.eyebrow}</p>
+            <h2 class="text-h1 text-gardn-forest-deep mt-3" style="text-wrap: balance;">{p.title}</h2>
+            <p class="text-body text-gardn-muted mt-5 max-w-xl">{p.body}</p>
+          </div>
+        </article>
+      ))
+    }
+  </section>
+
+  <!-- Waitlist -->
+  <section class="bg-gardn-cream border-y border-gardn-line">
+    <div class="mx-auto max-w-2xl px-6 py-24 md:py-32 text-center">
+      <p class="text-eyebrow text-gardn-fern">Launching May 2026</p>
+      <h2 class="text-h1 text-gardn-forest-deep mt-4" style="text-wrap: balance;">
+        Get the app the day it lands.
+      </h2>
+      <p class="text-body text-gardn-muted mt-5 max-w-lg mx-auto">
+        We'll email you once when Gardn lands on the App Store. No follow-ups, no newsletter — just one message saying it's here.
+      </p>
+
+      <form id="waitlist-form" class="mt-10 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
         <label for="waitlist-email" class="sr-only">Email</label>
         <input
           id="waitlist-email"
@@ -61,57 +155,16 @@ const features = [
           required
           autocomplete="email"
           placeholder="you@example.com"
-          class="flex-1 rounded-md border border-gardn-line bg-gardn-cream px-4 py-3 text-body text-gardn-forest-deep placeholder:text-gardn-muted-sub focus:outline-none focus:border-gardn-fern"
+          class="flex-1 rounded-md border border-gardn-line bg-gardn-paper px-4 py-3 text-body text-gardn-forest-deep placeholder:text-gardn-muted-sub focus:outline-none focus:border-gardn-fern"
         />
         <button
           type="submit"
-          class="rounded-md bg-gardn-forest text-gardn-paper text-button px-5 py-3 hover:bg-gardn-forest-deep transition-colors"
+          class="rounded-md bg-gardn-fern text-gardn-paper text-button px-6 py-3 hover:bg-gardn-forest transition-colors"
         >
           Join waitlist
         </button>
       </form>
-      <p id="waitlist-status" class="text-body-sm text-gardn-muted-sub mt-3 min-h-[1.25rem]"></p>
-
-      <!-- Store buttons (placeholder, real badges in Phase 2) -->
-      <div class="mt-8 flex flex-wrap gap-3">
-        <span
-          class="inline-flex items-center rounded-md bg-gardn-forest-deep text-gardn-paper text-button px-5 py-3 opacity-70 cursor-not-allowed"
-          aria-disabled="true"
-        >
-          App Store — coming soon
-        </span>
-        <span
-          class="inline-flex items-center rounded-md bg-gardn-forest-deep text-gardn-paper text-button px-5 py-3 opacity-70 cursor-not-allowed"
-          aria-disabled="true"
-        >
-          Google Play — coming soon
-        </span>
-      </div>
-    </div>
-  </section>
-
-  <!-- Features -->
-  <section class="mx-auto max-w-6xl px-6 py-20">
-    <h2 class="text-h1 text-gardn-forest-deep max-w-2xl">
-      Lorem ipsum sit amet
-    </h2>
-    <p class="text-body text-gardn-muted mt-4 max-w-xl">
-      Placeholder section intro — Phase 2 will replace this.
-    </p>
-
-    <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-      {
-        features.map((f) => (
-          <article class="bg-gardn-cream rounded-lg overflow-hidden border border-gardn-line">
-            <Image src={f.photo} alt="" class="w-full h-56 object-cover" />
-            <div class="p-6">
-              <p class="text-eyebrow text-gardn-fern">{f.eyebrow}</p>
-              <h3 class="text-h2 text-gardn-forest-deep mt-2">{f.title}</h3>
-              <p class="text-body text-gardn-muted mt-3">{f.body}</p>
-            </div>
-          </article>
-        ))
-      }
+      <p id="waitlist-status" role="status" aria-live="polite" class="text-body-sm text-gardn-muted-sub mt-4 min-h-[1.25rem]"></p>
     </div>
   </section>
 </BaseLayout>
@@ -134,13 +187,13 @@ const features = [
         });
         const json = (await res.json()) as { ok: boolean; error?: string };
         if (json.ok) {
-          status.textContent = 'Thanks — you’re on the list.';
+          status.textContent = "Thanks — we'll let you know when Gardn lands.";
           form.reset();
         } else {
-          status.textContent = json.error ?? 'Something went wrong. Please try again.';
+          status.textContent = json.error ?? 'That didn’t work. Try again?';
         }
       } catch {
-        status.textContent = 'Network error. Please try again.';
+        status.textContent = "No signal. We'll be here when you're back.";
       }
     });
   }

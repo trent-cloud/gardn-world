@@ -6,12 +6,18 @@ import Footer from '../components/Footer.astro';
 interface Props {
   title?: string;
   description?: string;
+  ogImage?: string;
 }
 
 const {
   title = 'Gardn — UK garden assistant',
-  description = 'Gardn helps UK gardeners plan, plant, and tend their gardens with confidence.',
+  description = "The UK garden app that pays attention so you don't have to. Frost alerts before frost. Veg calendars by region. AI health diagnoses. Local community.",
+  ogImage = '/og-default.jpg',
 } = Astro.props;
+
+const siteUrl = Astro.site ?? new URL('https://gardn.world');
+const canonical = new URL(Astro.url.pathname, siteUrl).toString();
+const ogImageAbs = new URL(ogImage, siteUrl).toString();
 ---
 
 <!doctype html>
@@ -20,9 +26,30 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
+
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Gardn" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageAbs} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_GB" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageAbs} />
+    <meta name="twitter:site" content="@gardnworld" />
+    <meta name="twitter:creator" content="@gardnworld" />
+
+    <meta name="theme-color" content="#1A3D27" />
   </head>
   <body class="min-h-screen flex flex-col">
     <Header />

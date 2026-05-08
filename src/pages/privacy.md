@@ -17,7 +17,7 @@ Version 1.0
 Gardn is a garden intelligence platform operated by Gardn Labs Ltd, a company registered in England and Wales. We build and operate the Gardn mobile application (the "App") available on the Apple App Store and, in future, Google Play.
 
 **Data controller:** Gardn Labs Ltd
-**Registered address:** 4 Arno Vale Gardens, Woodthorpe, Nottingham, England, NG5 4JL
+**Registered address:** 124-128 City Road, London, United Kingdom, EC1V 2NX
 **Contact:** privacy@gardn.world
 
 We are committed to protecting your personal data and complying with the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018.
@@ -251,7 +251,7 @@ We may update this Privacy Policy from time to time. When we do, we will update 
 For any questions about this Privacy Policy or how we handle your data:
 
 **Email:** privacy@gardn.world
-**Post:** Gardn Labs Ltd, 4 Arno Vale Gardens, Woodthorpe, Nottingham, England, NG5 4JL
+**Post:** Gardn Labs Ltd, 124-128 City Road, London, United Kingdom, EC1V 2NX
 
 For urgent data breach concerns, please mark your email "URGENT: Data Breach" and we will respond within 72 hours.
 

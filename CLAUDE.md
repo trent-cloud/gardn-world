@@ -24,8 +24,9 @@ Marketing-only website for Gardn. **Not** the product.
 - **Phase 1 — 2026-05-08, commit `7d67fda`.** Scaffold + brand foundation + skeleton routes + env-gated waitlist endpoint.
 - **Phase 2 — 2026-05-08, commit `64c5f58`.** Real copy + App Store + Google Play badge artwork + four-icon footer + full SEO. DNS cutover and Resend env vars done same day; site fully live and waitlist functional.
 - **Privacy Policy v1.0 — 2026-05-08, commit `6edadb1` (+ address fix `66555f9`).** Solicitor-signed text wired into `/privacy` (Gardn Labs Ltd, Company No. 17195491, 124-128 City Road, London, EC1V 2NX).
-- **Logo unification — 2026-05-08, commits `d4224b6` / `3e97645` / `0b76389` / `82ae94f`.** Horizontal lockup PNG replaces the icon + text wordmark in header (h-[47px] mobile / h-[52px] desktop) and footer (h-6). Favicon stays as the icon-only mark.
+- **Logo unification — 2026-05-08, commits `d4224b6` / `3e97645` / `0b76389` / `82ae94f`.** Horizontal lockup PNG replaces the icon + text wordmark in header and footer. Favicon stays as the icon-only mark.
 - **Doc 15 site copy applied — 2026-05-08, commit `288b273` (+ refinement `82ae94f`).** Home page rebuilt to the 5-block structure: Hero (locked tagline pair, no eyebrow) → Memory section (dominant) → 3 proof points (smaller) → Waitlist (pre-launch state) → Footer. Footer tagline + meta defaults updated. Support page rewritten (no FAQ; `help@` + `hello@` emails). Notes page rewritten.
+- **Mobile rendering pass — 2026-05-08, commit `e23850d`.** `.text-display` now fluid `clamp(36px, 8vw, 56px)` so the hero h1 scales from 56px (desktop) to ~36px (390px viewport). Mobile logo reverted to `h-9` (the +30% bump was desktop-only); desktop keeps `h-[52px]`. Hero sub-line uses inline `clamp(17px, 4vw, 28px)`. Hero gradient mid-stop opacity bumped 10% → 40% so the headline doesn't sit in the bright band. iPhone Safari now renders the hero at 2-3 balanced lines instead of 5.
 
 ## Brand source of truth
 
@@ -93,7 +94,7 @@ Always use Astro's `<Image />` from `astro:assets` for brand photos and the lock
 
 ## Logo placement
 
-- **Header** — horizontal lockup PNG (`gardnLockupHorizontal`) at `h-[47px] md:h-[52px]`. Sticky, on a `bg-gardn-paper/90 backdrop-blur` bar with `border-b border-gardn-line`.
+- **Header** — horizontal lockup PNG (`gardnLockupHorizontal`) at `h-9 md:h-[52px]` (mobile shrunk so it doesn't fight the 3-link nav at iPhone width; desktop kept the +30% bump). Sticky, on a `bg-gardn-paper/90 backdrop-blur` bar with `border-b border-gardn-line`.
 - **Footer** — same lockup at `h-6`, above the *"A garden app that grows with you."* tagline.
 - **Favicon** — icon-only mark (`gardn-mark.png` → `public/favicon.png`). Lockup is illegible at favicon size.
 

@@ -2,8 +2,8 @@
 
 > The single read-first file for `gardn-world`. Updated at the end of every session. If you're starting a session, **read this file first**, then `CLAUDE.md`, then `~/Documents/Gardn App/gardn-docs/15-site-copy.md` (copy source-of-truth) and `14-action-tracker.md` (broader project state). Don't touch code until you've read all four.
 
-**Last updated:** 2026-05-08 (end of marketing-site build session)
-**Current head:** `82ae94f` on `main` (pushed)
+**Last updated:** 2026-05-08 (mobile rendering pass — second session-close of the day)
+**Current head:** `e23850d` on `main` (pushed)
 **Live URL:** [https://gardn.world](https://gardn.world)
 
 ---
@@ -26,7 +26,9 @@ The site is live, the waitlist works, and the Privacy Policy is solicitor-signed
 - `/support` — Doc 15 rewrite, no FAQ, two emails (`help@gardn.world`, `hello@gardn.world`).
 - `/blog` — "A gardener's notebook" intro per Doc 15.
 
-**Logo:** horizontal lockup PNG used everywhere. Header `h-[47px] md:h-[52px]`, Footer `h-6`. Favicon stays as the icon-only mark.
+**Logo:** horizontal lockup PNG used everywhere. Header `h-9 md:h-[52px]` (mobile shrunk after the +30% bump pushed past the nav breakpoint), Footer `h-6`. Favicon stays as the icon-only mark.
+
+**Mobile rendering:** hero h1 / sub-line / gradient / logo all pass an iPhone 14/15 (390px) layout. Audit + fix landed `e23850d`. `.text-display` is now fluid via `clamp(36px, 8vw, 56px)`; sub-line uses an inline `clamp(17px, 4vw, 28px)`; gradient mid-stop bumped 10% → 40% so the headline doesn't sit in the bright band.
 
 ---
 
@@ -61,6 +63,9 @@ Pre-launch state retires; post-launch state goes live. Doc 15 has both copy vari
 - **LinkedIn social handle** — Doc 15 says add to footer once company page exists.
 - **YouTube / Threads / Bluesky** — not yet reserved per Doc 02.
 - **Per-page OG images** — currently every page uses `og-default.jpg`. Future: tagline-overlaid 1200×630 for the home page.
+- **Hero sub-line letter-spacing on mobile** — the sub-line still inherits `letter-spacing: -0.7px` from `.text-h2`; at the new 17px mobile size that's slightly tight. Marginal polish, flagged in the mobile-rendering Phase 2 report. Not a Phase 3 priority.
+- **Hero gradient mood** — current overlay (`0.50 / 0.40 / 0.85`) is the heavier of the two recommended options. If on a closer look the hero feels too cinematic, swap line 53 of `index.astro` to the lighter alternative (`0.45 / 0.30 / 0.85`). One-line edit.
+- **Memory section photo height on mobile** — `h-[480px]` consumes the entire mobile fold of the section (audit Priority 5, deliberately deferred). Reduce to `h-[320px]` if the pacing bothers anyone.
 
 ---
 
@@ -88,7 +93,7 @@ Most likely entry points:
 
 ---
 
-## Today's commits (12, all on `main`)
+## Today's commits (14, all on `main`)
 
 | Hash | Subject |
 |------|---------|
@@ -104,6 +109,8 @@ Most likely entry points:
 | `0b76389` | Header: enlarge lockup (h-7/8 → h-9/10) per co-founder review |
 | `288b273` | Apply Doc 15 site copy: 5-block home + new memory section |
 | `82ae94f` | Hero: drop "A garden assistant" eyebrow; header lockup +30% |
+| `8d57286` | Close session: SESSION_STATE.md + CLAUDE.md pickup convention |
+| `e23850d` | fix(site): mobile hero + nav rendering pass |
 
 ---
 

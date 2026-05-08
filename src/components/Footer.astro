@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import { gardnLockupHorizontal } from '../constants/brandAssets';
+
 const year = new Date().getFullYear();
 
 const socials = [
@@ -29,8 +32,15 @@ const socials = [
   <div class="mx-auto max-w-6xl px-6 py-14">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
       <div>
-        <p class="text-wordmark text-gardn-forest-deep">Gardn.</p>
-        <p class="text-body-sm text-gardn-muted mt-3 max-w-xs">
+        <Image
+          src={gardnLockupHorizontal}
+          alt="Gardn"
+          widths={[140, 280]}
+          sizes="140px"
+          class="h-6 w-auto"
+          loading="lazy"
+        />
+        <p class="text-body-sm text-gardn-muted mt-4 max-w-xs">
           A UK garden assistant from Gardn Labs Ltd.
         </p>
       </div>

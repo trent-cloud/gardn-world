@@ -93,4 +93,86 @@
     font-size: 20px;
     letter-spacing: -0.4px;
   }
+
+  .prose-legal h1 {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 40px;
+    letter-spacing: -0.9px;
+    color: var(--color-gardn-forest-deep);
+  }
+  .prose-legal h2 {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+    letter-spacing: -0.5px;
+    color: var(--color-gardn-forest-deep);
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .prose-legal h3 {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+    color: var(--color-gardn-forest-deep);
+    margin-top: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+  .prose-legal p,
+  .prose-legal li {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    color: var(--color-gardn-muted);
+    margin-top: 0.75rem;
+  }
+  .prose-legal strong {
+    color: var(--color-gardn-forest-deep);
+    font-weight: 600;
+  }
+  .prose-legal a {
+    color: var(--color-gardn-fern);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+  }
+  .prose-legal a:hover {
+    color: var(--color-gardn-forest-deep);
+  }
+  .prose-legal ul,
+  .prose-legal ol {
+    margin-top: 0.75rem;
+    padding-left: 1.5rem;
+  }
+  .prose-legal ul { list-style: disc; }
+  .prose-legal ol { list-style: decimal; }
+  .prose-legal hr {
+    border: 0;
+    border-top: 1px solid var(--color-gardn-line);
+    margin: 2.5rem 0;
+  }
+  .prose-legal table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-size: 14px;
+    line-height: 21px;
+  }
+  .prose-legal th,
+  .prose-legal td {
+    border: 1px solid var(--color-gardn-line);
+    padding: 10px 12px;
+    text-align: left;
+    vertical-align: top;
+    color: var(--color-gardn-muted);
+  }
+  .prose-legal th {
+    background-color: var(--color-gardn-cream);
+    color: var(--color-gardn-forest-deep);
+    font-weight: 600;
+  }
+  .prose-legal em {
+    font-style: italic;
+    color: var(--color-gardn-muted-sub);
+  }
 }

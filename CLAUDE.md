@@ -53,7 +53,7 @@ description: "..."
 ...
 ```
 
-When Terms lands: copy the privacy.md frontmatter shape, paste the solicitor-signed text into the body, delete `src/pages/terms.astro`. Verify Gardn Labs Ltd's registered address against Companies House before publishing — `privacy.md` currently uses the Arno Vale Gardens address inherited from the Woodlark Associates Ltd draft.
+When Terms lands: copy the privacy.md frontmatter shape, paste the solicitor-signed text into the body, delete `src/pages/terms.astro`. Use the same registered office address as `privacy.md` — **Gardn Labs Ltd, 124-128 City Road, London, EC1V 2NX** (Company No. 17195491).
 
 ## What NOT to add
 

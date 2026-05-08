@@ -12,7 +12,8 @@ Marketing-only website for Gardn. **Not** the product.
 ## Phase status
 
 - **Phase 1 — 2026-05-08, commit `7d67fda`.** Scaffold + brand foundation + skeleton routes + env-gated waitlist endpoint.
-- **Phase 2 — 2026-05-08, commit `64c5f58`.** Real copy across hero / features / waitlist / blog / support, polished Privacy + Terms holding pages, real App Store + Google Play badge artwork, four-icon footer linking to `@gardnworld` socials, full SEO (per-page meta, OG + Twitter Card, canonical, sitemap, robots, 1200×630 og-default.jpg). DNS cutover to `gardn.world` and Resend env-var wiring are owed manually by Trent.
+- **Phase 2 — 2026-05-08, commit `64c5f58`.** Real copy across hero / features / waitlist / blog / support, polished Privacy + Terms holding pages, real App Store + Google Play badge artwork, four-icon footer linking to `@gardnworld` socials, full SEO (per-page meta, OG + Twitter Card, canonical, sitemap, robots, 1200×630 og-default.jpg). DNS cutover to `gardn.world` and Resend env-var wiring done manually by Trent later that day; site fully live and waitlist functional.
+- **Privacy Policy v1.0 — 2026-05-08, commit `6edadb1`.** Solicitor-signed text from Richard wired into `/privacy` (entity = Gardn Labs Ltd, Company No. 17195491). Terms still owed.
 
 ## Brand source of truth
 
@@ -37,6 +38,22 @@ Positioning substrate: `~/Documents/Gardn App/gardn-docs/10-usp.md` (Messaging h
 - Shared chrome lives in `src/components/Header.astro` and `src/components/Footer.astro`.
 - Layout meta defaults live in `src/layouts/BaseLayout.astro` (per-page overrides via the `title` / `description` / `ogImage` Astro props).
 - Pushes to `main` auto-deploy on Vercel. There is no preview/staging gate beyond per-branch Vercel previews.
+
+## Long-form legal pages
+
+`/privacy` (and `/terms` when it lands) live as **markdown files** at `src/pages/privacy.md` and `src/pages/terms.md`, rendered through `src/layouts/LegalLayout.astro` (which wraps the slot in the `.prose-legal` style scope defined in `src/styles/global.css`). This keeps the legal text editable as plain markdown — no Astro syntax to wrangle when the solicitor returns a revision. Frontmatter pattern:
+
+```md
+---
+layout: ../layouts/LegalLayout.astro
+title: "Privacy — Gardn"
+description: "..."
+---
+# Privacy Policy
+...
+```
+
+When Terms lands: copy the privacy.md frontmatter shape, paste the solicitor-signed text into the body, delete `src/pages/terms.astro`. Verify Gardn Labs Ltd's registered address against Companies House before publishing — `privacy.md` currently uses the Arno Vale Gardens address inherited from the Woodlark Associates Ltd draft.
 
 ## What NOT to add
 

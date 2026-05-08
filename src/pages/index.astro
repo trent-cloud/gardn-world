@@ -1,0 +1,147 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import {
+  photoMeadow,
+  photoBorder,
+  photoHands,
+  photoCourtyard,
+} from '../constants/brandAssets';
+
+const features = [
+  {
+    photo: photoBorder,
+    eyebrow: 'Plan',
+    title: 'Lorem ipsum dolor',
+    body: 'Placeholder copy — Phase 2 will replace this with the real plan-your-garden value prop.',
+  },
+  {
+    photo: photoHands,
+    eyebrow: 'Plant',
+    title: 'Consectetur adipiscing',
+    body: 'Placeholder copy — Phase 2 will replace this with the real planting-guidance value prop.',
+  },
+  {
+    photo: photoCourtyard,
+    eyebrow: 'Tend',
+    title: 'Sed do eiusmod tempor',
+    body: 'Placeholder copy — Phase 2 will replace this with the real seasonal-care value prop.',
+  },
+];
+---
+
+<BaseLayout>
+  <!-- Hero -->
+  <section class="relative">
+    <div class="absolute inset-0 -z-10">
+      <Image
+        src={photoMeadow}
+        alt=""
+        class="w-full h-full object-cover opacity-30"
+        loading="eager"
+      />
+    </div>
+    <div class="mx-auto max-w-6xl px-6 py-24 md:py-32">
+      <p class="text-eyebrow text-gardn-fern mb-4">Placeholder eyebrow</p>
+      <h1 class="text-display text-gardn-forest-deep max-w-3xl">
+        Gardn — UK garden assistant
+      </h1>
+      <p class="text-body text-gardn-muted mt-6 max-w-xl">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phase 2 will replace this with the
+        real hero promise.
+      </p>
+
+      <!-- Waitlist -->
+      <form id="waitlist-form" class="mt-10 flex flex-col sm:flex-row gap-3 max-w-md">
+        <label for="waitlist-email" class="sr-only">Email</label>
+        <input
+          id="waitlist-email"
+          name="email"
+          type="email"
+          required
+          autocomplete="email"
+          placeholder="you@example.com"
+          class="flex-1 rounded-md border border-gardn-line bg-gardn-cream px-4 py-3 text-body text-gardn-forest-deep placeholder:text-gardn-muted-sub focus:outline-none focus:border-gardn-fern"
+        />
+        <button
+          type="submit"
+          class="rounded-md bg-gardn-forest text-gardn-paper text-button px-5 py-3 hover:bg-gardn-forest-deep transition-colors"
+        >
+          Join waitlist
+        </button>
+      </form>
+      <p id="waitlist-status" class="text-body-sm text-gardn-muted-sub mt-3 min-h-[1.25rem]"></p>
+
+      <!-- Store buttons (placeholder, real badges in Phase 2) -->
+      <div class="mt-8 flex flex-wrap gap-3">
+        <span
+          class="inline-flex items-center rounded-md bg-gardn-forest-deep text-gardn-paper text-button px-5 py-3 opacity-70 cursor-not-allowed"
+          aria-disabled="true"
+        >
+          App Store — coming soon
+        </span>
+        <span
+          class="inline-flex items-center rounded-md bg-gardn-forest-deep text-gardn-paper text-button px-5 py-3 opacity-70 cursor-not-allowed"
+          aria-disabled="true"
+        >
+          Google Play — coming soon
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="mx-auto max-w-6xl px-6 py-20">
+    <h2 class="text-h1 text-gardn-forest-deep max-w-2xl">
+      Lorem ipsum sit amet
+    </h2>
+    <p class="text-body text-gardn-muted mt-4 max-w-xl">
+      Placeholder section intro — Phase 2 will replace this.
+    </p>
+
+    <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+      {
+        features.map((f) => (
+          <article class="bg-gardn-cream rounded-lg overflow-hidden border border-gardn-line">
+            <Image src={f.photo} alt="" class="w-full h-56 object-cover" />
+            <div class="p-6">
+              <p class="text-eyebrow text-gardn-fern">{f.eyebrow}</p>
+              <h3 class="text-h2 text-gardn-forest-deep mt-2">{f.title}</h3>
+              <p class="text-body text-gardn-muted mt-3">{f.body}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const form = document.getElementById('waitlist-form') as HTMLFormElement | null;
+  const status = document.getElementById('waitlist-status') as HTMLParagraphElement | null;
+  if (form && status) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const email = String(data.get('email') ?? '').trim();
+      if (!email) return;
+      status.textContent = 'Adding you to the list…';
+      try {
+        const res = await fetch('/api/waitlist', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        });
+        const json = (await res.json()) as { ok: boolean; error?: string };
+        if (json.ok) {
+          status.textContent = 'Thanks — you’re on the list.';
+          form.reset();
+        } else {
+          status.textContent = json.error ?? 'Something went wrong. Please try again.';
+        }
+      } catch {
+        status.textContent = 'Network error. Please try again.';
+      }
+    });
+  }
+</script>

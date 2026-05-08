@@ -1,0 +1,33 @@
+---
+import { Image } from 'astro:assets';
+import { gardnMark } from '../constants/brandAssets';
+
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/support', label: 'Support' },
+  { href: '/blog', label: 'Notes' },
+];
+---
+
+<header
+  class="sticky top-0 z-40 bg-gardn-paper/90 backdrop-blur border-b border-gardn-line"
+>
+  <div class="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2 text-gardn-forest-deep">
+      <Image src={gardnMark} alt="Gardn" width={28} height={28} loading="eager" />
+      <span class="text-wordmark">Gardn</span>
+    </a>
+    <nav class="flex items-center gap-6">
+      {
+        links.map((l) => (
+          <a
+            href={l.href}
+            class="text-label text-gardn-muted hover:text-gardn-forest-deep transition-colors"
+          >
+            {l.label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const faqs = [
+  {
+    q: 'Lorem ipsum dolor sit amet?',
+    a: 'Placeholder answer — Phase 2 will replace with real support content.',
+  },
+  {
+    q: 'Consectetur adipiscing elit?',
+    a: 'Placeholder answer — Phase 2 will replace with real support content.',
+  },
+  {
+    q: 'Sed do eiusmod tempor incididunt?',
+    a: 'Placeholder answer — Phase 2 will replace with real support content.',
+  },
+];
+---
+
+<BaseLayout title="Support — Gardn">
+  <section class="mx-auto max-w-3xl px-6 py-20">
+    <p class="text-eyebrow text-gardn-fern mb-4">Support</p>
+    <h1 class="text-h1 text-gardn-forest-deep">How can we help?</h1>
+    <p class="text-body text-gardn-muted mt-4">
+      Email <a href="mailto:support@gardn.world" class="underline">support@gardn.world</a> and we’ll
+      get back to you.
+    </p>
+
+    <div class="mt-12 space-y-6">
+      {
+        faqs.map((f) => (
+          <div class="border-b border-gardn-line pb-6">
+            <h2 class="text-h2 text-gardn-forest-deep">{f.q}</h2>
+            <p class="text-body text-gardn-muted mt-2">{f.a}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

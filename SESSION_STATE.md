@@ -45,11 +45,56 @@ Richard owes solicitor-signed copy. Drop-in pattern, ~5 minutes:
 
 `LegalLayout.astro` + `.prose-legal` styles already do the rendering. No CSS work needed.
 
-### 2. Email routing — **blocks user trust**
+### 2. Email routing — **blocks user trust** (decided 2026-05-10: Google Workspace)
 
-Doc 15 introduces `help@gardn.world` (users) and `hello@gardn.world` (press / partnerships). Verify both route to a live inbox. Until they do, anyone emailing those bounces silently. If only one routes, fold both into the live one (Doc 15 prefers `hello@`).
+Doc 15 introduces `help@gardn.world` (users) and `hello@gardn.world` (press / partnerships). Confirmed bouncing as of 2026-05-10 — `dig MX gardn.world` returns nothing, so anyone emailing those addresses gets an immediate SMTP failure.
 
-### 3. Launch-day swap — target **2026-05-26**
+**Chosen approach: Google Workspace Business Starter (~£4.60/user/month).** Real mailboxes, can send *from* `help@`/`hello@`, room to grow.
+
+**Seat structure (decided):**
+
+- One paid user: `trent@gardn.world` (admin)
+- Two free **groups**: `hello@gardn.world` + `help@gardn.world`, both delivering into `trent@`
+- When Richard joins: add `richard@gardn.world` as a second seat, drop him into both groups
+- Total at launch: £4.60/mo solo, £9.20/mo with Richard. Groups (not aliases) so we can fan out without restructuring later.
+
+**Sequence:**
+
+| Step | Owner | What |
+|---|---|---|
+| 1. Sign up at `workspace.google.com` | Trent | Business Starter, Gardn Labs Ltd, domain `gardn.world`, admin user `trent@gardn.world` |
+| 2. Verify domain ownership | Trent + Claude | Paste Google's TXT record into GoDaddy DNS |
+| 3. Add MX record | Trent + Claude | Google's single-MX value: `smtp.google.com` priority 1 |
+| 4. Create `hello@` + `help@` groups | Trent | Google Admin Console → Groups, both deliver into `trent@` |
+| 5. SPF + DKIM + DMARC | Trent + Claude | Three TXT records at GoDaddy for deliverability |
+| 6. End-to-end verification | Claude | `dig` the records + send test mail to both addresses |
+
+**Flag before step 5:** the waitlist sends via Resend. If Resend is set up to send from `gardn.world` itself (not a `send.gardn.world` subdomain), the SPF record must `include:` both Google and Resend. Check `dig TXT gardn.world` after step 1 to see what (if anything) Resend already added, then merge — don't overwrite.
+
+### 3. Pre-launch marketing momentum — kickoff **2026-05-11**
+
+Build content velocity into launch (T-15 from kickoff). Goal: 2-3 social posts/day across reserved handles, image-rich, in Doc 15 voice.
+
+**Shape — human-in-the-loop, not autonomous agents:**
+
+1. **Image factory** — ChatGPT + Nano Banana for social tiles (1080×1080 IG, 1200×675 X, 1080×1920 stories) and lifestyle variants. Trent approves every output.
+2. **Draft pipeline** — Claude drafts 5-7 posts/week in Doc 15 voice from a new `/social-drafts/` folder in this repo. Trent reviews + approves.
+3. **Scheduled posting** — Buffer or Meta Business Suite. Batch-approve a week of drafts on Sunday, scheduler posts 2-3x/day.
+4. **Engagement stays human** — founder voice in groups/threads, 15 min/day Trent + Richard.
+
+**Why not autonomous engagement agents:** Instagram, TikTok, Reddit, Facebook actively detect and ban automated engagement. At T-15 from launch, a `@gardnworld` suspension is catastrophic (1-3 week appeal windows). Doc 15's community pillar also commits Gardn to *not* mass-engaging — the brand cost of being caught is unrecoverable pre-launch.
+
+**Prerequisite (~30 min):** Reserve `@gardn` on Instagram, X, YouTube, TikTok, Threads, Bluesky, LinkedIn (Doc 14 NEXT 14 DAYS marketing-readiness list, currently unchecked). `@gardnworld` stays as fallback on platforms where `@gardn` isn't reservable.
+
+**Tomorrow's concrete moves (2026-05-11):**
+
+- [ ] Reserve handles on the 7 platforms
+- [ ] Pick scheduler (Buffer £6/mo or Meta Business Suite free)
+- [ ] Stand up `/social-drafts/` folder + first week's 5-7 drafts
+- [ ] First image batch: 3-5 tiles across proof-point themes (memory, frost alerts, regional accuracy)
+- [ ] 15-min listening pass on r/gardening, r/UKGardening — find threads worth noting, no posting yet
+
+### 4. Launch-day swap — target **2026-05-26**
 
 Pre-launch state retires; post-launch state goes live. Doc 15 has both copy variants ready.
 
@@ -57,7 +102,7 @@ Pre-launch state retires; post-launch state goes live. Doc 15 has both copy vari
 - **Block 4 waitlist module:** replace with the *"Available now."* / *"Start with your first plant."* download module per Doc 15. Optional sub-line *"£5.99/month or £49.99/year. Cancel anytime."* if conversion data justifies it.
 - **CLAUDE.md + Doc 15 change-log:** record the swap.
 
-### 4. Lower priority follow-ups
+### 5. Lower priority follow-ups
 
 - **Sentry + analytics** — explicitly deferred. Add post-launch (P1.1, P1.2 in `14-action-tracker`).
 - **LinkedIn social handle** — Doc 15 says add to footer once company page exists.
@@ -77,7 +122,8 @@ Most likely entry points:
 |----------|--------------|
 | *"Start session"* | Read this file + `CLAUDE.md` + Docs 15 / 14, then ask what's needed. |
 | *"Terms is in"* | Drop-in via the `privacy.md` pattern (see Outstanding #1). |
-| *"We're launching today / tomorrow"* | Run the launch-day swap (see Outstanding #3). |
+| *"Let's do the marketing kickoff"* | Start the 5-step list under Outstanding #3. |
+| *"We're launching today / tomorrow"* | Run the launch-day swap (see Outstanding #4). |
 | *"Tweak the [whatever]"* | Edit, push, done — Vercel auto-deploys. |
 
 ---

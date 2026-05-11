@@ -2,15 +2,15 @@
 
 > The single read-first file for `gardn-world`. Updated at the end of every session. If you're starting a session, **read this file first**, then `CLAUDE.md`, then `~/Documents/Gardn App/gardn-docs/15-site-copy.md` (copy source-of-truth) and `14-action-tracker.md` (broader project state). Don't touch code until you've read all four.
 
-**Last updated:** 2026-05-08 (mobile rendering pass — second session-close of the day)
-**Current head:** `e23850d` on `main` (pushed)
+**Last updated:** 2026-05-11 (Privacy v2.0 rewrite + Terms v1.0 draft landed — uncommitted at time of writing)
+**Current head:** `e23850d` on `main` (pushed) — local working tree dirty: new `src/pages/terms.md`, rewritten `src/pages/privacy.md`, removed `src/pages/terms.astro`, doc updates
 **Live URL:** [https://gardn.world](https://gardn.world)
 
 ---
 
 ## Live now
 
-The site is live, the waitlist works, and the Privacy Policy is solicitor-signed and shipped.
+The site is live and the waitlist works. Privacy v2.0 and Terms v1.0 are both drafted into the repo (not yet solicitor-signed — see Outstanding #1).
 
 **Stack:** Astro 6.3.1 + Tailwind CSS 4 + TypeScript strict + `@astrojs/vercel` adapter + `@astrojs/sitemap`. Auto-deploys from `main` to Vercel.
 
@@ -21,8 +21,8 @@ The site is live, the waitlist works, and the Privacy Policy is solicitor-signed
 **Pages:**
 
 - `/` — 5-block home per Doc 15: Hero (locked tagline pair, no eyebrow) → Memory section (dominant) → 3 proof points → Waitlist (pre-launch) → Footer.
-- `/privacy` — solicitor-signed v1.0 (Gardn Labs Ltd, Company No. 17195491, 124-128 City Road, London, EC1V 2NX, dated 2026-05-08).
-- `/terms` — **holding page** (Richard owes solicitor copy).
+- `/privacy` — **v2.0 draft** (2026-05-11). 17-section rewrite by user. Supersedes the solicitor-signed v1.0 (2026-05-08, `6edadb1`). Pending legal review of the new structure + the Stage 1 opt-in-by-default flag (note embedded in the doc).
+- `/terms` — **v1.0 draft** (2026-05-11). 16-section user-authored copy; replaces the `terms.astro` holding page. Pending solicitor sign-off. Section 11 (limitation of liability) carries an inline legal-review note flagging Consumer Rights Act 2015 / UCTA 1977.
 - `/support` — Doc 15 rewrite, no FAQ, two emails (`help@gardn.world`, `hello@gardn.world`).
 - `/blog` — "A gardener's notebook" intro per Doc 15.
 
@@ -34,16 +34,20 @@ The site is live, the waitlist works, and the Privacy Policy is solicitor-signed
 
 ## Outstanding (priority order)
 
-### 1. Terms of Service v1.0 — **blocks launch** (P0.3 in `14-action-tracker.md`)
+### 1. Solicitor sign-off on Privacy v2.0 + Terms v1.0 — **blocks launch** (P0.3 in `14-action-tracker.md`)
 
-Richard owes solicitor-signed copy. Drop-in pattern, ~5 minutes:
+Both pages are live in the repo but neither is signed off. Richard / counsel pass:
 
-1. Write `src/pages/terms.md` mirroring the `privacy.md` frontmatter.
-2. Use the same registered office: **Gardn Labs Ltd, 124-128 City Road, London, EC1V 2NX, Company No. 17195491**.
-3. Delete `src/pages/terms.astro`.
-4. Build, push.
+- **Privacy v2.0** (`src/pages/privacy.md`) — substantial rewrite vs the signed v1.0. Specific items to flag for counsel:
+  - **Stage 1 consent default-on** — section 6 ships Stage 1 (Anonymised aggregate use) as opt-in-by-default. Confirm with counsel that this is defensible under UK GDPR / ICO guidance for aggregated phenology data with district-only aggregation. If counsel pushes back, flip Stage 1 default to off in both the policy text and the in-app consent UI.
+  - Third-party processor list changed materially (Vercel / Expo / Google Play removed; postcodes.io / Apple Inc. / Google LLC broken out).
+  - Entity name throughout is now "Gardn Labs Limited" (matches Companies House) vs prior "Gardn Labs Ltd".
+- **Terms v1.0** (`src/pages/terms.md`) — first published version, footer reads *"Draft for legal review"*. Specific items to flag for counsel:
+  - **Section 11 (limitation of liability)** carries an inline note asking for a full pass against Consumer Rights Act 2015 + UCTA 1977.
+  - **Section 14 (Apple App Store)** — confirms Apple as third-party beneficiary; standard boilerplate but worth a sanity-check.
+  - **Section 4** locks Premium pricing at £5.99/mo or £49.99/yr. Coordinate with App Store Connect SKUs before any further price change.
 
-`LegalLayout.astro` + `.prose-legal` styles already do the rendering. No CSS work needed.
+When sign-off lands: paste signed text into the existing `.md` files, bump versions + "Last updated", strip the "Draft for legal review" suffix from `terms.md` and the section-11 note, decide on the Stage 1 visible-note in `privacy.md`, update the CLAUDE.md phase-status rows, commit, push.
 
 ### 2. Email routing — **blocks user trust** (decided 2026-05-10: Google Workspace)
 
@@ -121,7 +125,7 @@ Most likely entry points:
 | You say… | First action |
 |----------|--------------|
 | *"Start session"* | Read this file + `CLAUDE.md` + Docs 15 / 14, then ask what's needed. |
-| *"Terms is in"* | Drop-in via the `privacy.md` pattern (see Outstanding #1). |
+| *"Counsel signed off on privacy/terms"* | Paste signed text into existing `.md` files, bump versions, strip draft markers (see Outstanding #1). |
 | *"Let's do the marketing kickoff"* | Start the 5-step list under Outstanding #3. |
 | *"We're launching today / tomorrow"* | Run the launch-day swap (see Outstanding #4). |
 | *"Tweak the [whatever]"* | Edit, push, done — Vercel auto-deploys. |

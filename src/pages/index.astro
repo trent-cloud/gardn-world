@@ -7,6 +7,9 @@ import {
   photoDahlia,
   photoBorder,
   photoHands,
+  screenshotMemory,
+  screenshotDiscover,
+  screenshotWildlife,
 } from '../constants/brandAssets';
 
 const proofPoints = [
@@ -102,7 +105,7 @@ const proofPoints = [
           />
         </div>
         <div class="md:col-span-6">
-          <p class="text-eyebrow text-gardn-fern">Your garden, remembered.</p>
+          <p class="text-eyebrow text-gardn-fern" style="font-size: 13px; letter-spacing: 2px;">Your garden, remembered.</p>
           <h2
             class="text-h1 md:text-display text-gardn-forest-deep mt-4"
             style="text-wrap: balance; font-size: clamp(32px, 4vw, 48px); line-height: 1.05; letter-spacing: -1.2px;"
@@ -157,10 +160,81 @@ const proofPoints = [
     </div>
   </section>
 
+  <!-- Block 3.5 — App walkthrough -->
+  <section class="bg-gardn-paper border-t border-gardn-line">
+    <div class="mx-auto max-w-6xl px-6 py-24 md:py-32">
+      <p class="text-eyebrow text-gardn-fern text-center mb-20" style="font-size: 13px; letter-spacing: 2px;">A closer look.</p>
+
+      <div class="space-y-24 md:space-y-32">
+
+        <!-- Pair 1: image left, text right -->
+        <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+          <Image
+            src={screenshotMemory}
+            alt="An older gardener in his garden, browsing the Gardn app's seasonal photo journal."
+            class="w-full max-w-sm mx-auto rounded-xl"
+            widths={[400, 700]}
+            sizes="(min-width: 768px) 40vw, 90vw"
+          />
+          <div>
+            <p class="text-eyebrow text-gardn-fern">The record it keeps.</p>
+            <h3 class="text-h2 text-gardn-forest-deep mt-3" style="font-size: clamp(22px, 2.5vw, 30px); line-height: 1.2; letter-spacing: -0.6px; text-wrap: balance;">
+              Every season, in order.
+            </h3>
+            <p class="text-body text-gardn-muted mt-5" style="font-size: 17px; line-height: 27px;">
+              Scroll back through your garden's history — every photo you've taken, every plant logged, every season filed by month and year. What was in flower in April 2024. What you planted last autumn. The border that surprised you.
+            </p>
+          </div>
+        </div>
+
+        <!-- Pair 2: text left, image right -->
+        <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+          <div class="order-2 md:order-1">
+            <p class="text-eyebrow text-gardn-fern">Tuned to what you already grow.</p>
+            <h3 class="text-h2 text-gardn-forest-deep mt-3" style="font-size: clamp(22px, 2.5vw, 30px); line-height: 1.2; letter-spacing: -0.6px; text-wrap: balance;">
+              Plants that belong in your garden.
+            </h3>
+            <p class="text-body text-gardn-muted mt-5" style="font-size: 17px; line-height: 27px;">
+              Gardn suggests plants based on where you are, what's already in your borders, and what your conditions actually suit. Not a generic list — what's right for the patch you're gardening.
+            </p>
+          </div>
+          <Image
+            src={screenshotDiscover}
+            alt="A woman in a wisteria garden, looking at plant recommendations on the Gardn app."
+            class="w-full max-w-sm mx-auto rounded-xl order-1 md:order-2"
+            widths={[400, 700]}
+            sizes="(min-width: 768px) 40vw, 90vw"
+          />
+        </div>
+
+        <!-- Pair 3: image left, brief text right -->
+        <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+          <Image
+            src={screenshotWildlife}
+            alt="A hand holding a phone in a cottage garden, showing the Gardn wildlife preference screen."
+            class="w-full max-w-sm mx-auto rounded-xl"
+            widths={[400, 700]}
+            sizes="(min-width: 768px) 40vw, 90vw"
+          />
+          <div>
+            <p class="text-eyebrow text-gardn-fern">Beyond the borders.</p>
+            <h3 class="text-h2 text-gardn-forest-deep mt-3" style="font-size: clamp(22px, 2.5vw, 30px); line-height: 1.2; letter-spacing: -0.6px; text-wrap: balance;">
+              A garden is a habitat.
+            </h3>
+            <p class="text-body text-gardn-muted mt-5" style="font-size: 17px; line-height: 27px;">
+              Choose what you want to attract — bees, butterflies, birds, hedgehogs — and Gardn points you toward the plants that bring them in.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- Block 4 — CTA (waitlist, pre-launch) -->
-  <section id="waitlist" class="bg-gardn-paper">
+  <section id="waitlist" class="bg-gardn-cream border-t border-gardn-line">
     <div class="mx-auto max-w-2xl px-6 py-24 md:py-32 text-center">
-      <p class="text-eyebrow text-gardn-fern">Launching soon.</p>
+      <p class="text-eyebrow text-gardn-fern" style="font-size: 13px; letter-spacing: 2px;">Launching soon.</p>
       <h2 class="text-h1 text-gardn-forest-deep mt-4" style="text-wrap: balance;">
         Get the app the day it lands.
       </h2>

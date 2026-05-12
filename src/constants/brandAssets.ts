@@ -8,6 +8,9 @@ import photoBorder from '../assets/brand/photo-border.jpg';
 import photoHedgehog from '../assets/brand/photo-hedgehog.jpg';
 import gardnMark from '../assets/brand/gardn-mark.png';
 import gardnLockupHorizontal from '../assets/brand/gardn-lockup-horizontal.png';
+import screenshotMemory from '../assets/brand/screenshot-memory.png';
+import screenshotDiscover from '../assets/brand/screenshot-discover.png';
+import screenshotWildlife from '../assets/brand/screenshot-wildlife.png';
 
 export {
   photoMeadow,
@@ -20,4 +23,7 @@ export {
   photoHedgehog,
   gardnMark,
   gardnLockupHorizontal,
+  screenshotMemory,
+  screenshotDiscover,
+  screenshotWildlife,
 };

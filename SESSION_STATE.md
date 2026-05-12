@@ -2,8 +2,8 @@
 
 > The single read-first file for `gardn-world`. Updated at the end of every session. If you're starting a session, **read this file first**, then `CLAUDE.md`, then `~/Documents/Gardn App/gardn-docs/15-site-copy.md` (copy source-of-truth) and `14-action-tracker.md` (broader project state). Don't touch code until you've read all four.
 
-**Last updated:** 2026-05-11 (Privacy v2.0 rewrite + Terms v1.0 draft landed — uncommitted at time of writing)
-**Current head:** `e23850d` on `main` (pushed) — local working tree dirty: new `src/pages/terms.md`, rewritten `src/pages/privacy.md`, removed `src/pages/terms.astro`, doc updates
+**Last updated:** 2026-05-12 (app walkthrough section live; Vercel deploy unblocked)
+**Current head:** `5d37826` on `main` (pushed + deployed via CLI)
 **Live URL:** [https://gardn.world](https://gardn.world)
 
 ---
@@ -12,23 +12,32 @@
 
 The site is live and the waitlist works. Privacy v2.0 and Terms v1.0 are both drafted into the repo (not yet solicitor-signed — see Outstanding #1).
 
-**Stack:** Astro 6.3.1 + Tailwind CSS 4 + TypeScript strict + `@astrojs/vercel` adapter + `@astrojs/sitemap`. Auto-deploys from `main` to Vercel.
+**Stack:** Astro 6.3.1 + Tailwind CSS 4 + TypeScript strict + `@astrojs/vercel` adapter + `@astrojs/sitemap`. Auto-deploys from `main` to Vercel (see note below).
 
 **DNS:** GoDaddy A `@` → `76.76.21.21` (Vercel apex), CNAME `www` → `cname.vercel-dns.com`.
 
 **Resend:** `RESEND_API_KEY` + `RESEND_AUDIENCE_ID` set in Vercel envs (Production + Preview). Waitlist tested live and working.
 
+**Vercel deploy note:** GitHub auto-deploy was silently broken from 2026-05-11 because `vercel.json` had hourly + 3-hourly cron schedules (0 * * * * and 0 */3 * * *) which are blocked on the Hobby plan. Fixed 2026-05-12 — crons removed from `vercel.json`, deployed via CLI. Auto-deploy from GitHub should now work again; if it stops, deploy with `vercel --prod` from the project directory.
+
 **Pages:**
 
-- `/` — 5-block home per Doc 15: Hero (locked tagline pair, no eyebrow) → Memory section (dominant) → 3 proof points → Waitlist (pre-launch) → Footer.
-- `/privacy` — **v2.0 draft** (2026-05-11). 17-section rewrite by user. Supersedes the solicitor-signed v1.0 (2026-05-08, `6edadb1`). Pending legal review of the new structure + the Stage 1 opt-in-by-default flag (note embedded in the doc).
-- `/terms` — **v1.0 draft** (2026-05-11). 16-section user-authored copy; replaces the `terms.astro` holding page. Pending solicitor sign-off. Section 11 (limitation of liability) carries an inline legal-review note flagging Consumer Rights Act 2015 / UCTA 1977.
+- `/` — home with 5 blocks: Hero → Memory section (dominant) → 3 proof points → **App walkthrough section (new, 2026-05-12)** → Waitlist (pre-launch) → Footer.
+- `/privacy` — **v2.0 draft** (2026-05-11). 17-section rewrite by user. Supersedes the solicitor-signed v1.0 (2026-05-08, `6edadb1`). Pending legal review.
+- `/terms` — **v1.0 draft** (2026-05-11). 16-section user-authored copy. Pending solicitor sign-off. Section 11 carries a Consumer Rights Act 2015 / UCTA 1977 review note.
 - `/support` — Doc 15 rewrite, no FAQ, two emails (`help@gardn.world`, `hello@gardn.world`).
 - `/blog` — "A gardener's notebook" intro per Doc 15.
 
-**Logo:** horizontal lockup PNG used everywhere. Header `h-9 md:h-[52px]` (mobile shrunk after the +30% bump pushed past the nav breakpoint), Footer `h-6`. Favicon stays as the icon-only mark.
+**App walkthrough section (Block 3.5):** Three alternating image/text pairs between the proof points and waitlist. Images are lifestyle photos of people using the app in real gardens — shot list:
+- `screenshot-memory.png` — elderly man / memory journal screen (left image, right text)
+- `screenshot-discover.png` — woman in wisteria garden / plant recommendations screen (right image, left text)
+- `screenshot-wildlife.png` — hand in cottage garden / wildlife preferences screen (left image, right text)
 
-**Mobile rendering:** hero h1 / sub-line / gradient / logo all pass an iPhone 14/15 (390px) layout. Audit + fix landed `e23850d`. `.text-display` is now fluid via `clamp(36px, 8vw, 56px)`; sub-line uses an inline `clamp(17px, 4vw, 28px)`; gradient mid-stop bumped 10% → 40% so the headline doesn't sit in the bright band.
+Section eyebrow *"A closer look."* centered at top. Section eyebrows on memory block and waitlist block also bumped to 13px. Waitlist block switched to `bg-gardn-cream` to distinguish it from the paper walkthrough above.
+
+**Logo:** horizontal lockup PNG everywhere. Header `h-9 md:h-[52px]`, Footer `h-6`. Favicon stays as the icon-only mark.
+
+**Mobile rendering:** hero h1 / sub-line / gradient / logo all pass iPhone 14/15 (390px). `.text-display` fluid via `clamp(36px, 8vw, 56px)`; sub-line `clamp(17px, 4vw, 28px)`.
 
 ---
 
@@ -90,7 +99,7 @@ Build content velocity into launch (T-15 from kickoff). Goal: 2-3 social posts/d
 
 **Prerequisite (~30 min):** Reserve `@gardn` on Instagram, X, YouTube, TikTok, Threads, Bluesky, LinkedIn (Doc 14 NEXT 14 DAYS marketing-readiness list, currently unchecked). `@gardnworld` stays as fallback on platforms where `@gardn` isn't reservable.
 
-**Tomorrow's concrete moves (2026-05-11):**
+**Concrete moves (still to do):**
 
 - [ ] Reserve handles on the 7 platforms
 - [ ] Pick scheduler (Buffer £6/mo or Meta Business Suite free)
@@ -108,13 +117,14 @@ Pre-launch state retires; post-launch state goes live. Doc 15 has both copy vari
 
 ### 5. Lower priority follow-ups
 
+- **Notification crons** — `/api/cron/notifications/sweep` endpoint is live but not being called. Crons removed from `vercel.json` (Hobby plan restriction). Wire up an external scheduler (cron-job.org or similar) before launch if notifications are needed at launch. Schedules: `?tier=23` hourly, `?tier=1` every 3h. No incoming auth check on the endpoint — add a token param if security matters at that point.
 - **Sentry + analytics** — explicitly deferred. Add post-launch (P1.1, P1.2 in `14-action-tracker`).
 - **LinkedIn social handle** — Doc 15 says add to footer once company page exists.
 - **YouTube / Threads / Bluesky** — not yet reserved per Doc 02.
 - **Per-page OG images** — currently every page uses `og-default.jpg`. Future: tagline-overlaid 1200×630 for the home page.
-- **Hero sub-line letter-spacing on mobile** — the sub-line still inherits `letter-spacing: -0.7px` from `.text-h2`; at the new 17px mobile size that's slightly tight. Marginal polish, flagged in the mobile-rendering Phase 2 report. Not a Phase 3 priority.
-- **Hero gradient mood** — current overlay (`0.50 / 0.40 / 0.85`) is the heavier of the two recommended options. If on a closer look the hero feels too cinematic, swap line 53 of `index.astro` to the lighter alternative (`0.45 / 0.30 / 0.85`). One-line edit.
-- **Memory section photo height on mobile** — `h-[480px]` consumes the entire mobile fold of the section (audit Priority 5, deliberately deferred). Reduce to `h-[320px]` if the pacing bothers anyone.
+- **Hero sub-line letter-spacing on mobile** — the sub-line still inherits `letter-spacing: -0.7px` from `.text-h2`; at the new 17px mobile size that's slightly tight. Marginal polish. Not a launch priority.
+- **Hero gradient mood** — current overlay (`0.50 / 0.40 / 0.85`) is the heavier option. If it feels too cinematic, swap line 53 of `index.astro` to `0.45 / 0.30 / 0.85`. One-line edit.
+- **Memory section photo height on mobile** — `h-[480px]` consumes the entire mobile fold. Reduce to `h-[320px]` if pacing bothers anyone.
 
 ---
 
@@ -128,7 +138,7 @@ Most likely entry points:
 | *"Counsel signed off on privacy/terms"* | Paste signed text into existing `.md` files, bump versions, strip draft markers (see Outstanding #1). |
 | *"Let's do the marketing kickoff"* | Start the 5-step list under Outstanding #3. |
 | *"We're launching today / tomorrow"* | Run the launch-day swap (see Outstanding #4). |
-| *"Tweak the [whatever]"* | Edit, push, done — Vercel auto-deploys. |
+| *"Tweak the [whatever]"* | Edit, push, done — Vercel auto-deploys (or `vercel --prod` from project dir if auto-deploy misfires again). |
 
 ---
 
@@ -136,14 +146,14 @@ Most likely entry points:
 
 - **Tailwind v4** — tokens live in `src/styles/global.css` under `@theme`. There is no `tailwind.config.mjs`.
 - **Astro Vercel adapter** — `/api/waitlist` uses `prerender = false` to deploy as a serverless function.
-- **Brand photos** — always via `astro:assets` `<Image />`, never raw `<img>`. Imports flow through `src/constants/brandAssets.ts`.
+- **Brand photos + screenshots** — always via `astro:assets` `<Image />`, never raw `<img>`. Imports flow through `src/constants/brandAssets.ts`.
 - **Long-form legal pages** — markdown (`.md`) + `LegalLayout.astro` + `.prose-legal` style scope. Edit copy as plain markdown.
-- **Pushes to `main`** auto-deploy on Vercel. No staging gate.
+- **Pushes to `main`** auto-deploy on Vercel. No staging gate. If auto-deploy misfires, use `vercel --prod` from `/Users/trentpeek/Documents/gardn-world`.
 - **Brand voice** — `~/Documents/gardn-native/BRAND_VOICE.md` is the spec. Doc 15 is the applied layer for this site. Doc 10 is the positioning frame.
 
 ---
 
-## Today's commits (14, all on `main`)
+## Commit log
 
 | Hash | Subject |
 |------|---------|
@@ -161,6 +171,13 @@ Most likely entry points:
 | `82ae94f` | Hero: drop "A garden assistant" eyebrow; header lockup +30% |
 | `8d57286` | Close session: SESSION_STATE.md + CLAUDE.md pickup convention |
 | `e23850d` | fix(site): mobile hero + nav rendering pass |
+| `9bea1ed` | chore(cron): activate notifications sweep — hourly Tier 2/3, 3-hourly Tier 1 |
+| `6f87991` | feat(cron): notifications sweep forwarder for tier 1 + tier 2/3 |
+| `0e6a44b` | Privacy v2.0 + Terms v1.0 (pending solicitor sign-off) |
+| `cb8c060` | docs: backlog updates — email setup decision + pre-launch marketing kickoff |
+| `9d29592` | docs: end-session update — mobile rendering + post-Doc-15 polish |
+| `64983d4` | feat(home): add app walkthrough section with three lifestyle screenshots |
+| `5d37826` | fix(deploy): remove sub-daily crons from vercel.json (Hobby plan limit) |
 
 ---
 
@@ -172,6 +189,6 @@ When ending a session, update this file in place:
 2. Update *Current head* to the latest commit hash on `main`.
 3. Move anything newly shipped from *Outstanding* → *Live now*.
 4. Add anything new to *Outstanding* if it surfaced.
-5. Append the session's commits to *Today's commits* (or rotate the table if it's getting long).
+5. Append the session's commits to the commit log.
 
 That's it — keep this file the single source of pickup truth.

@@ -82,7 +82,7 @@ This is the whole point of the gate. If pressing 1 is reflex, the gate is doing 
 
 Don't expand the task. If Trent asks for X, do X. If you notice Y while doing X, finish X first, then flag Y at the end. Two reasons:
 
-- Trent's ADHD means scope expansion mid-task derails the session.
+- Scope expansion mid-task derails the session — finish the requested change first.
 - The thing that "should obviously also be fixed" is sometimes load-bearing for reasons not visible from one file.
 
 ## Banned vocabulary

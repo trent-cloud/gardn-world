@@ -1,3 +1,13 @@
+<!-- DEPRECATED — DO NOT EDIT. Migrated 2026-05-14.
+
+The canonical state file is now mcleod/MCLEOD_STATE.md (long-living state) +
+mcleod/CURRENT_SESSION.md (per-session handover). This file remains in place
+for one more session as a fallback reference; the next gardn-world session
+should formally delete it after confirming nothing still depends on it.
+
+For session-start / session-end, follow mcleod/SESSION_START.md and
+mcleod/SESSION_END.md respectively — both at this repo's mcleod/ root. -->
+
 # SESSION_STATE.md
 
 > The single read-first file for `gardn-world`. Updated at the end of every session. If you're starting a session, **read this file first**, then `CLAUDE.md`, then `~/Documents/Gardn App/gardn-docs/15-site-copy.md` (copy source-of-truth) and `14-action-tracker.md` (broader project state). Don't touch code until you've read all four.

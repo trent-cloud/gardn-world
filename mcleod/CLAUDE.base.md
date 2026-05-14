@@ -46,6 +46,18 @@ Apply to every repo McLeod touches.
   ```
 - **One commit per logical change.** Not "various fixes." A commit message should describe what changed and why.
 
+## MCLEOD_STATE.md is a session-end artefact
+
+`MCLEOD_STATE.md` (in `mcleod/` or `state/` for martina) is the one file in the canonical reading set that ALSO feeds the McLeod hub's `state.html` via the daily `mcleod-sync` Action (06:00 + 16:00 UTC). It must be updated **only at session-end**, never mid-session.
+
+Why: `mcleod-sync` reads whatever is on origin/main at the moment it fires. If you push a partial in-flight `MCLEOD_STATE.md` mid-session (the `## Current state` paragraph doesn't yet describe a coherent project state), the McLeod card on the hub will reflect that partial state until the next session-end overwrites it. Anyone reading the hub sees something mid-thought.
+
+Concretely:
+
+- During a session: don't touch `MCLEOD_STATE.md`. Capture progress in commit messages, in your working block, in `CURRENT_SESSION.md` notes — anywhere but `MCLEOD_STATE.md`.
+- At session-end (via `SESSION_END.md` flow): update `MCLEOD_STATE.md` once, as part of the same commit that writes `CURRENT_SESSION.md` and the dated archive. That's the only valid edit cadence.
+- `CURRENT_SESSION.md` follows the same single-edit-at-session-end convention. It's the one-page handover; mid-session it stays as the previous session's block.
+
 ## The four irreversibles
 
 These keep their permission gates. Everything else can auto-allow.

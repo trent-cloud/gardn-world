@@ -2,6 +2,20 @@
 
 Read at the start of every Claude Code session in this project.
 
+## Before you orient — sync local with origin
+
+Run this first, every session:
+
+```
+git pull --ff-only && git status
+```
+
+If `git pull` fails on uncommitted local edits, `git stash`, pull, then `git stash pop`. If you're on a feature branch that can't fast-forward, you're working on a branch — orient on that branch and apply the branch-vs-main check at `SESSION_END.md` when you wrap.
+
+Working tree should be clean or near-clean. Flag anything unexpected — particularly stale root-level files (`MCLEOD_STATE.md`, `SESSION_START.md` etc. at root) that should have been deleted by the 2026-05-14 cleanup; if they reappear, something pushed them back and we need to investigate.
+
+Note any commits the pull brought in — often canonical files mirrored from martina via `mcleod-mirror`. If you don't recognise a recent commit, read its diff before continuing.
+
 ## Orient yourself
 
 Read these from the `mcleod/` folder at the repo root in order:

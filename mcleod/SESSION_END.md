@@ -2,6 +2,15 @@
 
 Run at the end of every Claude Code session in this project. Non-negotiable.
 
+## Before you begin — branch-vs-main check
+
+If your work this session is on a feature branch (not `main`), pick one of these before producing the session block:
+
+- **(a) Merge to main first — recommended.** Session-end then records work that's now canonical on main. Everything downstream — `mcleod-sync` rebuilding `state.html`, Claude.ai's GitHub sync, the mirror propagating files — reads main only. Merging before session-end means those surfaces reflect reality immediately.
+- **(b) Session-end on the branch with explicit caveat.** Only if the branch isn't ready to merge (review pending, dependencies unresolved). In that case the session block's `## Current state` MUST include the line: `Work landed on branch \`<branch>\`; not yet on main. Surfaces reading main (Claude.ai GitHub sync, state.html, downstream mirrors) will lag until merge.` And the `## Next` line MUST be the merge itself, or the prerequisite that unblocks it.
+
+**Why this matters.** `mcleod-sync` (the daily 06:00 + 16:00 UTC job) reads `mcleod/MCLEOD_STATE.md` from main only — branch state never reaches `state.html`. Claude.ai brainstorming syncs main only. The McLeod card on the Martina hub shows main only. Session-ending on a branch without surfacing it means "Where are we?" answers diverge between Claude Code (reading the branch) and Claude.ai (reading main) — the going-in-circles failure mode.
+
 ## Step 1 — produce the session block
 
 ```markdown

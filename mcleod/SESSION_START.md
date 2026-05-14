@@ -32,7 +32,7 @@ Read these from the `mcleod/` folder at the repo root in order:
 10. `mcleod/context/architecture.md` — stack, key data model, key flows
 11. `mcleod/RESOLVER.md` — intent → skill routing table; applied for the rest of the session
 
-After the reading is complete, apply `mcleod/RESOLVER.md` as additive routing — it doesn't change the steps above. It maps specific user intents (start-session, office-hours, brainstorm-post, ship, retro) to skill files under `mcleod/skills/`. Unmatched intents append to `mcleod/resolver-misses.md` for later calibration.
+After the reading is complete, apply `mcleod/RESOLVER.md` as additive routing — it doesn't change the steps above. It maps specific user intents (start-session, office-hours, ship, retro) to skill files under `mcleod/skills/`. Unmatched intents append to `mcleod/resolver-misses.md` for later calibration.
 
 If anything in those files contradicts what Trent (or Richard) just asked for, **flag the contradiction explicitly**. Don't silently follow the request. Don't silently follow the file. Ask which wins.
 

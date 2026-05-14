@@ -19,7 +19,6 @@ Match on intent signal, not exact wording. The signals below are seeds; obvious 
 |---|---|---|
 | "let's start", "what's next", session opening | `skills/start-session.md` | Also fires on Claude Code `/start-session` |
 | "office hours", "I want to think through", "let's plan", "what should we build" | `skills/office-hours.md` | Borrowed pattern from GStack |
-| "post idea", "linkedin", "brainstorm a post", "what should I write about" | `skills/brainstorm-post.md` | Wraps existing Brainstorm chat surface |
 | "ship it", "let's ship", "open a PR", "merge this", end-of-feature | `skills/ship.md` | Pre-flight checks before commit |
 | "retro", "what went well", "reflect on", end of session | `skills/retro.md` | Feeds future Skillify (Layer 3) |
 

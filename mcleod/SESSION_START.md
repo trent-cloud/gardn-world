@@ -1,4 +1,4 @@
-# SESSION_START — gardn
+# SESSION_START — Gardn
 
 Read at the start of every Claude Code session in this project.
 
@@ -6,12 +6,16 @@ Read at the start of every Claude Code session in this project.
 
 Read these from the `mcleod/` folder at the repo root in order:
 
-1. `mcleod/CLAUDE.md` — codebase-specific rules (imports `mcleod/CLAUDE.base.md`)
+1. `mcleod/CLAUDE.md` — project-specific rules (imports `mcleod/CLAUDE.base.md`)
 2. `mcleod/CLAUDE.base.md` — universal estate-wide rules
-3. `mcleod/CURRENT_SESSION.md` — the latest end-session block (where things were left)
-4. `mcleod/MCLEOD_STATE.md` — one-paragraph current state
-5. `mcleod/DECISIONS.md` — locked decisions for this project
-6. `mcleod/BACKLOG.md` — active items (if present)
+3. `mcleod/ambition.md` — what this project is (pitch, ambition, Claude's role, strategic bet, what would kill it)
+4. `mcleod/CURRENT_SESSION.md` — the latest end-session block (where things were left)
+5. `mcleod/MCLEOD_STATE.md` — one-paragraph current state
+6. `mcleod/DECISIONS.md` — locked decisions for this project
+7. `mcleod/BACKLOG.md` — active items (if present)
+8. `mcleod/context/recent-sessions.md` — the last three session blocks (narrative history)
+9. `mcleod/context/domain.md` — who the project serves and what it's for
+10. `mcleod/context/architecture.md` — stack, key data model, key flows
 
 If anything in those files contradicts what Trent (or Richard) just asked for, **flag the contradiction explicitly**. Don't silently follow the request. Don't silently follow the file. Ask which wins.
 
@@ -19,7 +23,7 @@ If anything in those files contradicts what Trent (or Richard) just asked for, *
 
 Restate in one sentence what you understand the session is for. Wait for confirmation before starting work.
 
-Exception: if the request is unambiguous and small ("fix the typo on line 42"), just do it.
+Exception: if the request is unambiguous and small, just do it.
 
 ## Default behaviours
 

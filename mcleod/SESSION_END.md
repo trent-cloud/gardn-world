@@ -32,6 +32,8 @@ Prepend the session block to `mcleod/context/recent-sessions.md`. Trim to the **
 
 Write a dated archive copy to `mcleod/docs/sessions/YYYY-MM-DD.md` so the full session history is preserved off the read path.
 
+If the session produced focused per-build or per-investigation artifacts (e.g. a fabrication audit, a rebuild result, a specific failure trace), write those as dated companion files at `mcleod/docs/sessions/YYYY-MM-DD-<topic>.md`. Reference them by name in the session block. This is the pattern Studio Woodlark Professional has used in `docs/learnings/` since 2026-05-07 — it lets the per-build narrative stay visible without bloating the main session block.
+
 ## Step 5 — update mcleod/MCLEOD_STATE.md
 
 Edit `mcleod/MCLEOD_STATE.md` at this project's root. Set:

@@ -9,7 +9,7 @@ Session-start and session-end protocols are owned by the canonical files in this
 - **Session start** — follow `mcleod/SESSION_START.md`. It defines the reading-list order, the alignment-check format, and the default behaviours. Do not maintain a duplicate reading list here.
 - **Session end** — follow `mcleod/SESSION_END.md`. Produces the four-section block, overwrites `mcleod/CURRENT_SESSION.md`, prepends to `mcleod/context/recent-sessions.md` (trim to 3), writes the dated archive at `mcleod/docs/sessions/YYYY-MM-DD.md`, updates `mcleod/MCLEOD_STATE.md`.
 
-The legacy `SESSION_STATE.md` rolling-snapshot flow is **retired**. Its content was migrated to `mcleod/MCLEOD_STATE.md` on 2026-05-14. The file itself remains at the repo root with a deprecation header until the next gardn-world session formally deletes it.
+The legacy `SESSION_STATE.md` rolling-snapshot flow is **retired**. Its content was migrated to `mcleod/MCLEOD_STATE.md` and the file was deleted from the repo root on 2026-05-14.
 
 No hooks or auto-skills are configured — convention only. If we ever want automation, set up a `.claude/commands/` slash command or a `SessionStart` hook in `settings.json`.
 

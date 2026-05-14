@@ -9,15 +9,15 @@ and updates mcleod/projects/gardn/state.html automatically.
 
 ## Current state
 
-Migrated from the legacy `SESSION_STATE.md` rolling snapshot on 2026-05-14. The legacy file remains at the repo root for now (see backlog item to decide retire-or-keep). The most recent state from `SESSION_STATE.md` is preserved below verbatim until the next session-end overwrites this from the new protocol.
+gardn-world site is live at https://gardn.world on commit `5d37826` (2026-05-12 build — app walkthrough section live, Vercel deploy unblocked, no code changes since). The repo has been fully migrated to the McLeod canonical structure: `mcleod/` holds all session-protocol, state, and context files. Four priorities outstanding in priority order: (1) solicitor sign-off on Privacy v2.0 + Terms v1.0, (2) Google Workspace email routing for `help@` + `hello@`, (3) pre-launch marketing kickoff (social drafts + handle reservations + scheduler choice), (4) launch-day copy swap targeted 2026-05-26.
 
 ## Next
 
-Run the next session under the new `mcleod/SESSION_END.md` protocol — that will populate accurate Current state + Next here.
+Stand up `/social-drafts/` folder and draft the first week's 5-7 social posts in Doc 15 voice (Outstanding #3 below).
 
 ---
 
-## Legacy SESSION_STATE.md snapshot (preserved at migration)
+## Outstanding priorities (preserved from legacy SESSION_STATE.md snapshot — operational reference)
 
 # SESSION_STATE.md
 

@@ -6,6 +6,31 @@ Maintained by the `SESSION_END` protocol: each session-end prepends its block he
 
 ---
 
+## Session — 2026-05-14 — McLeod estate sync + SESSION_STATE.md retirement
+
+### What changed
+
+- Synced repo to the McLeod estate overhaul (2026-05-14, completed centrally over two `git pull --ff-only` passes). New canonical `mcleod/` files: `ambition.md`, `CURRENT_SESSION.md`, `MCLEOD_STATE.md`, `context/recent-sessions.md`, `context/domain.md`, `context/architecture.md`. Root-level duplicates of `BACKLOG.md` / `CLAUDE.base.md` / `DECISIONS.md` / `SESSION_END.md` / `SESSION_START.md` retired; `mcleod/` copies are the only canonical versions.
+- `CLAUDE.md` (root + mirrored `mcleod/CLAUDE.md`) — legacy "Session pickup" blockquote replaced with a "Session protocol" section pointing at `mcleod/SESSION_START.md` + `mcleod/SESSION_END.md`. No duplicate reading list maintained here anymore.
+- `mcleod/context/domain.md` + `mcleod/context/architecture.md` — scaffolds replaced with real gardn-world content (audience / strategic bet / kill conditions; Astro 6.3.1 stack / Resend waitlist / brand source-of-truth in `~/Documents/gardn-native/`).
+- Committed three pending local edits from the prior 2026-05-13 session: `chore: ignore .env*.local` (`882be00`), `chore: capture final SESSION_STATE.md content before retirement` (`b80104c`), `backlog: log Stage 1 consent default-on legal review question` (`bac7b1a`).
+- Reverted in-progress `src/pages/privacy.md` edit (inline "Legal review note" under Stage 1 consent) — moved the open question into `mcleod/BACKLOG.md` per the CLAUDE.md rule that substantive edits to published legal copy need solicitor sign-off before push.
+- Retired `SESSION_STATE.md` — deleted from the repo root this session. Updated retirement narrative in `CLAUDE.md` + `mcleod/CLAUDE.md` to past tense.
+
+### Current state
+
+gardn-world site unchanged this session — still live at https://gardn.world on `5d37826` (no code touched in `src/`). Repo is fully migrated to the McLeod canonical structure: `mcleod/` holds all session, state, and context files. Four priorities outstanding in `MCLEOD_STATE.md`: solicitor sign-off on Privacy v2.0 + Terms v1.0, Google Workspace email routing, pre-launch marketing kickoff, launch-day swap target 2026-05-26.
+
+### Next
+
+Stand up `/social-drafts/` folder and draft the first week's 5-7 social posts in Doc 15 voice (Outstanding #3 in `mcleod/MCLEOD_STATE.md`).
+
+### Promote to DECISIONS?
+
+No — McLeod migration is project-mechanics, not a domain decision worth locking.
+
+---
+
 ## Current state — rolling snapshot (no per-session archive yet)
 
 # SESSION_STATE.md

@@ -12,8 +12,8 @@ mcleod/SESSION_END.md respectively — both at this repo's mcleod/ root. -->
 
 > The single read-first file for `gardn-world`. Updated at the end of every session. If you're starting a session, **read this file first**, then `CLAUDE.md`, then `~/Documents/Gardn App/gardn-docs/15-site-copy.md` (copy source-of-truth) and `14-action-tracker.md` (broader project state). Don't touch code until you've read all four.
 
-**Last updated:** 2026-05-12 (app walkthrough section live; Vercel deploy unblocked)
-**Current head:** `5d37826` on `main` (pushed + deployed via CLI)
+**Last updated:** 2026-05-13 (gardn-native done-card behaviour redesign — reversible tick + blur-flush persistence)
+**Current head:** `5d37826` on `main` (gardn-world unchanged this session)
 **Live URL:** [https://gardn.world](https://gardn.world)
 
 ---
@@ -125,7 +125,9 @@ Pre-launch state retires; post-launch state goes live. Doc 15 has both copy vari
 - **Block 4 waitlist module:** replace with the *"Available now."* / *"Start with your first plant."* download module per Doc 15. Optional sub-line *"£5.99/month or £49.99/year. Cancel anytime."* if conversion data justifies it.
 - **CLAUDE.md + Doc 15 change-log:** record the swap.
 
-### 5. Lower priority follow-ups
+### ~~5. gardn-native: merge `fix/ios-app-icon` branch to `main`~~ — **DONE** (`44c8cb3`)
+
+### 6. Lower priority follow-ups
 
 - **Notification crons** — `/api/cron/notifications/sweep` endpoint is live but not being called. Crons removed from `vercel.json` (Hobby plan restriction). Wire up an external scheduler (cron-job.org or similar) before launch if notifications are needed at launch. Schedules: `?tier=23` hourly, `?tier=1` every 3h. No incoming auth check on the endpoint — add a token param if security matters at that point.
 - **Sentry + analytics** — explicitly deferred. Add post-launch (P1.1, P1.2 in `14-action-tracker`).
@@ -149,6 +151,7 @@ Most likely entry points:
 | *"Let's do the marketing kickoff"* | Start the 5-step list under Outstanding #3. |
 | *"We're launching today / tomorrow"* | Run the launch-day swap (see Outstanding #4). |
 | *"Tweak the [whatever]"* | Edit, push, done — Vercel auto-deploys (or `vercel --prod` from project dir if auto-deploy misfires again). |
+| *"TestFlight / native app"* | gardn-native `main` is at `b771b02`. Done-card behaviour is OTA on `testflight` channel — reversible tick, cards disappear on screen return. |
 
 ---
 
@@ -188,6 +191,19 @@ Most likely entry points:
 | `9d29592` | docs: end-session update — mobile rendering + post-Doc-15 polish |
 | `64983d4` | feat(home): add app walkthrough section with three lifestyle screenshots |
 | `5d37826` | fix(deploy): remove sub-daily crons from vercel.json (Hobby plan limit) |
+
+**gardn-native `main` (2026-05-13, merged + OTA-updated):**
+
+| Hash | Subject |
+|------|---------|
+| `37e2e49` | fix(ios): replace placeholder app icon with final brand icon |
+| `d4abf2c` | fix(tasks): wire expand state + add tier accent border on task cards |
+| `ac2c8fb` | fix(tasks): replace invisible left border with tier badge pill on each card |
+| `efc923d` | fix(classifier): settle seasonal tasks by default; urgent frost for hardy plants |
+| `89e6db2` | fix(tasks): wire done-card state, AsyncStorage hydration, and care event insert |
+| `8258862` | fix(hosta): add explicit eventTypes to all seasonal prompts |
+| `44c8cb3` | merge(fix/ios-app-icon): app icon, Tasks screen fixes, tier classifier + Hosta data |
+| `b771b02` | feat(tasks): reversible done-card state with blur-flush persistence |
 
 ---
 

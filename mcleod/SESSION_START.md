@@ -1,4 +1,4 @@
-# SESSION_START — Gardn
+# SESSION_START — Gardn World
 
 Read at the start of every Claude Code session in this project.
 

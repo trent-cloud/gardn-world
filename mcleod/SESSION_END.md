@@ -1,4 +1,4 @@
-# SESSION_END — Gardn
+# SESSION_END — Gardn World
 
 Run at the end of every Claude Code session in this project. Non-negotiable.
 
@@ -51,7 +51,7 @@ Edit `mcleod/MCLEOD_STATE.md` at this project's root. Set:
 - `## Current state` — the current state sentence(s) from Step 1
 - `## Next` — the next line from Step 1
 
-The `mcleod-sync` GitHub Action in Martina picks this up and updates `mcleod/projects/gardn/state.html` automatically.
+The `mcleod-sync` GitHub Action in Martina picks this up and updates `mcleod/projects/orbit/state.html` automatically.
 
 ## Step 6 — refresh mcleod/context/architecture.md (if needed)
 
@@ -63,4 +63,4 @@ If the session changed stack, schema, deployment, or any architectural fact capt
 2. `git commit -m "session: end <date> <one-line summary>"`
 3. `git push`
 
-If "Promote to DECISIONS" is yes, also note it for the next Martina session where it can be added to `mcleod/projects/gardn/DECISIONS.md`.
+If "Promote to DECISIONS" is yes, also note it for the next Martina session where it can be added to `mcleod/projects/orbit/DECISIONS.md`.

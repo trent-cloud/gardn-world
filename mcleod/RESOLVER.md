@@ -21,6 +21,7 @@ Match on intent signal, not exact wording. The signals below are seeds; obvious 
 | "office hours", "I want to think through", "let's plan", "what should we build" | `skills/office-hours.md` | Borrowed pattern from GStack |
 | "ship it", "let's ship", "open a PR", "merge this", end-of-feature | `skills/ship.md` | Pre-flight checks before commit |
 | "retro", "what went well", "reflect on", end of session | `skills/retro.md` | Feeds future Skillify (Layer 3) |
+| "agent in Xero", "bank rec", "reconcile in Xero", "bills agent", "card spend in Xero", "Xero scope", "Xero API", any planning conversation about an agent reading from or writing to Xero | `skills/xero-integration.md` | Martina-specific. Load before designing or modifying any Xero-touching capability. Captures verified API-surface map + push-from-source mental model + anti-patterns from the 2026-05-18 bank-rec discovery session. |
 
 Skill paths resolve to `state/skills/<name>.md` in martina and `mcleod/skills/<name>.md` in every other project repo. Either form refers to the same canonical file.
 

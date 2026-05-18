@@ -48,9 +48,9 @@ Apply to every repo McLeod touches.
 
 ## MCLEOD_STATE.md is a session-end artefact
 
-`MCLEOD_STATE.md` (in `mcleod/` or `state/` for martina) is the one file in the canonical reading set that ALSO feeds the McLeod hub's `state.html` via the daily `mcleod-sync` Action (06:00 + 16:00 UTC). It must be updated **only at session-end**, never mid-session.
+`MCLEOD_STATE.md` (in `mcleod/` or `state/` for martina) is the per-repo canonical-state surface read by Claude.ai project syncs. Update it **only at session-end**, never mid-session — Claude.ai may sync mid-session and pick up a partial state paragraph that doesn't yet describe a coherent project state.
 
-Why: `mcleod-sync` reads whatever is on origin/main at the moment it fires. If you push a partial in-flight `MCLEOD_STATE.md` mid-session (the `## Current state` paragraph doesn't yet describe a coherent project state), the McLeod card on the hub will reflect that partial state until the next session-end overwrites it. Anyone reading the hub sees something mid-thought.
+Note since 2026-05-16: this file does NOT drive the McLeod hub. The hub reads `project_state.project_updates` directly via Supabase; that row is written daily by Martina's `summarise-project-state` capability (cron 06:00 UTC), which reads the last 20 commits on the repo's default branch from GitHub. So the hub is auto-derived from main-branch commits, while this file is hand-edited at session-end and is the surface Claude.ai brainstorming sees. They can diverge when work happens on a long-lived feature branch (main is quiet, branch is active) — the hub shows a staleness banner in that case.
 
 Concretely:
 

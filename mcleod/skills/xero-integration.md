@@ -55,16 +55,20 @@ Verified empirically via spike `xero-debug-bank-statements` on 2026-05-18. **Re-
 | `POST /api.xro/2.0/Invoices` | Create Bill (ACCPAY) | Used by today's bills agent. Status=AUTHORISED writes a live bill. |
 | `PUT /api.xro/2.0/Invoices/{id}/Attachments/{filename}` | Attach PDF to bill | Used by bills agent to attach original invoice PDF. Requires `accounting.attachments` scope. |
 
-### ⚠️ Reachable but requires per-bank-account grant during OAuth consent
+### ⚠️ Requires a scope our current token doesn't have — open question
 
-| Endpoint | Use | Gotcha |
+| Endpoint | Use | Status |
 |---|---|---|
-| `GET /api.xro/2.0/BankTransactions` | List Spend/Receive Money entries already in Xero | **401 AuthorizationUnsuccessful** if no bank accounts ticked during user-consent. The `accounting.transactions` scope alone isn't enough — Xero's consent screen has a per-bank-account access list and the user must tick the accounts. |
-| `GET /api.xro/2.0/BankTransfers` | List inter-account transfers | Same per-account grant requirement. |
-| `POST /api.xro/2.0/BankTransactions` Type=SPEND | Create Spend Money | Same per-account grant required to write to that bank. |
-| `POST /api.xro/2.0/Payments` | Pay an existing invoice | Same per-account grant required for the paying account. |
+| `GET /api.xro/2.0/BankTransactions` | List Spend/Receive Money entries in Xero | 401 on current scope set. |
+| `GET /api.xro/2.0/BankTransfers` | Inter-account transfers | 401. |
+| `POST /api.xro/2.0/BankTransactions` Type=SPEND | Create Spend Money | 401. |
+| `POST /api.xro/2.0/Payments` | Pay an existing invoice | 401. |
 
-**To fix 401 on these:** trigger a re-auth via the "Reconnect Xero" path, and when Xero shows the bank-account list during consent, tick all relevant accounts. The token has the right scope; it lacks the per-account grant.
+The broad scope that historically covered these is `accounting.transactions`. **On Martina that broad scope is now rejected with `invalid_scope` at the Xero identity server** (Xero enforcing granular-only ahead of the announced 2027-09 broad-scope deprecation deadline). There is no documented granular replacement for BankTransactions/BankTransfers in Xero's scope catalogue as of 2026-05-18.
+
+**Open question for the next card-spend reconciliation session:** is there a granular bank-transaction scope (e.g. `accounting.banktransactions`)? Does Xero accept `accounting.transactions` if the app is re-registered as a different type? Does Custom Connections (premium tier for AU/NZ/UK/US orgs) unlock it?
+
+**Earlier hypothesis ruled out 2026-05-18 ~21:35 BST:** "the 401 is because we didn't tick bank accounts during OAuth consent." The Xero consent screen for `[invoices, contacts, attachments, settings]` shows only org-level access (Attachments, Contacts, Organisation settings, Invoices and related documents) — no per-bank-account picker exists for these scopes. The 401 is a missing-scope issue, not a missing-grant issue.
 
 ### ❌ Not reachable on Woodlark's plan (partner-tier / paid)
 
@@ -80,17 +84,21 @@ Empirical proof and date is in the "Verified findings" section at the bottom of 
 
 ## OAuth scopes
 
-Current declared scopes in `src/utils/xeroOAuth.js`: `accounting.transactions`, `accounting.contacts`, `accounting.attachments`, `accounting.settings`, plus `offline_access` for refresh.
+Current declared scopes in `src/utils/xeroOAuth.js` (as of 2026-05-18 ~21:35 BST): `offline_access`, `accounting.invoices`, `accounting.contacts`, `accounting.attachments`, `accounting.settings`.
 
-**Scope coverage (per Xero docs, broad scopes):**
-- `accounting.transactions` — read+write for Invoices, Credit Notes, Repeating Invoices, **Bank Transactions, Bank Transfers**, Purchase Orders, Expense Claims, Receipts, Prepayments, Overpayments.
-- `accounting.contacts` — read+write Contacts and Contact Groups.
-- `accounting.attachments` — read+write attachments on Invoices, Bank Transactions, etc.
-- `accounting.settings` — read+write Accounts, Tracking Categories, Branding, Tax Rates.
+**Scope coverage:**
+- `accounting.invoices` — granular. Covers Invoices (ACCPAY + ACCREC) read+write. **This is the granular replacement for `accounting.transactions` for the bills agent.**
+- `accounting.contacts` — granular. Read+write Contacts and Contact Groups.
+- `accounting.attachments` — granular. Read+write attachments on Invoices and Bank Transactions.
+- `accounting.settings` — granular. Read+write Accounts, Tracking Categories, Branding, Tax Rates.
 
-**Granular migration deadline:** Xero is moving from broad to granular scopes. Apps created before 2026-03-02 have until 2027-09 to migrate (Martina was created before — we're in the grandfather window). Granular alternatives include `accounting.transactions.read`, `accounting.invoices`, etc.
+**Scopes intentionally NOT in current token:**
+- `accounting.transactions` (broad) — historically covered Invoices + Bank Transactions + Transfers + Purchase Orders + Expense Claims + Receipts + Prepayments + Overpayments. **Xero rejects this scope on Martina with `invalid_scope`** despite the documented 2027-09 broad-scope migration deadline. Enforcing granular-only ahead of schedule. Don't reintroduce without verifying acceptance via a fresh re-auth attempt.
+- `openid`, `profile`, `email` (OIDC) — Xero tightened OIDC scope acceptance on non-marketplace web apps tonight (2026-05-18 between 17:00 and 21:00 BST). Dropped from request; we don't need OIDC profile claims for API access.
 
-**Per-bank-account grant ≠ scope.** Even with `accounting.transactions` in the token, BankTransactions/BankTransfers return 401 unless the user ticked individual bank accounts during the OAuth consent screen. This is a UX layer in Xero's consent flow, not a scope. It's invisible from the developer side — you'll only know it's missing by the 401 response.
+**Granular migration deadline (per Xero docs):** Apps created before 2026-03-02 have until 2027-09 to migrate. **Empirically Xero is enforcing earlier on at least some apps.** Treat granular as required-now, not by-2027.
+
+**No published granular scope for BankTransactions / BankTransfers as of 2026-05-18.** Open investigation flagged in the API-surface map above.
 
 ---
 

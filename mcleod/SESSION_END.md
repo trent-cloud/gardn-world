@@ -6,10 +6,10 @@ Run at the end of every Claude Code session in this project. Non-negotiable.
 
 If your work this session is on a feature branch (not `main`), pick one of these before producing the session block:
 
-- **(a) Merge to main first — recommended.** Session-end then records work that's now canonical on main. Everything downstream — `mcleod-sync` rebuilding `state.html`, Claude.ai's GitHub sync, the mirror propagating files — reads main only. Merging before session-end means those surfaces reflect reality immediately.
+- **(a) Merge to main first — recommended.** Session-end then records work that's now canonical on main. Everything downstream — `summarise-project-state` rebuilding the McLeod hub view from main-branch commits, Claude.ai's GitHub sync, the mirror propagating files — reads main only. Merging before session-end means those surfaces reflect reality immediately.
 - **(b) Session-end on the branch with explicit caveat.** Only if the branch isn't ready to merge (review pending, dependencies unresolved). In that case the session block's `## Current state` MUST include the line: `Work landed on branch \`<branch>\`; not yet on main. Surfaces reading main (Claude.ai GitHub sync, state.html, downstream mirrors) will lag until merge.` And the `## Next` line MUST be the merge itself, or the prerequisite that unblocks it.
 
-**Why this matters.** `mcleod-sync` (the daily 06:00 + 16:00 UTC job) reads `mcleod/MCLEOD_STATE.md` from main only — branch state never reaches `state.html`. Claude.ai brainstorming syncs main only. The McLeod card on the Martina hub shows main only. Session-ending on a branch without surfacing it means "Where are we?" answers diverge between Claude Code (reading the branch) and Claude.ai (reading main) — the going-in-circles failure mode.
+**Why this matters.** `summarise-project-state` (the daily 06:00 UTC job) reads the last 20 commits on this repo's default branch from GitHub — branch state never reaches the McLeod hub. Claude.ai brainstorming syncs main only. The McLeod card on the Martina hub shows main only (the hub now surfaces a staleness banner when `last_commit_at` on main is >3 days old to flag this divergence). Session-ending on a branch without surfacing it means "Where are we?" answers diverge between Claude Code (reading the branch) and Claude.ai (reading main) — the going-in-circles failure mode.
 
 ## Step 1 — produce the session block
 
@@ -51,7 +51,7 @@ Edit `mcleod/MCLEOD_STATE.md` at this project's root. Set:
 - `## Current state` — the current state sentence(s) from Step 1
 - `## Next` — the next line from Step 1
 
-The `mcleod-sync` GitHub Action in Martina picks this up and updates `mcleod/projects/orbit/state.html` automatically.
+This file is read by Claude.ai's project sync at session start — it's the Claude.ai canonical-state surface for the project. The McLeod hub on Martina renders separately from `project_state.project_updates` (written daily by `summarise-project-state` reading main-branch commits); the two can diverge when work is on a feature branch.
 
 ## Step 6 — refresh mcleod/context/architecture.md (if needed)
 

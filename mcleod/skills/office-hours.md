@@ -1,9 +1,26 @@
-# Skill: office-hours
+---
+name: office-hours
+version: 2
+description: GStack-style six-question decision interrogation; produces a one-page decision doc.
+triggers:
+  - "office hours"
+  - "I want to think through"
+  - "let's plan"
+  - "what should we build"
+allowed-tools:
+  - Read
+  - Write
+reads:
+  - state/BACKLOG.md
+  - state/DECISIONS.md
+  - state/ambition.md
+  - "user-named topic context"
+writes:
+  - state/sessions/YYYY-MM-DD-decision-<slug>.md
+calls: "may surface a follow-up ship if the decision ends in a build"
+---
 
-**Fires on:** "office hours", "I want to think through", "let's plan", "what should we build"
-**Reads:** relevant `state/BACKLOG.md`, `state/DECISIONS.md`, `state/ambition.md` sections; whatever the user names as the topic
-**Writes:** `state/sessions/YYYY-MM-DD-decision-<slug>.md` — a one-page decision doc
-**Calls:** none directly; may surface a follow-up `ship` if the decision ends in a build
+# Skill: office-hours
 
 ## Purpose
 

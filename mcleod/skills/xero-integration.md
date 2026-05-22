@@ -1,12 +1,40 @@
+---
+name: xero-integration
+version: 2
+description: Martina-specific Xero-touching capability skill — verified API-surface map, granular-scope reality, push-from-source mental model, anti-patterns from the 2026-05-18 bank-rec session.
+triggers:
+  - "agent in Xero"
+  - "bank rec"
+  - "reconcile in Xero"
+  - "bills agent"
+  - "card spend in Xero"
+  - "Spend Money via API"
+  - "post to Xero"
+  - "Xero scope"
+  - "Xero API"
+  - "any planning conversation about an agent reading from or writing to Xero"
+allowed-tools:
+  - Read
+  - Edit
+  - Write
+  - Bash
+reads:
+  - supabase/functions/_shared/xeroToken.ts
+  - src/utils/xeroOAuth.js
+  - supabase/functions/_shared/createXeroBill.ts
+  - "this skill's verified-findings section"
+  - "Xero developer docs for the endpoint being touched"
+writes:
+  - "new edge functions"
+  - "OAuth scope changes (always behind explicit user re-auth)"
+  - "probe functions for verifying API surface before building"
+calls:
+  - "Xero Accounting API (api.xero.com/api.xro/2.0)"
+  - "Xero Identity (identity.xero.com)"
+  - "NEVER Finance API or Bank Feeds API without confirming Woodlark's plan supports them"
+---
+
 # Skill: xero-integration
-
-**Fires on:** "agent in Xero", "bank rec", "reconcile in Xero", "bills agent", "card spend in Xero", "Spend Money via API", "post to Xero", "Xero scope", "Xero API", and any planning conversation about an agent reading from or writing to Xero.
-
-**Reads:** the agent's existing Xero plumbing (`supabase/functions/_shared/xeroToken.ts`, `xeroOAuth.js`, `createXeroBill.ts`), the verified-findings record in this skill, the Xero developer docs for the endpoint being touched.
-
-**Writes:** new edge functions, OAuth scope changes (always behind explicit user re-auth), probe functions for verifying API surface before building.
-
-**Calls:** Xero Accounting API (`api.xero.com/api.xro/2.0`), occasionally Xero Identity (`identity.xero.com`). Never Finance API or Bank Feeds API without confirming Woodlark's plan supports them.
 
 ---
 

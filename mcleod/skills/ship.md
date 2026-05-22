@@ -1,9 +1,29 @@
-# Skill: ship
+---
+name: ship
+version: 2
+description: Pre-PR checklist — branch clean, tests passing, migrations reversible, four-irreversibles gate honoured, commit hygiene.
+triggers:
+  - "ship it"
+  - "let's ship"
+  - "open a PR"
+  - "merge this"
+  - "end of feature"
+allowed-tools:
+  - Bash
+  - Read
+  - Edit
+reads:
+  - git status / git diff
+  - test output
+  - migration files in the current change
+  - state/CLAUDE.md
+  - state/CLAUDE.base.md
+writes:
+  - commits (one per logical change), optionally a PR
+calls: "project's test runner, linter, migration verification script if present"
+---
 
-**Fires on:** "ship it", "let's ship", "open a PR", "merge this", end-of-feature
-**Reads:** `git status`, `git diff`, test output, migration files in the current change, `state/CLAUDE.md`, `state/CLAUDE.base.md`
-**Writes:** commits (one per logical change), optionally a PR
-**Calls:** the project's test runner, linter, migration verification script if present
+# Skill: ship
 
 ## Purpose
 

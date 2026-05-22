@@ -1,9 +1,26 @@
-# Skill: retro
+---
+name: retro
+version: 2
+description: End-of-session reflection — three questions, append a Retro block to today's session log, log Skillify candidates.
+triggers:
+  - "retro"
+  - "what went well"
+  - "reflect on"
+  - "end of session"
+allowed-tools:
+  - Read
+  - Edit
+  - Bash
+reads:
+  - state/sessions/YYYY-MM-DD.md (if it exists)
+  - state/CURRENT_SESSION.md
+  - "session commit log"
+writes:
+  - "appends ## Retro block to state/sessions/YYYY-MM-DD.md"
+calls: "feeds Skillify (Layer 3, deferred) — does not invoke it directly"
+---
 
-**Fires on:** "retro", "what went well", "reflect on", end of session
-**Reads:** the current `state/sessions/YYYY-MM-DD.md` (if it exists), `state/CURRENT_SESSION.md`, the session's commit log
-**Writes:** appends a "## Retro" block to `state/sessions/YYYY-MM-DD.md`
-**Calls:** feeds Skillify (Layer 3, deferred) — does not invoke it directly
+# Skill: retro
 
 ## Purpose
 

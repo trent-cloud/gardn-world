@@ -1,7 +1,6 @@
 # MCLEOD_STATE.md
 
-Update this file at the end of every session. The mcleod-sync Action in martina reads it
-and updates mcleod/projects/gardn/state.html automatically.
+Update this file at the end of every session. The McLeod hub does NOT read this file (since 2026-05-16 it reads `project_state.project_updates` directly via Supabase; `summarise-project-state` writes that row daily at 02:00 UTC from main-branch commits). This file is the Claude.ai canonical-state surface read by per-project syncs.
 
 ---
 

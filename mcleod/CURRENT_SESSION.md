@@ -1,20 +1,22 @@
 ## What changed
 
-- Synced repo to the McLeod estate overhaul (2026-05-14, completed centrally over two `git pull --ff-only` passes). New canonical `mcleod/` files: `ambition.md`, `CURRENT_SESSION.md`, `MCLEOD_STATE.md`, `context/recent-sessions.md`, `context/domain.md`, `context/architecture.md`. Root-level duplicates of `BACKLOG.md` / `CLAUDE.base.md` / `DECISIONS.md` / `SESSION_END.md` / `SESSION_START.md` retired; `mcleod/` copies are the only canonical versions.
-- `CLAUDE.md` (root + mirrored `mcleod/CLAUDE.md`) — legacy "Session pickup" blockquote replaced with a "Session protocol" section pointing at `mcleod/SESSION_START.md` + `mcleod/SESSION_END.md`. No duplicate reading list maintained here anymore.
-- `mcleod/context/domain.md` + `mcleod/context/architecture.md` — scaffolds replaced with real gardn-world content (audience / strategic bet / kill conditions; Astro 6.3.1 stack / Resend waitlist / brand source-of-truth in `~/Documents/gardn-native/`).
-- Committed three pending local edits from the prior 2026-05-13 session: `chore: ignore .env*.local` (`882be00`), `chore: capture final SESSION_STATE.md content before retirement` (`b80104c`), `backlog: log Stage 1 consent default-on legal review question` (`bac7b1a`).
-- Reverted in-progress `src/pages/privacy.md` edit (inline "Legal review note" under Stage 1 consent) — moved the open question into `mcleod/BACKLOG.md` per the CLAUDE.md rule that substantive edits to published legal copy need solicitor sign-off before push.
-- Retired `SESSION_STATE.md` — deleted from the repo root this session. Updated retirement narrative in `CLAUDE.md` + `mcleod/CLAUDE.md` to past tense.
+- Built the entire gardn-ops operations portal from scratch — new repo at `~/Documents/gardn-ops`, deployed to Vercel at `https://gardn-49k2m3aqm-trent-3296s-projects.vercel.app`. GitHub repo: `trent-cloud/gardn-ops` (private).
+- **17 portal modules:** Mission Control (live Supabase metrics + NL query bar), Growth Engine (cohort retention heatmaps + regional breakdown), Revenue (MRR/ARR + unit economics), Finance (runway calculator + scenario modeller + cost breakdown + LTV/CAC + print-optimised investor view), Content Command (AI generation + Kanban with localStorage persistence + auto-publish via Buffer), Newsletter (5-section AI-drafted weekly digest), Support Centre (AI triage + approve-and-send via Resend), User Intelligence (churn risk scoring), Competitive Intel (AI analysis), Influencer Portal (CRM + AI outreach drafts), SEO Command (content gap analysis), Seasonal Intelligence (12-month UK calendar + AI weekly briefs), International Launch (7 markets with deep GTM, climate zones, influencer tiers, revenue projections), Agent Control (12-agent fleet dashboard), App Health (Supabase health + Vercel deploys + Sentry guide), Setup (8-step onboarding wizard).
+- **4 API routes:** `POST /api/content/generate` (Claude-powered content in brand voice), `POST /api/query` (natural language to SQL), `POST /api/webhooks/support-inbound` (Resend webhook with AI triage), `POST /api/support/send` (approve and send via Resend).
+- **12 agent system prompts** written: Sentinel, Guardian, Scribe, Weathervane, Lookout, Cultivator, Analyst, Concierge, Advocate, Ambassador, Curator, Orchestrator. Fleet manifest at `agents/FLEET.md` with data flows, guardrail tiers, and deployment schedule.
+- **Supabase portal migration** ready at `supabase/migrations/20260527_portal_schema.sql` (8 tables: support_tickets, content_items, influencer_contacts, agent_runs, seo_snapshots, competitor_snapshots, newsletter_issues, daily_metrics).
+- Stack: Next.js 16 + shadcn/ui + Supabase + Tailwind + Recharts + Figtree font. Fully branded with Gardn palette (forest-deep sidebar, paper background, fern/sage/warm accents).
+- Solicitor sign-off on Privacy v2.0 + Terms v1.0 confirmed done (Outstanding #1 cleared).
+- Pricing locked in memory: £5.99/mo or £49.99/yr, 14-day free trial.
 
 ## Current state
 
-gardn-world site unchanged this session — still live at https://gardn.world on `5d37826` (no code touched in `src/`). Repo is fully migrated to the McLeod canonical structure: `mcleod/` holds all session, state, and context files. Four priorities outstanding in `MCLEOD_STATE.md`: solicitor sign-off on Privacy v2.0 + Terms v1.0, Google Workspace email routing, pre-launch marketing kickoff, launch-day swap target 2026-05-26.
+gardn-ops portal is live on Vercel (preview URL — needs `ops.gardn.world` CNAME). 17 modules built, 4 API routes functional, 12 agent system prompts ready. The portal needs Supabase service role key and Anthropic API key to light up real data and AI features. gardn-world marketing site unchanged this session.
 
 ## Next
 
-Stand up `/social-drafts/` folder and draft the first week's 5-7 social posts in Doc 15 voice (Outstanding #3 in `mcleod/MCLEOD_STATE.md`).
+Add env vars to Vercel (SUPABASE_SERVICE_ROLE_KEY, ANTHROPIC_API_KEY, RESEND_API_KEY), run the portal migration SQL in Supabase, set up `ops.gardn.world` CNAME, and begin deploying agents on the Mac Mini starting with Sentinel + Guardian + Scribe.
 
 ## Promote to DECISIONS?
 
-No — McLeod migration is project-mechanics, not a domain decision worth locking.
+Yes — **Pricing locked at £5.99/mo or £49.99/yr with 14-day free trial.** No other price points to be referenced in any code, agent prompts, or content. Already in Terms v1.0.

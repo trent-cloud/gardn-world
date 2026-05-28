@@ -37,13 +37,12 @@ Stack, key data model, key flows. Updated when something material lands or moves
 
 - **Phase 1 (2026-05-08, `7d67fda`)** — scaffold + brand + skeleton routes + env-gated waitlist endpoint.
 - **Phase 2 (2026-05-08, `64c5f58`)** — real copy + App Store + Google Play badge artwork + four-icon footer + full SEO. Site fully live and waitlist functional.
-- **Privacy Policy v1.0 / v2.0** (2026-05-08, 2026-05-11) — solicitor-signed then user-rewritten. v2.0 pending solicitor sign-off.
-- **Terms of Service v1.0 draft** (2026-05-11) — pending solicitor sign-off.
+- **Privacy Policy v1.0 / v2.0** (2026-05-08, 2026-05-11) — both solicitor-signed (v2.0 supersedes v1.0).
+- **Terms of Service v1.0** (2026-05-11) — solicitor-signed.
 - **App Store launch swap** — pre-launch waitlist hero → post-launch App Store / Google Play badges, target 2026-05-26.
 
 ## Open architectural follow-ups
 
-- Solicitor sign-off on Privacy v2.0 and Terms v1.0 (both currently flagged as draft).
 - Post-launch analytics + Sentry (P1.1 + P1.2 in the action tracker).
 - App Store / Play Store URLs replace `#app-store-link-tbd` / `#google-play-link-tbd` placeholders on launch day.
 - LinkedIn company page once live (Doc 15).

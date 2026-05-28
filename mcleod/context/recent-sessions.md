@@ -16,7 +16,7 @@ Maintained by the `SESSION_END` protocol: each session-end prepends its block he
 - 12 agent system prompts (Sentinel, Guardian, Scribe, Weathervane, Lookout, Cultivator, Analyst, Concierge, Advocate, Ambassador, Curator, Orchestrator) with fleet manifest and guardrail architecture.
 - Supabase portal migration ready (8 tables). Auth via magic link.
 - Solicitor sign-off on Privacy v2.0 + Terms v1.0 confirmed done.
-- Pricing locked: £5.99/mo or £49.99/yr, 14-day free trial.
+- Pricing locked: £5.99/mo or £49.99/yr, 7-day free trial.
 
 ### Current state
 
@@ -28,7 +28,7 @@ Add env vars to Vercel, run portal migration SQL in Supabase, set up `ops.gardn.
 
 ### Promote to DECISIONS?
 
-Yes — pricing locked at £5.99/mo or £49.99/yr with 14-day free trial.
+Yes — pricing locked at £5.99/mo or £49.99/yr with 7-day free trial.
 
 ---
 

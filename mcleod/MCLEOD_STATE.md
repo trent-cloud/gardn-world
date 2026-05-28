@@ -8,7 +8,7 @@ Update this file at the end of every session. The McLeod hub does NOT read this 
 
 ## Current state
 
-gardn-ops portal is live on Vercel (preview URL — needs `ops.gardn.world` CNAME configured in GoDaddy). 17 modules, 4 API routes, 12 agent system prompts with guardrail architecture. The portal needs SUPABASE_SERVICE_ROLE_KEY and ANTHROPIC_API_KEY added to Vercel env vars to activate real data and AI features. Solicitor sign-off on Privacy v2.0 + Terms v1.0 is done (Outstanding #1 cleared). Pricing locked at £5.99/mo or £49.99/yr, 14-day free trial. gardn-world marketing site unchanged — still on `5d37826`.
+gardn-ops portal is live on Vercel (preview URL — needs `ops.gardn.world` CNAME configured in GoDaddy). 17 modules, 4 API routes, 12 agent system prompts with guardrail architecture. The portal needs SUPABASE_SERVICE_ROLE_KEY and ANTHROPIC_API_KEY added to Vercel env vars to activate real data and AI features. Solicitor sign-off on Privacy v2.0 + Terms v1.0 is done (Outstanding #1 cleared). Pricing locked at £5.99/mo or £49.99/yr, 7-day free trial. gardn-world marketing site unchanged — still on `5d37826`.
 
 ## Next
 

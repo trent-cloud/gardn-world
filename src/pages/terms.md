@@ -8,7 +8,7 @@ description: "Gardn's Terms of Service. The legally binding agreement between yo
 
 **Gardn**
 Last updated: 2026-05-11
-Version 1.0 — Draft for legal review
+Version 1.0
 
 ---
 
@@ -55,7 +55,7 @@ Current Premium pricing is displayed in the App and in the App Store listing. As
 Prices may change. We will give you reasonable notice of any price change before it takes effect.
 
 ### 4c. Free trial
-New Premium subscribers receive a **14-day free trial** of Premium. Your trial begins when you start it in the App. You will not be charged until the trial period ends. If you cancel before the trial ends, you will not be charged.
+New Premium subscribers receive a **7-day free trial** of Premium. Your trial begins when you start it in the App. You will not be charged until the trial period ends. If you cancel before the trial ends, you will not be charged.
 
 ### 4d. Free tier limits
 The Free tier includes:
@@ -219,5 +219,5 @@ Nothing in these Terms affects your statutory rights as a consumer under UK law.
 
 ---
 
-*Gardn Terms of Service v1.0 — Draft for legal review*
+*Gardn Terms of Service v1.0*
 *Gardn Labs Limited — Company No. 17195491*

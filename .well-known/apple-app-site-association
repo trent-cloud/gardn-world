@@ -1,0 +1,7 @@
+{
+  "applinks": {
+    "details": [
+      { "appIDs": ["REPLACE_WITH_APPLE_TEAM_ID.com.gardn.app"], "components": [{ "/": "/invite/*" }] }
+    ]
+  }
+}

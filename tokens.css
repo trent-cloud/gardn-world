@@ -1,0 +1,237 @@
+/* =====================================================================
+   Gardn — Colors & Type
+   The source-of-truth design tokens. Import this stylesheet anywhere
+   you want brand-correct colour + Figtree typography.
+
+   Figtree is loaded from Google Fonts (no licence overhead — SIL OFL).
+   To load locally instead, drop the weights into /fonts and swap the
+   @import for the included @font-face declarations.
+   ===================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* ─── Foundation ──────────────────────────────────────────────────── */
+  --forest:       #1A3D27;  /* Primary. Mark, type, dark backgrounds. */
+  --forest-deep:  #0F2618;  /* Apple OAuth, dark-mode surfaces. */
+  --paper:        #FAF8F3;  /* Default screen background. Never pure white. */
+  --cream:        #F5F2EA;  /* Cards, soft chips, secondary surfaces. */
+  --sand:         #E8E0D0;  /* Tertiary surface fill, illustrative chips. */
+
+  /* ─── Accent ──────────────────────────────────────────────────────── */
+  --fern:         #4A7A54;  /* Selected accent, links, sage-darker. */
+  --sage:         #A8C998;  /* Subtle positive accents, soft borders. */
+  --warm:         #C4A46A;  /* CTAs, highlights, seasonal callouts. */
+  --terracotta:   #C2452D;  /* Errors, urgent alerts, frost, destructive. */
+
+  /* ─── Lines + muted (semantic, opacity-based) ─────────────────────── */
+  --line:         rgba(26, 61, 39, 0.10); /* Default 1px border. */
+  --line-strong:  rgba(26, 61, 39, 0.18); /* Outline button borders. */
+  --muted:        rgba(26, 61, 39, 0.72); /* Body copy on Paper. */
+  --muted-sub:    rgba(26, 61, 39, 0.55); /* Helper copy, eyebrow. */
+  --muted-soft:   rgba(26, 61, 39, 0.40); /* Placeholders. */
+
+  /* ─── Photo overlays (recipes) ────────────────────────────────────── */
+  --overlay-bottom-fade:
+    linear-gradient(to bottom,
+      rgba(15,38,24,0.25) 0%,
+      rgba(15,38,24,0.05) 35%,
+      rgba(15,38,24,0.85) 100%);
+  --overlay-bleed:
+    linear-gradient(to bottom,
+      var(--forest) 0%,
+      transparent 24%,
+      transparent 76%,
+      var(--forest) 100%);
+  --overlay-card-hero:
+    linear-gradient(to bottom,
+      transparent 50%,
+      rgba(15,38,24,0.55) 100%);
+
+  /* ─── Status dots ─────────────────────────────────────────────────── */
+  --status-healthy:  var(--sage);
+  --status-attend:   var(--warm);
+  --status-urgent:   var(--terracotta);
+
+  /* ─── Typography ──────────────────────────────────────────────────── */
+  --font-sans: "Figtree", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Weights — never below 400. 800 is wordmark-only. */
+  --fw-regular:    400;
+  --fw-medium:     500;
+  --fw-semibold:   600;
+  --fw-bold:       700;
+  --fw-extrabold:  800;  /* Wordmark only. */
+
+  /* Type scale — locked per brand brief §10. */
+  --t-wordmark-size:    20px;   /* Default lockup size */
+  --t-wordmark-track:   0.18em; /* +180 tracking — wordmark only */
+
+  --t-display-size:     56px;
+  --t-display-lh:       58px;
+  --t-display-track:    -0.04em;
+
+  --t-h1-size:          32px;
+  --t-h1-lh:            35px;
+  --t-h1-track:         -0.025em;
+
+  --t-h2-size:          28px;
+  --t-h2-lh:            31px;
+  --t-h2-track:         -0.025em;
+
+  --t-body-size:        17px;
+  --t-body-lh:          25.5px;
+  --t-body-track:       -0.005em;
+
+  --t-body-sm-size:     14px;
+  --t-body-sm-lh:       21px;
+  --t-body-sm-track:    -0.005em;
+
+  --t-label-size:       13px;
+  --t-label-lh:         17px;
+
+  --t-button-size:      16px;
+  --t-button-track:     -0.005em;
+
+  --t-eyebrow-size:     10px;
+  --t-eyebrow-track:    0.18em;
+
+  /* ─── Spacing ─────────────────────────────────────────────────────── */
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-5:   20px;
+  --space-6:   24px;
+  --space-7:   32px;
+  --space-8:   40px;
+  --space-9:   56px;
+  --space-10:  80px;
+
+  /* ─── Radii ──────────────────────────────────────────────────────── */
+  --r-input:   12px;  /* Text inputs */
+  --r-card:    14px;  /* Task / quick-action cards */
+  --r-tile:    16px;  /* Frost strip, surfaces */
+  --r-chip:    18px;  /* Choice chip */
+  --r-large:   22px;  /* Hero card */
+  --r-modal:   24px;  /* Sheet / card overlay */
+  --r-pill:    28px;  /* Primary button (height 56 / radius 28) */
+  --r-pill-sm: 25px;  /* Ask Gardn pill (height 50) */
+  --r-full:    999px; /* Capsule, status dots */
+
+  /* ─── Elevation (used sparingly) ─────────────────────────────────── */
+  --shadow-pill:
+    0 12px 28px rgba(15, 38, 24, 0.25),
+    0 2px 6px rgba(15, 38, 24, 0.18);
+  --shadow-card-soft:
+    0 1px 2px rgba(15, 38, 24, 0.04),
+    0 4px 12px rgba(15, 38, 24, 0.05);
+
+  /* ─── Motion ──────────────────────────────────────────────────────── */
+  --ease-standard:  cubic-bezier(0.32, 0.72, 0, 1);
+  --t-press:        80ms;
+  --t-press-out:    200ms;
+  --t-field-focus:  160ms;
+  --t-stepdot:      200ms;
+  --t-inline:       240ms;
+  --t-route:        320ms;
+  --t-standard:     500ms;
+  --t-hero:         800ms;
+}
+
+/* ─── Semantic element styles ──────────────────────────────────────── */
+.gardn-body { background: var(--paper); color: var(--forest); font-family: var(--font-sans); }
+
+.gardn-wordmark {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-extrabold);
+  font-size: var(--t-wordmark-size);
+  letter-spacing: var(--t-wordmark-track);
+  text-transform: uppercase;
+  line-height: 1;
+  color: var(--forest);
+  padding-left: 0.09em; /* optical balance vs trailing tracking */
+}
+
+.gardn-display, h1.gardn-display {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-bold);
+  font-size: var(--t-display-size);
+  line-height: var(--t-display-lh);
+  letter-spacing: var(--t-display-track);
+  color: var(--forest);
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.gardn-h1, h1 {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-bold);
+  font-size: var(--t-h1-size);
+  line-height: var(--t-h1-lh);
+  letter-spacing: var(--t-h1-track);
+  color: var(--forest);
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.gardn-h2, h2 {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-semibold);
+  font-size: var(--t-h2-size);
+  line-height: var(--t-h2-lh);
+  letter-spacing: var(--t-h2-track);
+  color: var(--forest);
+  margin: 0;
+}
+
+.gardn-body-copy, p {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-regular);
+  font-size: var(--t-body-size);
+  line-height: var(--t-body-lh);
+  letter-spacing: var(--t-body-track);
+  color: var(--muted);
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.gardn-body-sm {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-regular);
+  font-size: var(--t-body-sm-size);
+  line-height: var(--t-body-sm-lh);
+  letter-spacing: var(--t-body-sm-track);
+  color: var(--muted);
+}
+
+.gardn-label {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-semibold);
+  font-size: var(--t-label-size);
+  line-height: var(--t-label-lh);
+  color: var(--forest);
+}
+
+.gardn-eyebrow {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-bold);
+  font-size: var(--t-eyebrow-size);
+  letter-spacing: var(--t-eyebrow-track);
+  text-transform: uppercase;
+  color: var(--forest);
+  opacity: 0.7;
+}
+
+.gardn-button-text {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-semibold);
+  font-size: var(--t-button-size);
+  letter-spacing: var(--t-button-track);
+}
+
+a, .gardn-link {
+  color: var(--fern);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}

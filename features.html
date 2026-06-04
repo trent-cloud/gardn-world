@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Features — how Gardn works.</title>
+<meta name="description" content="How Gardn works: Border Scan, Ask Gardn, health checks, your garden’s week, Bird Listen, Draw + Plan and more. A full product tour.">
+<link rel="canonical" href="https://gardn.world/features">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Features — how Gardn works.">
+<meta property="og:description" content="A full tour of what Gardn does — from naming every plant to naming the birds in your garden.">
+<meta property="og:url" content="https://gardn.world/features">
+<meta property="og:image" content="https://gardn.world/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="apple-touch-icon" href="assets/gardn-mark.png">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="site.css">
+<style>
+  @media (prefers-reduced-motion: no-preference) {
+    .js .pulse-ring { animation: pulse 2.4s var(--ease-standard) infinite; }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(168,201,152,0.5); } 70% { box-shadow: 0 0 0 16px rgba(168,201,152,0); } 100% { box-shadow: 0 0 0 0 rgba(168,201,152,0); } }
+  }
+  .steps { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:8px; }
+  .step { padding:26px 24px; border-radius:var(--r-large); background:rgba(245,242,234,0.06); border:1px solid rgba(245,242,234,0.16); }
+  .step .n { width:34px; height:34px; border-radius:50%; border:1.5px solid var(--sage); color:var(--sage); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:15px; margin-bottom:16px; }
+  .step h3 { color:var(--paper); font-size:18px; font-weight:700; letter-spacing:-0.015em; }
+  .step p { color:rgba(245,242,234,0.8); font-size:14.5px; line-height:1.55; margin:8px 0 0; }
+  @media (max-width:760px){ .steps{ grid-template-columns:1fr; } }
+</style>
+<script type="application/ld+json">
+{ "@context":"https://schema.org","@graph":[
+  {"@type":"Organization","name":"Gardn Labs Limited","url":"https://gardn.world/","logo":"https://gardn.world/assets/gardn-mark.png"},
+  {"@type":"WebSite","name":"Gardn","url":"https://gardn.world/"}
+]}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site">
+  <div class="shell bar">
+    <a class="lockup" href="index.html" aria-label="Gardn home"><img src="assets/gardn-mark.png" alt=""><span class="wm">GARDN</span></a>
+    <nav class="primary" aria-label="Primary">
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="features.html" aria-current="page">Features</a>
+        <a href="story.html">Story</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="notes.html">Notes</a>
+      </div>
+      <a class="nav-cta" href="#join">Get early access</a>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ░░ INTRO / HOW IT WORKS ░░ -->
+  <section class="band sec-forest-deep on-dark">
+    <div class="shell">
+      <div class="sec-head reveal" style="max-width:720px">
+        <p class="eyebrow">How it works</p>
+        <h2 style="color:var(--paper)">Set it up once. It grows with you after that.</h2>
+        <p>Draw your garden, let Border Scan name what’s in it, and everything that follows — the weekly plan, the alerts, the advice — is shaped by your spaces, your soil and your weather. Not a generic gardening app pointed at you.</p>
+      </div>
+      <div class="steps reveal" style="margin-top:40px">
+        <div class="step"><div class="n">1</div><h3>Trace your garden.</h3><p>Draw your borders, beds and pots once — a simple 2D plan everything anchors to.</p></div>
+        <div class="step"><div class="n">2</div><h3>Name your plants.</h3><p>Walk the beds with Border Scan. Each plant lands in its place, with a name and a rhythm.</p></div>
+        <div class="step"><div class="n">3</div><h3>Let it tend.</h3><p>From there, the weekly plan, alerts and advice are shaped by your actual garden.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ BORDER SCAN ░░ -->
+  <section class="band sec-paper" id="border-scan">
+    <div class="shell">
+      <div class="feature reveal">
+        <div class="copy">
+          <p class="eyebrow">Border Scan</p>
+          <h2>Fill your whole garden in one slow pan.</h2>
+          <p class="lead">Hold up your phone and walk the border. Gardn names each plant as you go and drops it into place — no typing, no guessing at a hundred plant names.</p>
+          <p>Correct it once if it misreads something and it remembers. Free to try each month, then part of your premium allowance.</p>
+        </div>
+        <div class="visual"><div>
+          <div class="phone" role="img" aria-label="Border Scan: a live camera identifying a plant, with saved plant results in a grid below.">
+            <!-- ASSET: features-border-scan.webp 9:19.5 -->
+            <div class="notch"></div>
+            <div class="screen">
+              <div class="statusbar"><span>9:41</span><span class="icons"><span class="sig"></span><span class="bat"></span></span></div>
+              <div class="appscreen">
+                <div class="app-h"><div class="title">Border Scan</div><div class="sk-pill">5 plants</div></div>
+                <div class="sk-photo" style="height:150px;position:relative;display:flex;align-items:flex-end;padding:12px">
+                  <div style="position:absolute;top:14px;left:14px;width:56px;height:56px;border:2px solid var(--paper);border-radius:10px;opacity:0.85"></div>
+                  <div class="sk-pill" style="background:var(--forest);color:var(--paper);border:none"><span class="dot-status heal"></span>Dahlia · 96%</div>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px">
+                  <div class="app-card"><div class="sk-photo" style="height:54px;margin-bottom:9px"></div><div class="sk-bar w70"></div><div class="sk-bar w40" style="margin-top:6px"></div></div>
+                  <div class="app-card"><div class="sk-photo" style="height:54px;margin-bottom:9px"></div><div class="sk-bar w85"></div><div class="sk-bar w50" style="margin-top:6px"></div></div>
+                  <div class="app-card"><div class="sk-photo" style="height:54px;margin-bottom:9px"></div><div class="sk-bar w50"></div><div class="sk-bar w40" style="margin-top:6px"></div></div>
+                  <div class="app-card"><div class="sk-photo" style="height:54px;margin-bottom:9px"></div><div class="sk-bar w70"></div><div class="sk-bar w50" style="margin-top:6px"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ ASK GARDN ░░ -->
+  <section class="band sec-cream">
+    <div class="shell">
+      <div class="feature flip reveal">
+        <div class="copy">
+          <p class="eyebrow">Ask Gardn</p>
+          <h2>The gardener’s answer, without the gardener.</h2>
+          <p class="lead">Ask it the way you’d ask a neighbour who’d walked your borders — name this, why’s that struggling, what now. The reply comes back about your garden, not gardening in general.</p>
+          <p>Free to ask each month, with a wider allowance on premium. Turning a description into a picture is Inspired by Gardn — part of premium.</p>
+        </div>
+        <div class="visual"><div>
+          <div class="phone" role="img" aria-label="Ask Gardn: a question and a reply card referencing the user’s own plants."><img class="phone-shot" src="assets/shot-ask-gardn.png" alt="" loading="lazy"></div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ HEALTH CHECK ░░ -->
+  <section class="band sec-paper" id="health">
+    <div class="shell">
+      <div class="feature reveal">
+        <div class="copy">
+          <p class="eyebrow">Health check</p>
+          <h2>Know what’s wrong, and what to do tonight.</h2>
+          <p class="lead">A struggling plant or a tired patch of lawn — one photo, an honest read on what it likely is, and the next move. No catastrophising, no guesswork.</p>
+          <p>Plants and lawn use the same simple flow. Free to check each month, then part of your premium allowance.</p>
+        </div>
+        <div class="visual"><div>
+          <div class="phone" role="img" aria-label="Health check: a leaf photo, a needs-attention diagnosis, and a short plan.">
+            <!-- ASSET: features-health-check.webp 9:19.5 -->
+            <div class="notch"></div>
+            <div class="screen">
+              <div class="statusbar"><span>9:41</span><span class="icons"><span class="sig"></span><span class="bat"></span></span></div>
+              <div class="appscreen">
+                <div class="app-h"><div class="title">Health check</div></div>
+                <div class="sk-photo" style="height:120px"></div>
+                <div class="app-card" style="margin-top:12px">
+                  <div style="display:flex;align-items:center;justify-content:space-between"><div style="font-weight:700;font-size:15px">Japanese maple</div><span class="sk-pill" style="background:color-mix(in oklab,var(--warm) 26%,var(--paper));border-color:transparent;color:#8A6A2E"><span class="dot-status att"></span>Needs attention</span></div>
+                  <div class="sk-bar w85" style="margin-top:12px"></div><div class="sk-bar w70" style="margin-top:8px"></div>
+                </div>
+                <div style="font-size:11px;font-weight:700;letter-spacing:0.06em;color:var(--muted-sub);margin:16px 0 8px">YOUR PLAN</div>
+                <div class="app-card sk-row" style="margin-bottom:8px"><svg class="ico" viewBox="0 0 24 24"><path d="M12 3c4 4 6 7 6 10a6 6 0 0 1-12 0c0-3 2-6 6-10z"/></svg><div style="flex:1"><div class="sk-bar w70"></div></div></div>
+                <div class="app-card sk-row"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg><div style="flex:1"><div class="sk-bar w50"></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ WEEK ░░ -->
+  <section class="band sec-spring">
+    <div class="shell">
+      <div class="feature flip reveal">
+        <div class="copy">
+          <p class="eyebrow">Your garden’s week</p>
+          <h2>The three things worth doing, and a warning before frost.</h2>
+          <p class="lead">A short, honest list of what actually matters this week — shaped by your plants and your forecast — and a clear heads-up, in time, when the weather turns.</p>
+          <p>Frost is the one place Gardn raises its voice. Everything else stays quiet and out of the way. Free, every week.</p>
+        </div>
+        <div class="visual"><div>
+          <div class="phone" role="img" aria-label="This week: a frost alert above a short list of garden tasks."><img class="phone-shot" src="assets/shot-week.png" alt="" loading="lazy"></div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ INSPIRED BY GARDN — PREMIUM ░░ -->
+  <section class="band sec-summer">
+    <div class="shell">
+      <div class="feature reveal">
+        <div class="copy">
+          <span class="premium-tag"><span class="dot"></span>Premium</span>
+          <p class="eyebrow">Inspired by Gardn</p>
+          <h2>See the border before you plant it.</h2>
+          <p class="lead">From the plan you’ve drawn, a considered 2D render of the same border — fuller, settled in, and in bloom.</p>
+          <p>True to your space and your soil, with every suggested plant listed so it’s a border you could actually grow, not a mood board.</p>
+          <p class="premium-note">Part of Gardn premium.</p>
+        </div>
+        <div class="visual"><div>
+          <div class="phone" role="img" aria-label="Inspired by Gardn: a before-and-after of the same border, sparse now and lush as a premium 2D render, with plant chips.">
+            <!-- ASSET: features-inspired-before-after.webp 9:19.5 -->
+            <div class="notch"></div>
+            <div class="screen">
+              <div class="statusbar"><span>9:41</span><span class="icons"><span class="sig"></span><span class="bat"></span></span></div>
+              <div class="appscreen">
+                <div class="app-h"><div class="title">Inspired by Gardn</div></div>
+                <div style="position:relative"><div class="sk-photo" style="height:84px;background:linear-gradient(135deg,color-mix(in oklab,var(--sand) 70%,var(--cream)),color-mix(in oklab,var(--sage) 30%,var(--cream)))"></div><span class="sk-pill" style="position:absolute;left:8px;top:8px;background:var(--paper)">Now</span></div>
+                <div style="position:relative;margin-top:10px"><div class="sk-photo" style="height:120px;background:linear-gradient(135deg,color-mix(in oklab,var(--fern) 55%,var(--cream)),color-mix(in oklab,var(--warm) 40%,var(--sage)))"></div><span class="sk-pill" style="position:absolute;left:8px;top:8px;background:color-mix(in oklab,var(--warm) 30%,var(--paper));border-color:transparent;color:#8A6A2E"><span class="dot-status att"></span>Inspired</span></div>
+                <div style="display:flex;flex-wrap:wrap;gap:7px;margin-top:13px"><span class="sk-pill">Salvia</span><span class="sk-pill">Verbena</span><span class="sk-pill">Geum</span><span class="sk-pill">Stipa</span></div>
+              </div>
+            </div>
+          </div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ WILDLIFE SCORE ░░ -->
+  <section class="band sec-autumn">
+    <div class="shell">
+      <div class="feature flip reveal">
+        <div class="copy">
+          <p class="eyebrow">For nature</p>
+          <h2>See how much your garden gives back.</h2>
+          <p class="lead">A single score for how well your garden supports wildlife — and a short, doable list of what to add to lift it.</p>
+          <p>Set a goal or two and Gardn keeps an eye on them quietly. A garden is a habitat; this is how you watch it become one. Free.</p>
+        </div>
+        <div class="visual"><div>
+          <div class="phone" role="img" aria-label="Wildlife score: a 72 out of 100 scorecard with goals to raise it."><img class="phone-shot" src="assets/shot-wildlife.png" alt="" loading="lazy"></div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ BIRD LISTEN ░░ -->
+  <section class="band sec-paper" id="bird-listen">
+    <div class="shell">
+      <div class="feature reveal">
+        <div class="copy">
+          <span class="sk-pill" style="background:color-mix(in oklab,var(--sage) 26%,var(--paper));border-color:transparent;margin-bottom:14px">Just shipped · free</span>
+          <p class="eyebrow">Bird Listen</p>
+          <h2>Name the birds singing in your garden.</h2>
+          <p class="lead">Hold up your phone and Gardn names the birds it hears, in real time, wherever you garden — no need to spot them.</p>
+          <p>Location-aware, across roughly 6,300 species worldwide, and free to use. The quiet wow of a garden that turns out to be a habitat.</p>
+        </div>
+        <div class="visual"><div>
+          <div class="phone" role="img" aria-label="Bird Listen: a live listening screen naming the birds heard, with confidence levels.">
+            <!-- ASSET: features-bird-listen.webp 9:19.5 -->
+            <div class="notch"></div>
+            <div class="screen">
+              <div class="statusbar"><span>9:41</span><span class="icons"><span class="sig"></span><span class="bat"></span></span></div>
+              <div class="appscreen" style="display:flex;flex-direction:column">
+                <div class="app-h"><div class="title">Listening</div></div>
+                <div style="display:flex;justify-content:center;margin:8px 0 18px"><span class="pulse-ring" style="width:64px;height:64px;border-radius:50%;background:var(--forest);display:inline-flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" style="width:26px;height:26px;stroke:var(--paper);fill:none;stroke-width:1.5;stroke-linecap:round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4"/></svg></span></div>
+                <div class="app-card sk-row" style="margin-bottom:8px"><span class="dot-status heal"></span><div style="flex:1"><div style="font-weight:600;font-size:13.5px">Robin</div></div><span style="font-size:11px;color:var(--muted-sub);font-weight:600">High</span></div>
+                <div class="app-card sk-row" style="margin-bottom:8px"><span class="dot-status heal"></span><div style="flex:1"><div style="font-weight:600;font-size:13.5px">Wren</div></div><span style="font-size:11px;color:var(--muted-sub);font-weight:600">High</span></div>
+                <div class="app-card sk-row"><span class="dot-status att"></span><div style="flex:1"><div style="font-weight:600;font-size:13.5px">Blackcap</div></div><span style="font-size:11px;color:var(--muted-sub);font-weight:600">Likely</span></div>
+              </div>
+            </div>
+          </div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ DRAW + PLAN ░░ -->
+  <section class="band sec-cream">
+    <div class="shell">
+      <div class="feature flip reveal">
+        <div class="copy">
+          <p class="eyebrow">Draw + plan</p>
+          <h2>Your real garden, mapped once and good for good.</h2>
+          <p class="lead">Sketch your borders, beds and pots into a simple 2D plan — no app gate, no quota. Every plant, task and photo then finds its place on it.</p>
+          <p>Scrub through the months to see what’s in bloom when, and where the gaps are. Free, the foundation everything else sits on.</p>
+        </div>
+        <div class="visual"><div>
+          <div class="phone" role="img" aria-label="Draw and plan: a 2D garden plan with shaped beds, and a bloom-month scrubber along the bottom."><img class="phone-shot" src="assets/shot-garden-map.png" alt="" loading="lazy"></div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ JOURNEY (cross-link to Story) ░░ -->
+  <section class="band sec-paper">
+    <div class="shell">
+      <div class="feature reveal">
+        <div class="copy">
+          <p class="eyebrow">Journey</p>
+          <h2>Watch your garden grow up, season by season.</h2>
+          <p class="lead">Every border photo and plant you log is kept in one quiet place — a record of how your garden actually changed, not how you meant it to.</p>
+          <p>The longer you keep it, the more your garden knows itself. <a href="story.html">Read the story →</a></p>
+        </div>
+        <div class="visual"><div>
+          <div class="phone" role="img" aria-label="Your garden’s journey: a grid of garden spaces, each a photo tile labelled with a season."><img class="phone-shot" src="assets/shot-journey.png" alt="" loading="lazy"></div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ SECONDARY ROWS — the rest of the garden ░░ -->
+  <section class="band sec-cream">
+    <div class="shell">
+      <div class="sec-head reveal" style="margin-bottom:36px">
+        <p class="eyebrow">The rest of the garden</p>
+        <h2>And the everyday things, kept simple.</h2>
+      </div>
+      <div class="mini-grid reveal">
+        <div class="mini"><div class="ic"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 9h16M9 4v16"/></svg></div><h3>Veg calendar.</h3><p>A 12-month wheel of when to sow, plant out and pick.</p></div>
+        <div class="mini"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a14 14 0 0 0 0 18M3 12h18"/></svg></div><h3>Seasonal coverage.</h3><p>See where the garden goes quiet across the year, and fill the gaps.</p></div>
+        <div class="mini"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="9" r="3"/><path d="M3 19c0-3 2.7-5 6-5s6 2 6 5"/><circle cx="17" cy="10" r="2.3"/><path d="M15 19c0-2.2 1.8-4 4-4"/></svg></div><h3>Local gardeners.</h3><p>Plant swaps and cuttings with real gardeners near you. Local, when there are enough of you.</p></div>
+        <div class="mini"><div class="ic"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9z"/><path d="M9 21a3 3 0 0 0 6 0"/></svg></div><h3>Quiet by default.</h3><p>Notifications only when they’re worth it. Never nagging.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ CTA BAND ░░ -->
+  <section class="band sec-forest on-dark ctaband" id="join">
+    <div class="bg" style="background-image:url(assets/photo-backlit.jpg)" aria-hidden="true"></div>
+    <div class="shell"><div class="inner">
+      <h2>Coming soon — join the list and be first to grow with Gardn.</h2>
+      <p>We’ll tell you the day it opens, free trial and all.</p>
+      <div class="news news--center" data-variant="band" style="margin-inline:auto">
+        <form novalidate>
+          <span class="hp"><input type="text" tabindex="-1" autocomplete="off" aria-hidden="true"></span>
+          <input type="email" name="email" placeholder="Your email." autocomplete="email" aria-label="Email address" required>
+          <button class="btn btn--paper" type="submit">Get early access.</button>
+        </form>
+        <p class="status" role="status" aria-live="polite"></p>
+        <p class="reassure">No spam. One garden note a month. Unsubscribe anytime.</p>
+        <div class="thanks">
+          <div class="t-head">You’re on the list.</div>
+          <p class="t-body">We’ll tell you the day Gardn opens — free trial and all.</p>
+          <button class="share-btn" type="button"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg><span class="share-label">Invite a fellow gardener</span></button>
+        </div>
+      </div>
+    </div></div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="shell">
+    <div class="grid">
+      <div class="col col--brand">
+        <a class="lockup" href="index.html" aria-label="Gardn home"><img src="assets/gardn-mark.png" alt=""><span class="wm">GARDN</span></a>
+        <p class="tag">A garden app that grows with you.</p>
+        <div class="storebadges" aria-label="Mobile apps — coming soon">
+          <span class="storebadge" role="img" aria-label="iOS app coming soon"><svg viewBox="0 0 24 24"><path d="M16 13c0-2 1.6-3 1.7-3-1-1.4-2.4-1.6-2.9-1.6-1.2-.1-2.4.7-3 .7s-1.6-.7-2.6-.7C7 8.4 5.7 9.2 5 10.5c-1.4 2.4-.4 6 1 8 .7 1 1.5 2 2.5 2 .9 0 1.3-.6 2.5-.6s1.5.6 2.5.6 1.7-.9 2.4-1.9c.5-.7.7-1.4.8-1.5-.1 0-1.7-.6-1.7-2.6zM14 6.3c.6-.7.9-1.6.8-2.5-.8 0-1.7.5-2.3 1.2-.5.6-.9 1.5-.8 2.4.9.1 1.7-.4 2.3-1.1z"/></svg><span class="lab"><span class="name">iOS</span><span class="cs">Coming soon</span></span></span>
+          <span class="storebadge" role="img" aria-label="Android app coming soon"><svg viewBox="0 0 24 24"><path d="M5 9l1.5-2.6M19 9l-1.5-2.6M3 10h18v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM8 6.5a1 1 0 1 0 0 .1M16 6.5a1 1 0 1 0 0 .1"/></svg><span class="lab"><span class="name">Android</span><span class="cs">Coming soon</span></span></span>
+        </div>
+      </div>
+      <div class="col"><h4>Product</h4><a href="features.html">Features</a><a href="pricing.html">Pricing</a><a href="story.html">Story</a><a href="notes.html">Notes</a></div>
+      <div class="col"><h4>Company</h4><a href="story.html">About</a><a href="support.html">Support</a><a href="notes.html">Garden notes</a></div>
+      <div class="col"><h4>Legal</h4><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="delete-account.html">Delete account</a></div>
+    </div>
+    <div class="bar"><span>© 2026 Gardn Labs Limited.</span><span>gardn.world</span></div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>

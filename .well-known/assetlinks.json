@@ -1,0 +1,10 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.gardn.app",
+      "sha256_cert_fingerprints": ["D2:B1:E1:A0:79:CF:34:F8:37:CC:82:7B:E6:80:6F:FB:1D:09:F4:59:BE:C7:05:45:53:8D:FA:06:1B:6F:82:66"]
+    }
+  }
+]

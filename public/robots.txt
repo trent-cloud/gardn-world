@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://gardn.world/sitemap-index.xml

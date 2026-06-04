@@ -1,0 +1,12 @@
+{
+  "name": "Gardn",
+  "short_name": "Gardn",
+  "description": "A garden app that grows with you.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAF8F3",
+  "theme_color": "#1A3D27",
+  "icons": [
+    { "src": "/assets/gardn-mark.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

@@ -97,7 +97,7 @@ The category map, ordered by overlap with Gardn's positioning.
 
 ### Direct competitors
 
-**RHS Grow.** UK-built, RHS brand authority, plant database depth. Strong on reference; weak on personalisation, no community, no active alerts. Pricing: £4.99/month or £39.99/year (Gardn matches monthly, sits ~£10 above on annual). The most credible UK reference-led incumbent. Gardn's answer: memory + active intelligence + community. RHS is the encyclopedia; Gardn is the companion.
+**RHS Grow.** UK-built, RHS brand authority, plant database depth. Strong on reference; weak on personalisation, no community, no active alerts. Pricing: £4.99/month or £39.99/year (Gardn sits above it on price, so the memory + active intelligence + community value must be felt quickly). The most credible UK reference-led incumbent. Gardn's answer: memory + active intelligence + community. RHS is the encyclopedia; Gardn is the companion.
 
 **Planta.** Swedish, indoor-skewed, very polished. Strong on plant-care reminders for houseplants. Weak on UK outdoor gardening, no regional accuracy, no community, no longitudinal memory beyond watering logs. Pricing: roughly £35/year. Gardn's answer: outdoor-first, regional, memory-led.
 
@@ -130,7 +130,7 @@ These are real gaps. The strategy is to win on memory, active intelligence, and 
 - **AI quality crossed the usefulness threshold in 2025-26.** Vision-based plant health diagnosis is now reliable enough to ship as a default feature, not a gimmick.
 - **UK gardening sustained post-pandemic.** The 2020-2021 surge has stabilised into a larger steady-state base of engaged gardeners than pre-pandemic. The category is bigger and more durable.
 - **Biodiversity and wildlife awareness mainstream.** Wildlife gardening, native planting, and pollinator support have moved from niche to default. Gardn's wildlife planner addresses an audience that didn't exist at scale five years ago.
-- **App Store policy maturity.** Apple's Small Business Program (15% commission from launch for new developers) makes the unit economics of a £5.99/month subscription work that didn't work at 30%.
+- **App Store policy maturity.** Apple's Small Business Program (15% commission from launch for new developers) makes the unit economics of a £6.99/month subscription work that didn't work at 30%.
 
 ---
 
@@ -263,6 +263,6 @@ Trigger events that would force a rewrite of this document:
 | Date | Author | Change |
 |------|--------|--------|
 | 2026-04-28 | Trent + Claude | Initial USP and positioning analysis. To be revisited quarterly as competitive landscape evolves. |
-| 2026-04-28 | Trent + Claude | Pricing position updated post-lift to £5.99/£49.99. RHS Grow comparison sharpened (matches monthly, +£10 annual). Planta differentiator updated (still cheaper monthly but no longer "budget option"). |
+| 2026-04-28 | Trent + Claude | Historical pricing-position note recorded. Superseded on 2026-06-09 by £6.99/£49.99. |
 | 2026-04-28 | Trent + Claude — RN/Expo pivot decision: "AI-native build is a quiet credibility" section extended to call out the native React Native architecture (replacing Capacitor wrap), with explicit notes on tech-led acquirer DD optics and VR / AR roadmap support. "No app required" framing not present in earlier copy so no removal needed. |
 | 2026-05-08 | Trent + Claude | **Major positioning rewrite.** Frame shifted from "the better gardener product" feature-led articulation to memory-as-foundation, journey-as-relationship. New tagline pair locked: *"Notices what you'd miss. Remembers what you'd forget."* + sub-line *"A garden app that grows with you — quietly keeping every border, plant and bloom in mind, and gently nudging you toward what's worth doing next."* Pillars restructured: memory (Pillar 1), active intelligence (Pillar 2), regional accuracy (Pillar 3, generalised away from UK-only as international expansion approaches), community (Pillar 4 — soft, gated, density-contingent). Defensibility section sharpened to lead on memory layer as the moat (was buried previously). Messaging house rewritten in full — App Store, site hero, social bio, press elevator, conversation pitch, the "isn't this just an AI plant app" pivot. New "What the brand is NOT" guardrail section added. Site-copy authoring split out into new `Document 15 — Site Copy` (separate file). |

@@ -7,7 +7,7 @@
 - **Supabase portal migration** ready at `supabase/migrations/20260527_portal_schema.sql` (8 tables: support_tickets, content_items, influencer_contacts, agent_runs, seo_snapshots, competitor_snapshots, newsletter_issues, daily_metrics).
 - Stack: Next.js 16 + shadcn/ui + Supabase + Tailwind + Recharts + Figtree font. Fully branded with Gardn palette (forest-deep sidebar, paper background, fern/sage/warm accents).
 - Solicitor sign-off on Privacy v2.0 + Terms v1.0 confirmed done (Outstanding #1 cleared).
-- Pricing locked in memory: £5.99/mo or £49.99/yr, 7-day free trial.
+- Pricing superseded on 2026-06-09: £6.99/mo or £49.99/yr, 7-day free trial.
 
 ## Current state
 
@@ -19,4 +19,4 @@ Add env vars to Vercel (SUPABASE_SERVICE_ROLE_KEY, ANTHROPIC_API_KEY, RESEND_API
 
 ## Promote to DECISIONS?
 
-Yes — **Pricing locked at £5.99/mo or £49.99/yr with 7-day free trial.** No other price points to be referenced in any code, agent prompts, or content. Already in Terms v1.0.
+Yes — **Pricing superseded on 2026-06-09 to £6.99/mo or £49.99/yr with 7-day free trial.** No other price points to be referenced in any code, agent prompts, or content.

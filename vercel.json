@@ -58,9 +58,18 @@
     }
   ],
   "rewrites": [
-    { "source": "/notes/border-scan", "destination": "/notes-border-scan.html" },
-    { "source": "/notes/frost", "destination": "/notes-frost.html" },
-    { "source": "/notes/memory", "destination": "/notes-memory.html" }
+    {
+      "source": "/notes/border-scan",
+      "destination": "/notes-border-scan"
+    },
+    {
+      "source": "/notes/frost",
+      "destination": "/notes-frost"
+    },
+    {
+      "source": "/notes/memory",
+      "destination": "/notes-memory"
+    }
   ],
   "cleanUrls": true,
   "framework": null,

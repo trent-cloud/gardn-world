@@ -57,6 +57,11 @@
       ]
     }
   ],
+  "rewrites": [
+    { "source": "/notes/border-scan", "destination": "/notes-border-scan.html" },
+    { "source": "/notes/frost", "destination": "/notes-frost.html" },
+    { "source": "/notes/memory", "destination": "/notes-memory.html" }
+  ],
   "cleanUrls": true,
   "framework": null,
   "buildCommand": null,

@@ -4,12 +4,12 @@ Update this file at the end of every session. The McLeod hub does NOT read this 
 
 ---
 
-<!-- updated: 2026-05-27 -->
+<!-- updated: 2026-06-12 -->
 
 ## Current state
 
-gardn-ops portal is live on Vercel (preview URL — needs `ops.gardn.world` CNAME configured in GoDaddy). 17 modules, 4 API routes, 12 agent system prompts with guardrail architecture. The portal needs SUPABASE_SERVICE_ROLE_KEY and ANTHROPIC_API_KEY added to Vercel env vars to activate real data and AI features. Solicitor sign-off on Privacy v2.0 + Terms v1.0 is done (Outstanding #1 cleared). Pricing superseded on 2026-06-09 to £6.99/mo or £49.99/yr, 7-day free trial.
+Marketing site live and materially more on-brand after a 15-commit brand-audit sprint (2026-06-12): real vector Geoleaf logo + favicon (previously none), Figtree actually loading (CSP had silently blocked Google Fonts since launch), reverse-trial copy truth on every page, "Grow together." footer strapline, place-first hero sub-line, footer social row (Instagram @gardn.world; Facebook/X/TikTok @gardnworld), notes pages fixed at canonical URLs, and internal docs (CLAUDE.md, mcleod/, docs/) no longer publicly served from gardn.world. Open decisions: wordmark case (ops Brand Kit uppercase vs app token lowercase), "Inspire" vs "Inspired by Gardn" naming, warm token drift, title/og/manifest strapline, and the GitHub repo still being public.
 
 ## Next
 
-Add env vars to Vercel (SUPABASE_SERVICE_ROLE_KEY, ANTHROPIC_API_KEY, RESEND_API_KEY), run the portal migration SQL in Supabase, set up `ops.gardn.world` CNAME in GoDaddy, and begin deploying agents on the Mac Mini starting with Sentinel + Guardian + Scribe.
+Flip `trent-cloud/gardn-world` to private (needs Trent's nod), then rule on the wordmark case and Inspire naming.

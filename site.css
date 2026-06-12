@@ -4,11 +4,11 @@
    where a token does not exist; brand palette only.
 
    SIGNATURE DEVICE (applied site-wide):
-   1. Seasonal colour drift — section backgrounds shift cool→warm down
-      each page (winter forest near the hero → sage/warm tones lower),
-      mirroring "a garden that grows with you."
-   2. A single recurring hairline botanical sprig used as the section
-      divider (.bloom-rule) — never a decorative blob.
+   Seasonal colour drift — section backgrounds shift cool→warm down
+   each page (winter forest near the hero → sage/warm tones lower),
+   mirroring "a garden that grows with you."
+   (The .bloom-rule sprig divider was removed 2026-06-12 — not in the
+   brand design, per Richard.)
    ===================================================================== */
 
 /* muted-sub resolved to 0.68 per the marketing brief (passes AA at 14px) */
@@ -170,20 +170,6 @@ section { position: relative; }
   max-width: 40ch;
 }
 .on-dark .sec-head p { color: rgba(245,242,234,0.85); }
-
-/* ── Signature: bloom hairline divider ──────────────────────────────── */
-.bloom-rule {
-  display: flex; align-items: center; gap: 18px; color: var(--fern);
-  opacity: 0.5; margin: 0 auto; max-width: 420px;
-}
-.bloom-rule::before, .bloom-rule::after {
-  content: ""; flex: 1; height: 1px;
-  background: linear-gradient(90deg, transparent, currentColor);
-}
-.bloom-rule::after { background: linear-gradient(90deg, currentColor, transparent); }
-.bloom-rule svg { width: 30px; height: 30px; stroke: currentColor; fill: none;
-  stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; flex: none; }
-.on-dark .bloom-rule { color: var(--sage); opacity: 0.6; }
 
 /* ── Hero ───────────────────────────────────────────────────────────── */
 .hero {

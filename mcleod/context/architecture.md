@@ -10,7 +10,7 @@ Stack, key data model, key flows. Updated when something material lands or moves
 - **Hosting:** Vercel at `https://gardn.world`, `outputDirectory: "."`, `cleanUrls: true`, auto-deploy on push to `main`, per-branch previews, no staging gate.
 - **`vercel.json`** carries: security headers including CSP (allows `fonts.googleapis.com` in style-src and `fonts.gstatic.com` in font-src — required for Figtree; do not remove), rewrites for `/notes/{border-scan,frost,memory}` → the `notes-*` pages and `/favicon.ico` → `/assets/favicon-96.png`.
 - **`.vercelignore`** excludes `CLAUDE.md`, `README.md`, `mcleod/`, `docs/` from the deploy — the output directory is the repo root, so anything committed and not ignored is publicly served. Add new internal files to it.
-- **Waitlist:** `POST /api/waitlist` (Vercel serverless function in `api/`) → Resend Audiences, env-gated.
+- **Waitlist:** `POST /api/subscribe` (Vercel serverless function `api/subscribe.js`) → Resend Audiences, env-gated. (Docs previously said `/api/waitlist` — wrong since the static rebuild; corrected 2026-06-12 after it caused a false "waitlist is down" diagnosis.)
 - **No analytics, no CMS, no auth.** Marketing site, kept lean.
 
 ## Key files

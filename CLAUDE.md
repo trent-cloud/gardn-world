@@ -104,7 +104,7 @@ Always use Astro's `<Image />` from `astro:assets` for brand photos and the lock
 
 ## Waitlist
 
-`POST /api/waitlist` → Resend Audiences. Env-gated (`RESEND_API_KEY`, `RESEND_AUDIENCE_ID`) — both set in Vercel and tested live. Missing env returns graceful 503 so previews don't 500. Endpoint validates email shape before calling Resend.
+`POST /api/subscribe` (`api/subscribe.js`) → Resend Audiences. Env-gated (`RESEND_API_KEY`, `RESEND_AUDIENCE_ID`) — both set in Vercel and verified live 2026-06-12. Missing env returns `{ok:true}` so the visitor is never punished for our config; invalid email returns `{ok:false}`. (Not `/api/waitlist` — that path never existed in the static rebuild.)
 
 ## SEO
 

@@ -202,7 +202,7 @@ section { position: relative; }
 }
 .hero .sub {
   font-size: clamp(17px, 2vw, 20px); line-height: 1.5; color: rgba(245,242,234,0.9);
-  margin: 22px 0 0; max-width: 46ch; font-style: italic; text-wrap: pretty;
+  margin: 22px 0 0; max-width: 46ch; text-wrap: pretty;
 }
 .hero .credit {
   position: absolute; right: var(--gutter); bottom: 20px; z-index: 2;

@@ -89,7 +89,7 @@ Terms is now live at `src/pages/terms.md` (v1.0, 2026-05-11, solicitor-signed). 
 - No analytics, no Sentry, no auth, no product features. This is a marketing site. (Sentry + analytics land post-launch — P1.1 + P1.2 in `14-action-tracker.md`.)
 - No CMS or MDX layer — pages are simple enough as `.astro` and `.md` files.
 - Privacy v2.0 (2026-05-11) and Terms v1.0 (2026-05-11) are both live and **solicitor-signed**. Privacy v1.0 (2026-05-08) was the prior signed version; v2.0 supersedes it (also solicitor-signed). Flag any further substantive edits as needing legal sign-off before push.
-- No additional social handles in the footer — only `@gardnworld` Facebook / X / Instagram / TikTok are reserved. LinkedIn comes once the company page is live (Doc 15). YouTube / Threads / Bluesky are not reserved.
+- The footer social row (live 2026-06-12) carries exactly four handles: Instagram `@gardn.world`, Facebook / X / TikTok `@gardnworld`. Note Instagram differs from the other three. LinkedIn comes once the company page is live (Doc 15). YouTube / Threads / Bluesky are not reserved.
 - No real App Store / Google Play URLs until the listings are approved at launch — links are `#app-store-link-tbd` / `#google-play-link-tbd` placeholders.
 
 ## Image rendering

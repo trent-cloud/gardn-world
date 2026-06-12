@@ -63,6 +63,7 @@ p { text-wrap: pretty; }
 }
 .lockup { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; }
 .lockup img { width: 26px; height: 26px; }
+header.site .lockup img { width: 39px; height: 39px; }
 .lockup .wm { font-size: 18px; color: var(--forest); }
 .on-dark .lockup .wm { color: var(--paper); }
 footer.site .lockup .wm { color: var(--paper); }

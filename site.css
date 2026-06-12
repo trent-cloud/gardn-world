@@ -65,7 +65,7 @@ p { text-wrap: pretty; }
 .lockup img { width: 26px; height: 26px; }
 .lockup .wm { font-size: 18px; color: var(--forest); }
 .on-dark .lockup .wm { color: var(--paper); }
-.on-dark .lockup img { filter: brightness(0) invert(1); }
+footer.site .lockup .wm { color: var(--paper); }
 
 /* ── Header / nav ───────────────────────────────────────────────────── */
 header.site {

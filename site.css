@@ -481,6 +481,15 @@ footer.site h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text
 footer.site .col a, footer.site .col span { display: block; font-size: 14.5px; color: rgba(245,242,234,0.85);
   text-decoration: none; margin-bottom: 11px; }
 footer.site .col a:hover { color: var(--sage); }
+footer.site .social { display: flex; gap: 10px; margin-top: 22px; }
+footer.site .social a {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; margin-bottom: 0; border-radius: 50%;
+  border: 1px solid rgba(245,242,234,0.2); color: rgba(245,242,234,0.8);
+  transition: color 200ms var(--ease-standard), border-color 200ms var(--ease-standard);
+}
+footer.site .social a:hover { color: var(--sage); border-color: var(--sage); }
+footer.site .social svg { width: 17px; height: 17px; flex: none; }
 .storebadges { display: flex; gap: 10px; margin-top: 18px; }
 .storebadge {
   display: inline-flex; align-items: center; gap: 11px; padding: 9px 15px;

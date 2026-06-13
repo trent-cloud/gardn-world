@@ -142,7 +142,7 @@ function buildSoilFact(soilProperties, { soilSource } = {}) {
     return {
       label: 'Soil',
       value: 'Not clear',
-      body: 'The public soil data is not clear at this exact point. Gardn will ask what your soil feels like once you open the app, because a real garden always gets the final say.',
+      body: 'The public soil data is unclear here. Gardn can ask what your soil feels like once you add your garden.',
     };
   }
 
@@ -151,7 +151,7 @@ function buildSoilFact(soilProperties, { soilSource } = {}) {
     return {
       label: 'Soil',
       value: SOIL_LABELS[bucket],
-      body: `${SOIL_LINES[bucket]} Treat it as a useful first clue, then let your own beds and borders confirm it.`,
+      body: `${SOIL_LINES[bucket]} A useful first clue, ready for your own beds and borders to confirm.`,
     };
   }
   if (soilSource === 'nearby_soilgrids') {
@@ -193,19 +193,11 @@ function buildReadoutPayload({ name, soilProperties, soilSource, weatherSummary 
     });
   }
 
-  if (weatherSummary && weatherSummary.temperatureLine) {
-    facts.push({
-      label: 'Today',
-      value: 'Weather',
-      body: weatherSummary.temperatureLine,
-    });
-  }
-
   return {
     greeting: `Hi ${displayName}.`,
-    intro: 'Before you add a single plant, Gardn can already pick up a few local clues: how wet the week has been, what the soil may be doing, and what the weather might ask of you next.',
+    intro: 'A quick local read for your garden: recent rain, likely soil and the week ahead.',
     facts,
-    cta: 'Download Gardn and those small clues can start living alongside your own beds, borders and pots.',
+    cta: 'Add your garden in the app and Gardn can keep paying attention.',
     caveat: 'These are local clues, not a lab test. Soil changes from garden to garden, and the weather read will keep moving with the week.',
   };
 }

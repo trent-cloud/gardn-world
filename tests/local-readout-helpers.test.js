@@ -116,10 +116,12 @@ test('builds a warm readout with soil fallback when the public soil service has 
 
   assert.equal(payload.greeting, 'Hi Sarah.');
   assert.equal(payload.locationLine, undefined);
-  assert.match(payload.intro, /local clues/i);
+  assert.equal(payload.intro, 'A quick local read for your garden: recent rain, likely soil and the week ahead.');
+  assert.ok(payload.intro.length < 90);
   assert.equal(payload.facts[0].label, 'Rain');
   assert.equal(payload.facts[1].label, 'Soil');
-  assert.match(payload.facts[1].body, /public soil data is not clear/i);
+  assert.match(payload.facts[1].body, /unclear/i);
   assert.doesNotMatch(payload.facts[1].body, /soil model|launch read/i);
-  assert.equal(payload.cta, 'Download Gardn and those small clues can start living alongside your own beds, borders and pots.');
+  assert.equal(payload.cta, 'Add your garden in the app and Gardn can keep paying attention.');
+  assert.ok(payload.cta.length < 70);
 });

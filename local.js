@@ -6,7 +6,6 @@ var resultEl = document.getElementById('local-result');
 var greetingEl = document.getElementById('readout-greeting');
 var introEl = document.getElementById('readout-intro');
 var factsEl = document.getElementById('readout-facts');
-var caveatEl = document.getElementById('readout-caveat');
 var ctaEl = document.getElementById('readout-cta');
 
 function setStatus(message, state) {
@@ -46,13 +45,9 @@ function renderFacts(facts) {
     value.className = 'readout-card-value';
     value.textContent = fact.value || '';
 
-    var body = document.createElement('p');
-    body.textContent = fact.body || '';
-
     header.appendChild(label);
     header.appendChild(value);
     card.appendChild(header);
-    card.appendChild(body);
     factsEl.appendChild(card);
   });
 }
@@ -61,7 +56,6 @@ function renderReadout(readout) {
   document.body.classList.add('has-readout');
   addText(greetingEl, readout.greeting);
   addText(introEl, readout.intro);
-  addText(caveatEl, readout.caveat);
   addText(ctaEl, readout.cta);
   renderFacts(readout.facts);
   if (resultEl) {

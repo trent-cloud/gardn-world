@@ -48,6 +48,33 @@
       ]
     },
     {
+      "source": "/q/nottm-a6-01",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        }
+      ]
+    },
+    {
+      "source": "/local",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        }
+      ]
+    },
+    {
+      "source": "/local.html",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        }
+      ]
+    },
+    {
       "source": "/_astro/(.*)",
       "headers": [
         {
@@ -57,10 +84,26 @@
       ]
     }
   ],
+  "redirects": [
+    {
+      "source": "/local",
+      "destination": "/q/nottm-a6-01",
+      "permanent": false
+    },
+    {
+      "source": "/local.html",
+      "destination": "/q/nottm-a6-01",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     {
       "source": "/favicon.ico",
       "destination": "/assets/favicon-96.png"
+    },
+    {
+      "source": "/q/nottm-a6-01",
+      "destination": "/local"
     },
     {
       "source": "/notes/border-scan",

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your local garden read — Gardn.</title>
+<meta name="description" content="A first local read from Gardn: postcode-aware weather and soil context before you open the app.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://gardn.world/q/nottm-a6-01">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Your local garden read — Gardn.">
+<meta property="og:description" content="A first local read from Gardn: postcode-aware weather and soil context before you open the app.">
+<meta property="og:url" content="https://gardn.world/q/nottm-a6-01">
+<meta property="og:image" content="https://gardn.world/assets/photo-meadow.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="apple-touch-icon" href="assets/gardn-mark.png">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="local.css">
+<script src="local.js" defer></script>
+</head>
+<body class="local-page">
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="local-top" aria-label="Gardn">
+  <a class="lockup" href="index.html" aria-label="Gardn home"><img src="assets/gardn-mark.png" alt=""><span class="wm">GARDN</span></a>
+  <a class="local-top-link" href="index.html">About Gardn.</a>
+</header>
+
+<main id="main">
+  <section class="local-hero" aria-labelledby="local-hero-title">
+    <div class="local-photo" role="img" aria-label="A summer border with lavender, echinacea, grasses and flowers in evening light."></div>
+    <div class="local-hero-copy">
+      <h1 id="local-hero-title">Your garden already has a story.</h1>
+      <p class="local-lede">Enter your first name and postcode to download the app.</p>
+
+      <form class="local-form" id="local-form" novalidate>
+        <label>
+          <span>First name.</span>
+          <input type="text" name="name" autocomplete="given-name" inputmode="text">
+        </label>
+        <label>
+          <span>Postcode.</span>
+          <input type="text" name="postcode" autocomplete="postal-code" autocapitalize="characters" inputmode="text" required>
+        </label>
+        <button class="btn btn--forest" type="submit">Download the app.</button>
+        <p class="local-status" id="local-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <section class="local-result sec-paper" id="local-result" aria-live="polite" hidden>
+    <div class="local-result-shell">
+      <p class="eyebrow">A first read</p>
+      <h2 id="readout-greeting">Hi there.</h2>
+      <p class="local-location" id="readout-location">Around your postcode.</p>
+      <p class="local-intro" id="readout-intro"></p>
+      <div class="readout-grid" id="readout-facts"></div>
+      <p class="readout-caveat" id="readout-caveat"></p>
+      <div class="download-panel" aria-label="Download Gardn">
+        <p id="readout-cta"></p>
+        <div class="download-links">
+          <a class="download-badge" href="#app-store-link-tbd" aria-label="Download on the App Store">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.7 12.8c0-2.1 1.7-3.1 1.8-3.2-1-1.4-2.5-1.6-3-1.6-1.3-.1-2.5.7-3.1.7-.7 0-1.7-.7-2.7-.7-1.4 0-2.7.8-3.4 2-1.5 2.6-.4 6.4 1.1 8.5.7 1 1.6 2.2 2.7 2.1 1.1 0 1.5-.7 2.8-.7s1.7.7 2.8.7 1.9-1 2.6-2.1c.8-1.2 1.2-2.4 1.2-2.4 0 0-2.8-1.1-2.8-3.3zM14.7 6.7c.6-.8 1-1.8.9-2.8-.9 0-1.9.6-2.6 1.3-.6.7-1.1 1.7-1 2.7 1 0 2-.5 2.7-1.2z"/></svg>
+            <span><small>Download on the</small>App Store</span>
+          </a>
+          <a class="download-badge" href="#google-play-link-tbd" aria-label="Get it on Google Play">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.6 3.6c-.4.3-.6.8-.6 1.5v13.8c0 .7.2 1.2.6 1.5l8.6-8.4-8.6-8.4zm9.5 7.5 2.2-2.1-9-5.2 6.8 7.3zm2.2 3.9-2.2-2.1-6.8 7.3 9-5.2zm.9-4.6-2.2 2.1 2.2 2.1 2.7-1.6c.8-.5.8-1.5 0-2l-2.7-1.6z"/></svg>
+            <span><small>Get it on</small>Google Play</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="local-footer">
+  <a class="lockup on-dark" href="index.html" aria-label="Gardn home"><img src="assets/gardn-mark.png" alt=""><span class="wm">GARDN</span></a>
+  <p>A garden app that grows with you.</p>
+</footer>
+</body>
+</html>

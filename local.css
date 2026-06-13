@@ -1,0 +1,337 @@
+.local-page {
+  background: var(--paper);
+  color: var(--forest);
+}
+
+.local-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px clamp(18px, 5vw, 44px);
+}
+
+.local-top .lockup .wm {
+  color: var(--paper);
+}
+
+.local-top .lockup img {
+  filter: brightness(0) invert(1);
+}
+
+.local-top-link {
+  color: rgba(245, 242, 234, 0.86);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.local-hero {
+  min-height: 100svh;
+  position: relative;
+  display: grid;
+  align-items: end;
+  overflow: hidden;
+  background: var(--forest-deep);
+}
+
+body.has-readout .local-hero {
+  display: none;
+}
+
+body.has-readout .local-top {
+  position: static;
+  background: var(--paper);
+}
+
+body.has-readout .local-top .lockup .wm {
+  color: var(--forest);
+}
+
+body.has-readout .local-top .lockup img {
+  filter: none;
+}
+
+body.has-readout .local-top-link {
+  color: var(--forest);
+}
+
+.local-photo {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(180deg, rgba(15, 38, 24, 0.05), rgba(15, 38, 24, 0.62)),
+    url("assets/photo-meadow.jpg");
+  background-size: cover;
+  background-position: center 42%;
+}
+
+.local-hero-copy {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 560px);
+  padding: 110px clamp(18px, 5vw, 44px) 34px;
+  color: var(--paper);
+}
+
+.local-hero-copy h1 {
+  color: var(--paper);
+  font-size: clamp(38px, 13vw, 64px);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+}
+
+.local-lede {
+  color: rgba(245, 242, 234, 0.88);
+  font-size: 17px;
+  line-height: 1.5;
+  margin-top: 18px;
+}
+
+.local-form {
+  margin-top: 26px;
+  display: grid;
+  gap: 12px;
+}
+
+.local-form label {
+  display: grid;
+  gap: 7px;
+}
+
+.local-form label span {
+  color: rgba(245, 242, 234, 0.82);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.local-form input {
+  width: 100%;
+  min-height: 56px;
+  border: 1px solid rgba(245, 242, 234, 0.34);
+  border-radius: 16px;
+  background: rgba(250, 248, 243, 0.94);
+  color: var(--forest);
+  font: inherit;
+  font-size: 18px;
+  padding: 0 16px;
+  box-shadow: 0 12px 32px rgba(15, 38, 24, 0.18);
+}
+
+.local-form input::placeholder {
+  color: var(--muted-soft);
+}
+
+.local-form .btn {
+  width: 100%;
+  min-height: 58px;
+  margin-top: 2px;
+  border-radius: 16px;
+}
+
+.local-status {
+  min-height: 22px;
+  color: rgba(245, 242, 234, 0.86);
+  font-size: 14px;
+}
+
+.local-status[data-state="error"] {
+  color: #f0a090;
+}
+
+body.has-readout .local-result {
+  display: block;
+  min-height: 100svh;
+}
+
+.local-result-shell {
+  width: min(100%, 760px);
+  margin: 0 auto;
+  padding: 42px clamp(18px, 5vw, 44px);
+}
+
+.local-result-shell h2 {
+  font-size: clamp(32px, 9vw, 52px);
+  line-height: 1;
+}
+
+.local-location {
+  margin-top: 8px;
+  color: var(--fern);
+  font-weight: 700;
+}
+
+.local-intro {
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+.readout-grid {
+  display: grid;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.readout-card {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--paper);
+  padding: 18px;
+  box-shadow: var(--shadow-card-soft);
+}
+
+.readout-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.readout-card-label {
+  color: var(--fern);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.readout-card-value {
+  color: var(--forest);
+  font-size: 14px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.readout-card p {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.readout-caveat {
+  margin-top: 16px;
+  color: var(--muted-sub);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.download-panel {
+  margin-top: 28px;
+  border-radius: 20px;
+  background: var(--forest-deep);
+  color: var(--paper);
+  padding: 20px;
+}
+
+.download-panel p {
+  color: rgba(245, 242, 234, 0.88);
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.download-links {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.download-badge {
+  min-height: 58px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid rgba(245, 242, 234, 0.24);
+  border-radius: 16px;
+  background: rgba(245, 242, 234, 0.08);
+  color: var(--paper);
+  padding: 10px 14px;
+  text-decoration: none;
+}
+
+.download-badge svg {
+  width: 26px;
+  height: 26px;
+  fill: currentColor;
+  flex: none;
+}
+
+.download-badge span {
+  display: grid;
+  gap: 2px;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.download-badge small {
+  color: rgba(245, 242, 234, 0.72);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.local-footer {
+  display: grid;
+  gap: 12px;
+  justify-items: start;
+  background: var(--forest-deep);
+  padding: 30px clamp(18px, 5vw, 44px);
+}
+
+.local-footer p {
+  color: rgba(245, 242, 234, 0.76);
+  font-size: 14px;
+}
+
+@media (min-width: 720px) {
+  .local-hero {
+    min-height: 760px;
+    align-items: center;
+  }
+
+  .local-photo {
+    background-image:
+      linear-gradient(90deg, rgba(15, 38, 24, 0.66), rgba(15, 38, 24, 0.34), rgba(15, 38, 24, 0.08)),
+      url("assets/photo-meadow.jpg");
+  }
+
+  .local-hero-copy {
+    padding-bottom: 80px;
+  }
+
+  .local-form {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .local-form .btn,
+  .local-status {
+    grid-column: 1 / -1;
+  }
+
+  .readout-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .download-links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 980px) {
+  .local-result-shell {
+    width: min(100%, 960px);
+    padding-block: 72px;
+  }
+
+  .readout-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

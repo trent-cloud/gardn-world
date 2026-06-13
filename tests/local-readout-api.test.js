@@ -36,6 +36,75 @@ test('rejects invalid UK postcodes before calling providers', async () => {
   assert.deepEqual(calls, []);
 });
 
+test('accepts valid two-digit outward UK postcodes before provider lookup', async () => {
+  const calls = [];
+  const handler = createLocalReadoutHandler({
+    fetchImpl: async (url) => {
+      const href = String(url);
+      calls.push(href);
+      if (href.includes('api.postcodes.io')) {
+        return {
+          ok: true,
+          status: 200,
+          json: async () => ({
+            status: 200,
+            result: {
+              postcode: 'NG13 9HG',
+              outcode: 'NG13',
+              latitude: 52.904319,
+              longitude: -0.927572,
+              admin_district: 'Rushcliffe',
+            },
+          }),
+        };
+      }
+      if (href.includes('api.open-meteo.com')) {
+        return {
+          ok: true,
+          status: 200,
+          json: async () => ({
+            daily: {
+              time: ['2026-06-12', '2026-06-13', '2026-06-14'],
+              precipitation_sum: [4, 0, 1],
+              temperature_2m_min: [11, 12, 12],
+              temperature_2m_max: [18, 19, 20],
+            },
+          }),
+        };
+      }
+      if (href.includes('rest.isric.org')) {
+        return {
+          ok: true,
+          status: 200,
+          json: async () => ({
+            properties: {
+              layers: [
+                { name: 'clay', unit_measure: { d_factor: 10 }, depths: [{ values: { mean: 410 } }] },
+                { name: 'sand', unit_measure: { d_factor: 10 }, depths: [{ values: { mean: 300 } }] },
+                { name: 'silt', unit_measure: { d_factor: 10 }, depths: [{ values: { mean: 290 } }] },
+                { name: 'phh2o', unit_measure: { d_factor: 10 }, depths: [{ values: { mean: 62 } }] },
+                { name: 'soc', unit_measure: { d_factor: 10 }, depths: [{ values: { mean: 500 } }] },
+              ],
+            },
+          }),
+        };
+      }
+      throw new Error(`Unexpected URL ${href}`);
+    },
+    today: () => '2026-06-13',
+  });
+  const res = makeResponse();
+
+  await handler({ method: 'POST', body: { name: 'Richard', postcode: 'ng139hg' } }, res);
+
+  assert.equal(res.statusCode, 200);
+  assert.equal(res.body.ok, true);
+  assert.equal(res.body.readout.greeting, 'Hi Richard.');
+  assert.equal(res.body.readout.locationLine, 'Around NG13, Rushcliffe.');
+  assert.equal(res.body.readout.facts[1].value, 'clay-heavy');
+  assert.match(calls[0], /NG139HG/);
+});
+
 test('returns a local readout from postcode, weather and soil providers', async () => {
   const calls = [];
   const handler = createLocalReadoutHandler({

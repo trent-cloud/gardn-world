@@ -18,16 +18,21 @@ test('formats a first-name greeting without trusting raw input', () => {
 });
 
 test('normalizes UK postcode input for lookup and display', () => {
-  assert.deepEqual(normalizeUkPostcode('ng54jl'), {
-    compact: 'NG54JL',
-    display: 'NG5 4JL',
-    outcode: 'NG5',
-  });
-  assert.deepEqual(normalizeUkPostcode(' SW1A 1AA '), {
-    compact: 'SW1A1AA',
-    display: 'SW1A 1AA',
-    outcode: 'SW1A',
-  });
+  const cases = [
+    ['ng54jl', { compact: 'NG54JL', display: 'NG5 4JL', outcode: 'NG5' }],
+    ['ng139hg', { compact: 'NG139HG', display: 'NG13 9HG', outcode: 'NG13' }],
+    ['ng22 9aa', { compact: 'NG229AA', display: 'NG22 9AA', outcode: 'NG22' }],
+    ['m1 1ae', { compact: 'M11AE', display: 'M1 1AE', outcode: 'M1' }],
+    ['b33 8th', { compact: 'B338TH', display: 'B33 8TH', outcode: 'B33' }],
+    ['cr2 6xh', { compact: 'CR26XH', display: 'CR2 6XH', outcode: 'CR2' }],
+    ['dn55 1pt', { compact: 'DN551PT', display: 'DN55 1PT', outcode: 'DN55' }],
+    ['ec1a 1bb', { compact: 'EC1A1BB', display: 'EC1A 1BB', outcode: 'EC1A' }],
+    [' SW1A 1AA ', { compact: 'SW1A1AA', display: 'SW1A 1AA', outcode: 'SW1A' }],
+  ];
+
+  for (const [input, expected] of cases) {
+    assert.deepEqual(normalizeUkPostcode(input), expected);
+  }
   assert.equal(normalizeUkPostcode('not a postcode'), null);
 });
 

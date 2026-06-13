@@ -33,7 +33,7 @@ function formatDisplayName(input) {
 
 function normalizeUkPostcode(input) {
   const compact = String(input || '').replace(/\s+/g, '').toUpperCase();
-  const valid = /^(GIR0AA|[A-PR-UWYZ][A-HK-Y]?\d[A-HJKSTUW]?\d[ABD-HJLNP-UW-Z]{2})$/.test(compact);
+  const valid = /^(GIR0AA|[A-PR-UWYZ][A-HK-Y]?\d[\dABEHMNPRVWXY]?\d[ABD-HJLNP-UW-Z]{2})$/.test(compact);
   if (!valid) return null;
 
   const outcode = compact.slice(0, -3);

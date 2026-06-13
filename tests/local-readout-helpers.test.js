@@ -26,6 +26,9 @@ test('normalizes UK postcode input for lookup and display', () => {
     ['b33 8th', { compact: 'B338TH', display: 'B33 8TH', outcode: 'B33' }],
     ['cr2 6xh', { compact: 'CR26XH', display: 'CR2 6XH', outcode: 'CR2' }],
     ['dn55 1pt', { compact: 'DN551PT', display: 'DN55 1PT', outcode: 'DN55' }],
+    ['n1c 4ax', { compact: 'N1C4AX', display: 'N1C 4AX', outcode: 'N1C' }],
+    ['w1a 1hq', { compact: 'W1A1HQ', display: 'W1A 1HQ', outcode: 'W1A' }],
+    ['e20 2st', { compact: 'E202ST', display: 'E20 2ST', outcode: 'E20' }],
     ['ec1a 1bb', { compact: 'EC1A1BB', display: 'EC1A 1BB', outcode: 'EC1A' }],
     [' SW1A 1AA ', { compact: 'SW1A1AA', display: 'SW1A 1AA', outcode: 'SW1A' }],
   ];

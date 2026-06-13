@@ -1,19 +1,10 @@
-const SOIL_LABELS = {
-  clay: 'Clay Heavy',
-  sandy: 'Sandy',
-  silty: 'Silty',
-  loamy: 'Loamy',
-  chalky: 'Chalky',
-  peaty: 'Peaty',
-};
-
-const SOIL_LINES = {
-  clay: 'This soil is likely to hold onto water after rain. That can be helpful in dry spells, and a reason to wait before working it when the ground is wet.',
-  sandy: 'This soil is likely to drain quickly and warm up early. Useful for getting going in spring, but it can ask for steadier watering in dry spells.',
-  silty: 'This soil is likely to be fertile and smooth-textured. It can be generous, but it is worth treating gently when wet so it does not compact.',
-  loamy: 'This soil is likely to sit in the easy middle ground: holding some moisture, draining fairly well, and giving many plants a decent start.',
-  chalky: 'This soil is likely to lean alkaline. That is useful to know before choosing plants that prefer acid soil.',
-  peaty: 'This soil is likely to be organic-rich and good at holding moisture. It may stay damp for longer than the surface suggests.',
+const SOIL_NOTE_LINES = {
+  clay: 'Your soil is likely to be Clay Heavy soil, so it can hold on to rain for longer.',
+  sandy: 'Your soil is likely to be Sandy soil, so it may drain quickly when the weather turns dry.',
+  silty: 'Your soil is likely to be Silty soil, which can be fertile but prefers a gentle touch when wet.',
+  loamy: 'Your soil is likely to be Loamy soil, a forgiving mix that holds some water without staying too heavy.',
+  chalky: 'Your soil is likely to be Chalky soil, useful to know when choosing plants that dislike alkaline ground.',
+  peaty: 'Your soil is likely to be Peaty soil, so it can stay damp for longer than the surface suggests.',
 };
 
 function formatDisplayName(input) {
@@ -88,6 +79,15 @@ function roundOne(value) {
   return Math.round(value * 10) / 10;
 }
 
+function maxFinite(values, start, end) {
+  let max = null;
+  for (let i = start; i <= end; i += 1) {
+    const value = values[i];
+    if (Number.isFinite(value)) max = max == null ? value : Math.max(max, value);
+  }
+  return max == null ? null : roundOne(max);
+}
+
 function formatMm(value) {
   const rounded = Math.round(value);
   return `${rounded} mm`;
@@ -103,8 +103,12 @@ function summarizeWeather({ daily, today }) {
   const precip = Array.isArray(daily && daily.precipitation_sum) ? daily.precipitation_sum : [];
   const minTemps = Array.isArray(daily && daily.temperature_2m_min) ? daily.temperature_2m_min : [];
   const maxTemps = Array.isArray(daily && daily.temperature_2m_max) ? daily.temperature_2m_max : [];
+  const sunshineSeconds = Array.isArray(daily && daily.sunshine_duration) ? daily.sunshine_duration : [];
+  const maxWindSpeeds = Array.isArray(daily && daily.wind_speed_10m_max) ? daily.wind_speed_10m_max : [];
+  const maxWindGusts = Array.isArray(daily && daily.wind_gusts_10m_max) ? daily.wind_gusts_10m_max : [];
   const todayIndex = dates.indexOf(today);
   const index = todayIndex >= 0 ? todayIndex : Math.min(7, Math.max(0, dates.length - 1));
+  const tomorrowIndex = index + 1;
 
   let rainfallLast7DaysMm = 0;
   for (let i = Math.max(0, index - 7); i < index; i += 1) {
@@ -127,78 +131,107 @@ function summarizeWeather({ daily, today }) {
     ? `Another ${formatMm(rainNext3DaysMm)} is forecast over the next three days.`
     : 'The next three days look mostly dry.';
   const temperatureLine = formatTemperatureRange(minTemps[index], maxTemps[index]);
+  const sunshineTomorrowHours = Number.isFinite(sunshineSeconds[tomorrowIndex])
+    ? roundOne(sunshineSeconds[tomorrowIndex] / 3600)
+    : null;
+  const maxWindNext3DaysKph = maxFinite(
+    maxWindSpeeds,
+    tomorrowIndex,
+    Math.min(maxWindSpeeds.length - 1, index + 3)
+  );
+  const maxWindGustNext3DaysKph = maxFinite(
+    maxWindGusts,
+    tomorrowIndex,
+    Math.min(maxWindGusts.length - 1, index + 3)
+  );
+  const maxTemperatureTomorrowC = Number.isFinite(maxTemps[tomorrowIndex])
+    ? roundOne(maxTemps[tomorrowIndex])
+    : null;
 
   return {
     rainfallLast7DaysMm,
     rainNext3DaysMm,
+    sunshineTomorrowHours,
+    maxWindNext3DaysKph,
+    maxWindGustNext3DaysKph,
+    maxTemperatureTomorrowC,
     rainfallLine,
     forecastLine,
     temperatureLine,
   };
 }
 
-function buildSoilFact(soilProperties, { soilSource } = {}) {
+function buildSoilLine(soilProperties) {
   if (!soilProperties) {
-    return {
-      label: 'Soil',
-      value: 'Not clear',
-      body: 'The public soil data is unclear here. Gardn can ask what your soil feels like once you add your garden.',
-    };
+    return 'The public soil data is not clear enough yet, so Gardn would ask what your soil feels like once you add your garden.';
   }
 
   const bucket = classifySoilBucket(soilProperties);
-  if (soilSource === 'launch_area') {
-    return {
-      label: 'Soil',
-      value: SOIL_LABELS[bucket],
-      body: `${SOIL_LINES[bucket]} A useful first clue, ready for your own beds and borders to confirm.`,
-    };
-  }
-  if (soilSource === 'nearby_soilgrids') {
-    return {
-      label: 'Soil',
-      value: SOIL_LABELS[bucket],
-      body: `The public soil data is patchy at the exact point, so Gardn checks a nearby read instead. ${SOIL_LINES[bucket]}`,
-    };
-  }
-
-  return {
-    label: 'Soil',
-    value: SOIL_LABELS[bucket],
-    body: SOIL_LINES[bucket],
-  };
+  return SOIL_NOTE_LINES[bucket];
 }
 
-function buildReadoutPayload({ name, soilProperties, soilSource, weatherSummary }) {
-  const displayName = formatDisplayName(name);
-  const soilFact = buildSoilFact(soilProperties, { soilSource });
-  const facts = [
-    {
-      label: 'Rain',
-      value: weatherSummary && Number.isFinite(weatherSummary.rainfallLast7DaysMm)
-        ? formatMm(weatherSummary.rainfallLast7DaysMm)
-        : 'Local',
-      body: weatherSummary && weatherSummary.rainfallLine
-        ? weatherSummary.rainfallLine
-        : 'Gardn could not read the recent rainfall clearly, but the app will keep checking once your garden exists.',
-    },
-    soilFact,
-  ];
-
-  if (weatherSummary && weatherSummary.forecastLine) {
-    facts.push({
-      label: 'Next',
-      value: Number.isFinite(weatherSummary.rainNext3DaysMm) ? formatMm(weatherSummary.rainNext3DaysMm) : 'Soon',
-      body: weatherSummary.forecastLine,
-    });
+function buildWaterLine(weatherSummary) {
+  const rain = weatherSummary && weatherSummary.rainfallLast7DaysMm;
+  if (!Number.isFinite(rain)) {
+    return 'The recent rain read is not clear enough yet, but Gardn will keep checking once your garden is added.';
   }
+
+  if (rain >= 20) {
+    return `It has rained about ${formatMm(rain)} in the last seven days, so your borders have probably had a decent drink. Pots are still worth a quick check.`;
+  }
+
+  if (rain >= 8) {
+    return `It has rained about ${formatMm(rain)} in the last seven days, enough to help borders, though pots can still dry out faster than the ground around them.`;
+  }
+
+  return `It has rained about ${formatMm(rain)} in the last seven days, so borders and pots may be on the thirsty side.`;
+}
+
+function buildWeatherLine(weatherSummary) {
+  if (!weatherSummary) {
+    return 'The next few days are worth checking in the app before you choose what to do outside.';
+  }
+
+  const wind = weatherSummary.maxWindNext3DaysKph;
+  const gusts = weatherSummary.maxWindGustNext3DaysKph;
+  if ((Number.isFinite(gusts) && gusts >= 50) || (Number.isFinite(wind) && wind >= 36)) {
+    return 'Strong winds are due over the next few days, so it is worth checking tall or leggy plants are secure.';
+  }
+
+  const rainNext = weatherSummary.rainNext3DaysMm;
+  if (Number.isFinite(rainNext) && rainNext >= 10) {
+    return 'More rain is on the way, so this may be a better week for gentle jobs under cover than planting out.';
+  }
+
+  const tomorrowMax = weatherSummary.maxTemperatureTomorrowC;
+  if (Number.isFinite(tomorrowMax) && tomorrowMax >= 24) {
+    return 'Tomorrow looks warm, so early morning or evening will be kinder for watering and small jobs.';
+  }
+
+  const sunshine = weatherSummary.sunshineTomorrowHours;
+  if (
+    Number.isFinite(sunshine) &&
+    sunshine >= 4 &&
+    (!Number.isFinite(rainNext) || rainNext <= 3)
+  ) {
+    return 'Tomorrow looks bright enough for a gentle hour or two outside.';
+  }
+
+  return 'The next few days look fairly settled, which is often the best weather for small jobs.';
+}
+
+function buildReadoutPayload({ name, soilProperties, weatherSummary }) {
+  const displayName = formatDisplayName(name);
 
   return {
     greeting: `Hi ${displayName}.`,
-    intro: 'A quick local read for your garden: recent rain, likely soil and the week ahead.',
-    facts,
-    cta: 'Add your garden in the app and Gardn can keep paying attention.',
-    caveat: 'These are local clues, not a lab test. Soil changes from garden to garden, and the weather read will keep moving with the week.',
+    noteLines: [
+      "Gardn can't prune for you, but it can help you get more from the garden you already have.",
+      buildSoilLine(soilProperties),
+      buildWaterLine(weatherSummary),
+      buildWeatherLine(weatherSummary),
+    ],
+    cta: 'Download Gardn and it can keep an eye on your own garden from day one.',
   };
 }
 

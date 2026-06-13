@@ -159,53 +159,20 @@ body.has-readout .local-result {
   line-height: 1;
 }
 
-.local-intro {
-  margin-top: 12px;
+.readout-note {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.readout-note p {
   color: var(--muted);
-  font-size: 16px;
+  font-size: 17px;
   line-height: 1.42;
 }
 
-.readout-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  margin-top: 14px;
-}
-
-.readout-card {
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: var(--paper);
-  min-height: 88px;
-  padding: 12px;
-  box-shadow: 0 8px 22px rgba(28, 50, 34, 0.08);
-}
-
-.readout-card-header {
-  min-height: 64px;
-  display: grid;
-  align-content: space-between;
-  gap: 8px;
-}
-
-.readout-card-label {
-  color: var(--fern);
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-.readout-card-value {
-  color: var(--forest);
-  font-size: 18px;
-  font-weight: 800;
-  line-height: 1.05;
-}
-
 .download-panel {
-  margin-top: 18px;
+  margin-top: 20px;
   border-radius: 16px;
   background: var(--forest-deep);
   color: var(--paper);

@@ -68,6 +68,9 @@ test('accepts valid two-digit outward UK postcodes before provider lookup', asyn
               precipitation_sum: [4, 0, 1],
               temperature_2m_min: [11, 12, 12],
               temperature_2m_max: [18, 19, 20],
+              sunshine_duration: [3600, 7200, 21600],
+              wind_speed_10m_max: [16, 18, 22],
+              wind_gusts_10m_max: [26, 30, 34],
             },
           }),
         };
@@ -101,8 +104,11 @@ test('accepts valid two-digit outward UK postcodes before provider lookup', asyn
   assert.equal(res.body.ok, true);
   assert.equal(res.body.readout.greeting, 'Hi Richard.');
   assert.equal(res.body.readout.locationLine, undefined);
-  assert.equal(res.body.readout.facts[1].value, 'Clay Heavy');
-  assert.doesNotMatch(res.body.readout.facts[1].body, /soil model|launch read|Rushcliffe/i);
+  assert.equal(res.body.readout.facts, undefined);
+  assert.match(res.body.readout.noteLines.join(' '), /Clay Heavy soil/);
+  assert.match(res.body.readout.noteLines.join(' '), /hold on to rain/i);
+  assert.match(res.body.readout.noteLines.join(' '), /4 mm/);
+  assert.doesNotMatch(res.body.readout.noteLines.join(' '), /soil model|launch read|Rushcliffe|NG13|postcode|local area/i);
   assert.match(calls[0], /NG139HG/);
 });
 
@@ -150,6 +156,9 @@ test('returns a local readout from postcode, weather and soil providers', async 
               precipitation_sum: [6.2, 0, 7.4, 1.1, 3.4, 7.4, 0, 0, 1.2, 4.4, 0],
               temperature_2m_min: [13, 11, 13, 10, 10, 10, 16, 13, 12, 12, 12],
               temperature_2m_max: [15, 19, 17, 19, 17, 17, 22, 22, 18, 18, 20],
+              sunshine_duration: [7200, 0, 1800, 3600, 2400, 5400, 1200, 3600, 19800, 7200, 3600],
+              wind_speed_10m_max: [18, 16, 22, 24, 18, 20, 22, 17, 24, 28, 21],
+              wind_gusts_10m_max: [32, 30, 36, 38, 33, 35, 39, 28, 42, 58, 34],
             },
           }),
         };
@@ -183,9 +192,15 @@ test('returns a local readout from postcode, weather and soil providers', async 
   assert.equal(res.body.ok, true);
   assert.equal(res.body.readout.greeting, 'Hi Sarah.');
   assert.equal(res.body.readout.locationLine, undefined);
-  assert.equal(res.body.readout.facts[0].value, '26 mm');
-  assert.equal(res.body.readout.facts[1].value, 'Loamy');
+  assert.equal(res.body.readout.facts, undefined);
+  assert.match(res.body.readout.noteLines.join(' '), /Loamy soil/);
+  assert.match(res.body.readout.noteLines.join(' '), /26 mm/);
+  assert.match(res.body.readout.noteLines.join(' '), /Strong winds/);
+  assert.doesNotMatch(res.body.readout.noteLines.join(' '), /Nottingham|NG5|postcode|local area/i);
   assert.equal(calls.length, 3);
+  const weatherUrl = calls.find((href) => href.includes('api.open-meteo.com'));
+  assert.match(weatherUrl, /sunshine_duration/);
+  assert.match(weatherUrl, /wind_gusts_10m_max/);
 });
 
 test('uses Gardn launch-area soil fallback when SoilGrids has no urban data for Nottingham', async () => {
@@ -218,6 +233,9 @@ test('uses Gardn launch-area soil fallback when SoilGrids has no urban data for 
               precipitation_sum: [12, 0, 1, 1, 0],
               temperature_2m_min: [12, 13, 13, 13, 13],
               temperature_2m_max: [18, 18, 18, 18, 18],
+              sunshine_duration: [3600, 3600, 7200, 7200, 3600],
+              wind_speed_10m_max: [18, 19, 20, 21, 19],
+              wind_gusts_10m_max: [30, 31, 32, 33, 29],
             },
           }),
         };
@@ -248,11 +266,10 @@ test('uses Gardn launch-area soil fallback when SoilGrids has no urban data for 
   assert.equal(res.statusCode, 200);
   assert.equal(res.body.ok, true);
   assert.equal(res.body.readout.locationLine, undefined);
-  assert.equal(res.body.readout.facts[1].label, 'Soil');
-  assert.equal(res.body.readout.facts[1].value, 'Clay Heavy');
-  assert.doesNotMatch(res.body.readout.facts[1].body, /couldn't read/i);
-  assert.doesNotMatch(res.body.readout.facts[1].body, /soil model|launch read|Nottingham/i);
-  assert.match(res.body.readout.facts[1].body, /first clue/i);
+  assert.equal(res.body.readout.facts, undefined);
+  assert.match(res.body.readout.noteLines.join(' '), /Clay Heavy soil/);
+  assert.doesNotMatch(res.body.readout.noteLines.join(' '), /couldn't read/i);
+  assert.doesNotMatch(res.body.readout.noteLines.join(' '), /soil model|launch read|Nottingham|NG1|postcode|local area/i);
 });
 
 test('uses a nearby public soil read when an urban postcode point has no texture data', async () => {
@@ -286,6 +303,9 @@ test('uses a nearby public soil read when an urban postcode point has no texture
               precipitation_sum: [2, 0, 1],
               temperature_2m_min: [10, 11, 12],
               temperature_2m_max: [17, 18, 19],
+              sunshine_duration: [1800, 3600, 21600],
+              wind_speed_10m_max: [20, 18, 16],
+              wind_gusts_10m_max: [32, 28, 26],
             },
           }),
         };
@@ -334,9 +354,9 @@ test('uses a nearby public soil read when an urban postcode point has no texture
   assert.equal(res.statusCode, 200);
   assert.equal(res.body.ok, true);
   assert.equal(res.body.readout.locationLine, undefined);
-  assert.equal(res.body.readout.facts[1].label, 'Soil');
-  assert.equal(res.body.readout.facts[1].value, 'Loamy');
-  assert.match(res.body.readout.facts[1].body, /nearby read/i);
-  assert.doesNotMatch(res.body.readout.facts[1].body, /couldn't read/i);
+  assert.equal(res.body.readout.facts, undefined);
+  assert.match(res.body.readout.noteLines.join(' '), /Loamy soil/);
+  assert.doesNotMatch(res.body.readout.noteLines.join(' '), /couldn't read/i);
+  assert.doesNotMatch(res.body.readout.noteLines.join(' '), /Newcastle|NE1|postcode|local area/i);
   assert.ok(soilCalls > 1);
 });

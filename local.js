@@ -4,8 +4,7 @@ var form = document.getElementById('local-form');
 var statusEl = document.getElementById('local-status');
 var resultEl = document.getElementById('local-result');
 var greetingEl = document.getElementById('readout-greeting');
-var introEl = document.getElementById('readout-intro');
-var factsEl = document.getElementById('readout-facts');
+var noteEl = document.getElementById('readout-note');
 var ctaEl = document.getElementById('readout-cta');
 
 function setStatus(message, state) {
@@ -27,37 +26,22 @@ function addText(el, text) {
   if (el) el.textContent = text || '';
 }
 
-function renderFacts(facts) {
-  if (!factsEl) return;
-  factsEl.replaceChildren();
-  (facts || []).forEach(function (fact) {
-    var card = document.createElement('article');
-    card.className = 'readout-card';
-
-    var header = document.createElement('div');
-    header.className = 'readout-card-header';
-
-    var label = document.createElement('span');
-    label.className = 'readout-card-label';
-    label.textContent = fact.label || '';
-
-    var value = document.createElement('span');
-    value.className = 'readout-card-value';
-    value.textContent = fact.value || '';
-
-    header.appendChild(label);
-    header.appendChild(value);
-    card.appendChild(header);
-    factsEl.appendChild(card);
+function renderNoteLines(lines) {
+  if (!noteEl) return;
+  noteEl.replaceChildren();
+  (lines || []).forEach(function (line) {
+    if (!line) return;
+    var paragraph = document.createElement('p');
+    paragraph.textContent = line;
+    noteEl.appendChild(paragraph);
   });
 }
 
 function renderReadout(readout) {
   document.body.classList.add('has-readout');
   addText(greetingEl, readout.greeting);
-  addText(introEl, readout.intro);
   addText(ctaEl, readout.cta);
-  renderFacts(readout.facts);
+  renderNoteLines(readout.noteLines);
   if (resultEl) {
     resultEl.hidden = false;
     resultEl.scrollIntoView({ behavior: 'smooth', block: 'start' });

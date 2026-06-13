@@ -90,16 +90,22 @@ test('summarizes recent and upcoming rainfall from daily weather rows', () => {
       precipitation_sum: [6.2, 0, 7.4, 1.1, 3.4, 7.4, 0, 0, 1.2, 4.4, 0],
       temperature_2m_min: [13, 11, 13, 10, 10, 10, 16, 13, 12, 12, 12],
       temperature_2m_max: [15, 19, 17, 19, 17, 17, 22, 22, 18, 18, 20],
+      sunshine_duration: [7200, 0, 1800, 3600, 2400, 5400, 1200, 3600, 19800, 7200, 3600],
+      wind_speed_10m_max: [18, 16, 22, 24, 18, 20, 22, 17, 24, 28, 21],
+      wind_gusts_10m_max: [32, 30, 36, 38, 33, 35, 39, 28, 42, 58, 34],
     },
   });
 
   assert.equal(summary.rainfallLast7DaysMm, 25.5);
   assert.equal(summary.rainNext3DaysMm, 5.6);
+  assert.equal(summary.sunshineTomorrowHours, 5.5);
+  assert.equal(summary.maxWindNext3DaysKph, 28);
+  assert.equal(summary.maxWindGustNext3DaysKph, 58);
   assert.equal(summary.rainfallLine, 'About 26 mm of rain has fallen around you in the last seven days.');
   assert.equal(summary.forecastLine, 'Another 6 mm is forecast over the next three days.');
 });
 
-test('builds a warm readout with soil fallback when the public soil service has no data', () => {
+test('builds a short adaptive prose readout instead of fact blocks', () => {
   const payload = buildReadoutPayload({
     name: ' Sarah ',
     postcode: 'NG5 4JL',
@@ -111,17 +117,51 @@ test('builds a warm readout with soil fallback when the public soil service has 
       rainfallLine: 'About 26 mm of rain has fallen around you in the last seven days.',
       forecastLine: 'Another 6 mm is forecast over the next three days.',
       temperatureLine: 'Today looks around 13-22°C.',
+      sunshineTomorrowHours: 5.5,
+      maxWindNext3DaysKph: 28,
+      maxWindGustNext3DaysKph: 58,
     },
   });
 
   assert.equal(payload.greeting, 'Hi Sarah.');
   assert.equal(payload.locationLine, undefined);
-  assert.equal(payload.intro, 'A quick local read for your garden: recent rain, likely soil and the week ahead.');
-  assert.ok(payload.intro.length < 90);
-  assert.equal(payload.facts[0].label, 'Rain');
-  assert.equal(payload.facts[1].label, 'Soil');
-  assert.match(payload.facts[1].body, /unclear/i);
-  assert.doesNotMatch(payload.facts[1].body, /soil model|launch read/i);
-  assert.equal(payload.cta, 'Add your garden in the app and Gardn can keep paying attention.');
-  assert.ok(payload.cta.length < 70);
+  assert.equal(payload.facts, undefined);
+  assert.equal(payload.intro, undefined);
+  assert.equal(payload.noteLines.length, 4);
+  assert.match(payload.noteLines[0], /can't prune/i);
+  assert.match(payload.noteLines[1], /public soil data/i);
+  assert.doesNotMatch(payload.noteLines.join(' '), /Nottingham|NG5|postcode|local area/i);
+  assert.match(payload.noteLines[2], /26 mm/i);
+  assert.match(payload.noteLines[2], /decent drink/i);
+  assert.match(payload.noteLines[3], /Strong winds/i);
+  assert.doesNotMatch(payload.noteLines.join(' '), /soil model|launch read|prescription/i);
+  assert.ok(payload.noteLines.every((line) => line.length < 150));
+  assert.match(payload.cta, /Download Gardn/i);
+  assert.ok(payload.cta.length < 80);
+});
+
+test('adapts water and weather prose for dry bright conditions', () => {
+  const payload = buildReadoutPayload({
+    name: 'Alex',
+    place: 'Devon',
+    soilProperties: { clayPct: 18, sandPct: 58, siltPct: 24, phH2o: 6.3, socGkg: 20 },
+    soilSource: 'soilgrids',
+    weatherSummary: {
+      rainfallLast7DaysMm: 2.2,
+      rainNext3DaysMm: 0.4,
+      rainfallLine: 'About 2 mm of rain has fallen around you in the last seven days.',
+      forecastLine: 'The next three days look mostly dry.',
+      sunshineTomorrowHours: 7.2,
+      maxWindNext3DaysKph: 18,
+      maxWindGustNext3DaysKph: 28,
+    },
+  });
+
+  const note = payload.noteLines.join(' ');
+  assert.match(note, /Sandy soil/);
+  assert.match(note, /drain quickly/i);
+  assert.match(note, /2 mm/);
+  assert.match(note, /thirsty side/i);
+  assert.match(note, /bright enough/i);
+  assert.doesNotMatch(note, /Devon|postcode|local area/i);
 });

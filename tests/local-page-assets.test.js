@@ -49,7 +49,9 @@ test('local page script posts to the readout endpoint and renders text safely', 
   assert.doesNotMatch(js, /Show my garden read/);
   assert.doesNotMatch(js, /Readout ready/);
   assert.doesNotMatch(js, /readout-location/);
-  assert.doesNotMatch(js, /readout-card[\s\S]+appendChild\(body\)/);
+  assert.match(js, /renderNoteLines/);
+  assert.doesNotMatch(js, /renderFacts/);
+  assert.doesNotMatch(js, /readout-card/);
 });
 
 test('successful submit replaces the form screen with the readout screen', () => {
@@ -62,15 +64,17 @@ test('successful submit replaces the form screen with the readout screen', () =>
   assert.match(js, /setStatus\('', null\)/);
 });
 
-test('result screen keeps app download above the local fact readout', () => {
+test('result screen is a prose note rather than fact blocks', () => {
   const html = fs.readFileSync(path.join(root, 'local.html'), 'utf8');
   const css = fs.readFileSync(path.join(root, 'local.css'), 'utf8');
 
-  assert.ok(html.indexOf('download-panel') < html.indexOf('readout-facts'));
+  assert.match(html, /id="readout-note"/);
+  assert.doesNotMatch(html, /readout-facts/);
+  assert.doesNotMatch(html, /readout-grid/);
+  assert.doesNotMatch(css, /readout-grid/);
+  assert.doesNotMatch(css, /readout-card/);
+  assert.match(css, /\.readout-note\s*{[\s\S]*display:\s*grid/);
   assert.match(css, /\.local-result-shell\s*{[\s\S]*padding:\s*24px/);
-  assert.match(css, /\.readout-grid\s*{[\s\S]*grid-template-columns:\s*repeat\(3, 1fr\)/);
-  assert.match(css, /\.readout-card\s*{[\s\S]*min-height:\s*88px/);
-  assert.doesNotMatch(css, /\.readout-card p/);
 });
 
 test('local landing page is unlinked and marked as non-indexable', () => {

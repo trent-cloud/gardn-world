@@ -4,7 +4,6 @@ var form = document.getElementById('local-form');
 var statusEl = document.getElementById('local-status');
 var resultEl = document.getElementById('local-result');
 var greetingEl = document.getElementById('readout-greeting');
-var locationEl = document.getElementById('readout-location');
 var introEl = document.getElementById('readout-intro');
 var factsEl = document.getElementById('readout-facts');
 var caveatEl = document.getElementById('readout-caveat');
@@ -61,7 +60,6 @@ function renderFacts(facts) {
 function renderReadout(readout) {
   document.body.classList.add('has-readout');
   addText(greetingEl, readout.greeting);
-  addText(locationEl, readout.locationLine);
   addText(introEl, readout.intro);
   addText(caveatEl, readout.caveat);
   addText(ctaEl, readout.cta);

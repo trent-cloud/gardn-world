@@ -100,8 +100,9 @@ test('accepts valid two-digit outward UK postcodes before provider lookup', asyn
   assert.equal(res.statusCode, 200);
   assert.equal(res.body.ok, true);
   assert.equal(res.body.readout.greeting, 'Hi Richard.');
-  assert.equal(res.body.readout.locationLine, 'Around NG13, Rushcliffe.');
-  assert.equal(res.body.readout.facts[1].value, 'clay-heavy');
+  assert.equal(res.body.readout.locationLine, undefined);
+  assert.equal(res.body.readout.facts[1].value, 'Clay Heavy');
+  assert.doesNotMatch(res.body.readout.facts[1].body, /soil model|launch read|Rushcliffe/i);
   assert.match(calls[0], /NG139HG/);
 });
 
@@ -181,9 +182,9 @@ test('returns a local readout from postcode, weather and soil providers', async 
   assert.equal(res.statusCode, 200);
   assert.equal(res.body.ok, true);
   assert.equal(res.body.readout.greeting, 'Hi Sarah.');
-  assert.equal(res.body.readout.locationLine, 'Around NG5, Nottingham.');
+  assert.equal(res.body.readout.locationLine, undefined);
   assert.equal(res.body.readout.facts[0].value, '26 mm');
-  assert.equal(res.body.readout.facts[1].value, 'loamy');
+  assert.equal(res.body.readout.facts[1].value, 'Loamy');
   assert.equal(calls.length, 3);
 });
 
@@ -246,11 +247,12 @@ test('uses Gardn launch-area soil fallback when SoilGrids has no urban data for 
 
   assert.equal(res.statusCode, 200);
   assert.equal(res.body.ok, true);
-  assert.equal(res.body.readout.locationLine, 'Around NG1, Nottingham.');
+  assert.equal(res.body.readout.locationLine, undefined);
   assert.equal(res.body.readout.facts[1].label, 'Soil');
-  assert.equal(res.body.readout.facts[1].value, 'clay-heavy');
+  assert.equal(res.body.readout.facts[1].value, 'Clay Heavy');
   assert.doesNotMatch(res.body.readout.facts[1].body, /couldn't read/i);
-  assert.match(res.body.readout.facts[1].body, /Nottingham/i);
+  assert.doesNotMatch(res.body.readout.facts[1].body, /soil model|launch read|Nottingham/i);
+  assert.match(res.body.readout.facts[1].body, /first clue/i);
 });
 
 test('uses a nearby public soil read when an urban postcode point has no texture data', async () => {
@@ -331,10 +333,10 @@ test('uses a nearby public soil read when an urban postcode point has no texture
 
   assert.equal(res.statusCode, 200);
   assert.equal(res.body.ok, true);
-  assert.equal(res.body.readout.locationLine, 'Around NE1, Newcastle upon Tyne.');
+  assert.equal(res.body.readout.locationLine, undefined);
   assert.equal(res.body.readout.facts[1].label, 'Soil');
-  assert.equal(res.body.readout.facts[1].value, 'loamy');
-  assert.match(res.body.readout.facts[1].body, /nearby public soil read/i);
+  assert.equal(res.body.readout.facts[1].value, 'Loamy');
+  assert.match(res.body.readout.facts[1].body, /nearby read/i);
   assert.doesNotMatch(res.body.readout.facts[1].body, /couldn't read/i);
   assert.ok(soilCalls > 1);
 });

@@ -27,6 +27,8 @@ test('first screen stays bare and never shows personal-looking defaults', () => 
   assert.doesNotMatch(html, /NG5 4JL/);
   assert.doesNotMatch(html, /recent rain, the week ahead, and the soil model/);
   assert.doesNotMatch(html, /Why this matters/);
+  assert.doesNotMatch(html, /readout-location/);
+  assert.doesNotMatch(html, /Around your postcode/);
 });
 
 test('local hero uses a brighter flower-led garden image', () => {
@@ -46,6 +48,7 @@ test('local page script posts to the readout endpoint and renders text safely', 
   assert.match(js, /Download the app\./);
   assert.doesNotMatch(js, /Show my garden read/);
   assert.doesNotMatch(js, /Readout ready/);
+  assert.doesNotMatch(js, /readout-location/);
 });
 
 test('successful submit replaces the form screen with the readout screen', () => {

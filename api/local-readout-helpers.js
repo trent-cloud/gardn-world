@@ -1,19 +1,19 @@
 const SOIL_LABELS = {
-  clay: 'clay-heavy',
-  sandy: 'sandy',
-  silty: 'silty',
-  loamy: 'loamy',
-  chalky: 'chalky',
-  peaty: 'peaty',
+  clay: 'Clay Heavy',
+  sandy: 'Sandy',
+  silty: 'Silty',
+  loamy: 'Loamy',
+  chalky: 'Chalky',
+  peaty: 'Peaty',
 };
 
 const SOIL_LINES = {
-  clay: 'The soil model reads this area as likely clay-heavy: rich, but slow to drain after wet spells.',
-  sandy: 'The soil model reads this area as likely sandy: quick to drain, quick to dry out in warm weather.',
-  silty: 'The soil model reads this area as likely silty: fertile, but easily compacted when it is wet.',
-  loamy: 'The soil model reads this area as likely loamy: the good middle ground most plants prefer.',
-  chalky: 'The soil model reads this area as likely chalky or alkaline: worth knowing before choosing acid-loving plants.',
-  peaty: 'The soil model reads this area as likely peaty or organic-rich: moisture can linger longer than it looks.',
+  clay: 'This soil is likely to hold onto water after rain. That can be helpful in dry spells, and a reason to wait before working it when the ground is wet.',
+  sandy: 'This soil is likely to drain quickly and warm up early. Useful for getting going in spring, but it can ask for steadier watering in dry spells.',
+  silty: 'This soil is likely to be fertile and smooth-textured. It can be generous, but it is worth treating gently when wet so it does not compact.',
+  loamy: 'This soil is likely to sit in the easy middle ground: holding some moisture, draining fairly well, and giving many plants a decent start.',
+  chalky: 'This soil is likely to lean alkaline. That is useful to know before choosing plants that prefer acid soil.',
+  peaty: 'This soil is likely to be organic-rich and good at holding moisture. It may stay damp for longer than the surface suggests.',
 };
 
 function formatDisplayName(input) {
@@ -137,29 +137,28 @@ function summarizeWeather({ daily, today }) {
   };
 }
 
-function buildSoilFact(soilProperties, { soilSource, place } = {}) {
+function buildSoilFact(soilProperties, { soilSource } = {}) {
   if (!soilProperties) {
     return {
       label: 'Soil',
       value: 'Not clear',
-      body: "The public soil model couldn't read the soil clearly for this point. Gardn will ask you what your garden is actually like once you open the app.",
+      body: 'The public soil data is not clear at this exact point. Gardn will ask what your soil feels like once you open the app, because a real garden always gets the final say.',
     };
   }
 
   const bucket = classifySoilBucket(soilProperties);
-  const safePlace = String(place || '').trim();
-  if (soilSource === 'launch_area' && safePlace) {
+  if (soilSource === 'launch_area') {
     return {
       label: 'Soil',
       value: SOIL_LABELS[bucket],
-      body: `Gardn's ${safePlace} launch read puts this area on likely ${SOIL_LABELS[bucket]} soil: rich, but slow to drain after wet spells.`,
+      body: `${SOIL_LINES[bucket]} Treat it as a useful first clue, then let your own beds and borders confirm it.`,
     };
   }
   if (soilSource === 'nearby_soilgrids') {
     return {
       label: 'Soil',
       value: SOIL_LABELS[bucket],
-      body: `A nearby public soil read around ${safePlace || 'your postcode'} puts this area on likely ${SOIL_LABELS[bucket]} soil. Soil varies street by street, but this is a stronger first read than leaving it blank.`,
+      body: `The public soil data is patchy at the exact point, so Gardn checks a nearby read instead. ${SOIL_LINES[bucket]}`,
     };
   }
 
@@ -170,13 +169,9 @@ function buildSoilFact(soilProperties, { soilSource, place } = {}) {
   };
 }
 
-function buildReadoutPayload({ name, postcode, place, soilProperties, soilSource, weatherSummary }) {
-  const normalized = normalizeUkPostcode(postcode);
-  const outcode = normalized ? normalized.outcode : String(postcode || '').trim().split(/\s+/)[0].toUpperCase();
+function buildReadoutPayload({ name, soilProperties, soilSource, weatherSummary }) {
   const displayName = formatDisplayName(name);
-  const safePlace = String(place || '').trim();
-  const soilFact = buildSoilFact(soilProperties, { soilSource, place: safePlace });
-  const locationLine = safePlace ? `Around ${outcode}, ${safePlace}.` : `Around ${outcode}.`;
+  const soilFact = buildSoilFact(soilProperties, { soilSource });
   const facts = [
     {
       label: 'Rain',
@@ -208,11 +203,10 @@ function buildReadoutPayload({ name, postcode, place, soilProperties, soilSource
 
   return {
     greeting: `Hi ${displayName}.`,
-    locationLine,
-    intro: 'This is the kind of local context Gardn starts with before it knows a single plant in your garden.',
+    intro: 'Before you add a single plant, Gardn can already pick up a few local clues: how wet the week has been, what the soil may be doing, and what the weather might ask of you next.',
     facts,
-    cta: 'Gardn gets sharper once it knows your actual borders, plants and pots.',
-    caveat: 'A first read, not a lab test. Soil varies from garden to garden, and weather is modelled locally.',
+    cta: 'Download Gardn and those small clues can start living alongside your own beds, borders and pots.',
+    caveat: 'These are local clues, not a lab test. Soil changes from garden to garden, and the weather read will keep moving with the week.',
   };
 }
 

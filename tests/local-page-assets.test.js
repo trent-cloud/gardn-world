@@ -57,27 +57,20 @@ test('successful submit replaces the form screen with the readout screen', () =>
   assert.match(js, /setStatus\('', null\)/);
 });
 
-test('qr campaign route is unlinked and marked as non-indexable', () => {
+test('local landing page is unlinked and marked as non-indexable', () => {
   const html = fs.readFileSync(path.join(root, 'local.html'), 'utf8');
   const sitemap = fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8');
   const vercelConfig = JSON.parse(fs.readFileSync(path.join(root, 'vercel.json'), 'utf8'));
 
   assert.match(html, /name="robots" content="noindex, nofollow"/);
-  assert.match(html, /https:\/\/gardn\.world\/q\/nottm-a6-01/);
-  assert.doesNotMatch(sitemap, /nottm-a6-01/);
+  assert.match(html, /https:\/\/gardn\.world\/local/);
+  assert.doesNotMatch(sitemap, /gardn\.world\/local/);
+  assert.doesNotMatch(JSON.stringify(vercelConfig), /nottm-a6-01/);
   assert.ok((vercelConfig.headers || []).some((entry) => (
-    entry.source === '/q/nottm-a6-01' &&
+    entry.source === '/local' &&
     entry.headers.some((header) => (
       header.key === 'X-Robots-Tag' &&
       header.value === 'noindex, nofollow, noarchive'
     ))
-  )));
-  assert.ok((vercelConfig.rewrites || []).some((entry) => (
-    entry.source === '/q/nottm-a6-01' &&
-    entry.destination === '/local'
-  )));
-  assert.ok((vercelConfig.redirects || []).some((entry) => (
-    entry.source === '/local' &&
-    entry.destination === '/q/nottm-a6-01'
   )));
 });

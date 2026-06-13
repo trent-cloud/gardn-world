@@ -20,7 +20,8 @@ test('first screen stays bare and never shows personal-looking defaults', () => 
   const html = fs.readFileSync(path.join(root, 'local.html'), 'utf8');
 
   assert.match(html, /Your garden already has a story\./);
-  assert.match(html, /Enter your first name and postcode to download the app\./);
+  assert.match(html, /Enter your name and post code to download the app\./);
+  assert.doesNotMatch(html, /First name/);
   assert.match(html, />Download the app\.</);
   assert.doesNotMatch(html, /Sarah/);
   assert.doesNotMatch(html, /NG5 4JL/);
